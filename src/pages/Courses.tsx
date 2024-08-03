@@ -25,7 +25,11 @@ const Courses = () => {
         <code>curr gpa: 4.0</code>
       </p>
 
-      <h2 onClick={() => handleToggle(1)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(1)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         Current slate of classes
       </h2>
       {expandedIndices.has(1) && (
@@ -43,7 +47,11 @@ const Courses = () => {
         </div>
       )}
 
-      <h2 onClick={() => handleToggle(2)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(2)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         CS classes
       </h2>
       {expandedIndices.has(2) && (
@@ -58,7 +66,11 @@ const Courses = () => {
         </div>
       )}
 
-      <h2 onClick={() => handleToggle(3)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(3)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         Math classes
       </h2>
       {expandedIndices.has(3) && (
@@ -74,7 +86,11 @@ const Courses = () => {
         </div>
       )}
 
-      <h2 onClick={() => handleToggle(5)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(5)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         Misc. classes
       </h2>
       {expandedIndices.has(5) && (
@@ -88,7 +104,11 @@ const Courses = () => {
         </div>
       )}
 
-      <h2 onClick={() => handleToggle(4)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(4)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         High School
       </h2>
       {expandedIndices.has(4) && (

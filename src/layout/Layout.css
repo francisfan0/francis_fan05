@@ -20,3 +20,87 @@
       max-width: 50%;
     }
   }
+
+/* Header.css */
+.position-relative {
+  position: relative;
+}
+
+/* Backdrop overlay */
+.backdrop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  z-index: 999; /* Ensure it is behind the menu but above other content */
+}
+
+/* Show backdrop when menu is open */
+.backdrop.show {
+  display: block;
+}
+
+/* Style for the dropdown menu */
+.navbar-collapse {
+  display: none;
+  position: absolute; /* Position dropdown below the button */
+  top: 100%; /* Align dropdown below the button */
+  right: 0; /* Align dropdown to the right edge of the button */
+  z-index: 1000; /* Ensure dropdown is on top of other elements */
+  background-color: #fff; /* White background for the dropdown */
+  border: 1px solid #ddd; /* Light grey border for the dropdown */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+  padding: 10px; /* Padding inside the dropdown */
+  width: 200px; /* Fixed width for the dropdown */
+}
+
+/* Show dropdown on mobile when button is clicked */
+.navbar-collapse.show {
+  display: flex;
+}
+
+/* Ensure vertical stacking on mobile */
+.navbar-collapse {
+  flex-direction: column;
+  background-color: #fff; /* Background color for dropdown */
+}
+
+/* On larger screens, display links horizontally */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    box-shadow: none; /* No shadow on large screens */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border on large screens */
+    width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* Hide the mobile menu button on larger screens */
+  .btn-primary.d-lg-none {
+    display: none;
+  }
+}
+
+.align-right {
+  position: absolute; /* Take elements out of the document flow */
+  right: 0; /* Align to the right edge of the container */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Make sure it spans the container’s height */
+}
+
+.text-hover-gray {
+  color: black; /* Default text color */
+  text-decoration: none; /* Remove underline by default */
+}
+
+.text-hover-gray:hover {
+  color: gray; /* Text color on hover */
+}

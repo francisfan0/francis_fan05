@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import "./Layout.css";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
             href="https://github.com/francisfan0"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black text-lg d-flex align-items-center text-decoration-none"
+            className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"
           >
             GitHub
           </a>
@@ -20,7 +21,7 @@ const Footer = () => {
             href="https://www.linkedin.com/in/francis-fan-51293a236/"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black text-lg d-flex align-items-center text-decoration-none"
+            className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"
           >
             LinkedIn
           </a>

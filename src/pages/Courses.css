@@ -1,0 +1,8 @@
+.text-hover-gray {
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline by default */
+  }
+  
+  .text-hover-gray:hover {
+    color: gray; /* Text color on hover */
+  }

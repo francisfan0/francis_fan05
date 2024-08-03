@@ -1,25 +1,83 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import "./Layout.css"; // Ensure you include the CSS file for styles
+import menu from "../assets/menu-icon.svg";
 
 const Header = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
+
   return (
     <header className="py-3">
-      <div className="custom-container d-flex justify-content-between align-items-center">
-        <Link to="/" className="text-black fs-3 text-decoration-none">
+      <div className="custom-container d-flex justify-content-between align-items-center position-relative">
+        <Link to="/" className="text-hover-gray fs-3 text-decoration-none">
           Francis
         </Link>
-        <div className="d-flex align-items-center">
-        <Link to="/courses" className="text-black fs-3 text-decoration-none">
-          Courses
-        </Link>
-        <Link to="/experience" className="text-black fs-3 text-decoration-none">
-          Experience
-        </Link>
-        <Link to="/projects" className="text-black fs-3 text-decoration-none">
-          Projects
-        </Link>
-        <Link to="/photography" className="text-black fs-3 text-decoration-none">
-          Photography
-        </Link>
+        <div className="d-flex align-right position-relative">
+          <button
+            className="btn btn-default d-lg-none"
+            onClick={toggleMenu}
+            aria-expanded={isOpen}
+            aria-controls="navbarNav"
+          >
+            <img
+              src={menu}
+              alt="Menu"
+              style={{
+                width: "100%", // Set width
+                height: "19px", // Set height
+                objectFit: "cover", // Ensure the image covers the area without distortion
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
+          </button>
+          <div
+            className={`backdrop ${isOpen ? "show" : ""}`}
+            onClick={closeMenu} // Close the menu when clicking outside
+          ></div>
+          <div
+            className={`navbar-collapse ${
+              isOpen ? "show" : ""
+            } d-lg-flex flex-column flex-lg-row text-align text-end`}
+            id="navbarNav"
+          >
+            <Link
+              to="/courses"
+              onClick={closeMenu}
+              className="text-hover-gray fs-3 text-decoration-none"
+            >
+              Courses
+            </Link>
+            <Link
+              to="/experience"
+              onClick={closeMenu}
+              className="text-hover-gray fs-3 text-decoration-none"
+            >
+              Experience
+            </Link>
+            <Link
+              to="/projects"
+              onClick={closeMenu}
+              className="text-hover-gray fs-3 text-decoration-none"
+            >
+              Projects
+            </Link>
+            <Link
+              to="/photography"
+              onClick={closeMenu}
+              className="text-hover-gray fs-3 text-decoration-none"
+            >
+              Photography
+            </Link>
+          </div>
         </div>
       </div>
     </header>

@@ -38,9 +38,8 @@
     background-color: #f9f9f9; /* Light background color */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
     margin-top: 20px; /* Space from other content */
-    max-width: 600px; /* Limit the maximum width */
-    margin-left: auto; /* Center horizontally */
-    margin-right: auto; /* Center horizontally */
+    width: 100%; /* Make the box take up the full width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
   }
 
   .contact-message {

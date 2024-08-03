@@ -1,10 +1,11 @@
 import { useState } from "react";
-import gif from "../assets/individualImage (1).gif";
+import gif from "../assets/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f466172616d612d466f756e646174696f6e2f47796d6e617369756d2f6d61696e2f67796d6e617369756d2d746578742e706e67.png";
 import robotics from "../assets/Screenshot 2024-08-02 at 11.48.09 PM.png";
 import brain from "../assets/Screenshot 2024-08-02 at 11.50.13 PM.png";
 import shap from "../assets/shap.png";
 import paper from "../assets/ML_risk_taking_supp_final.pdf";
 import "./HomePage.css";
+import "./Courses.css";
 
 const Experience = () => {
   const [expandedIndices, setExpandedIndices] = useState<Set<number>>(
@@ -27,7 +28,11 @@ const Experience = () => {
     <div>
       <h1>These are some experiences I've had!</h1>
 
-      <h2 onClick={() => handleToggle(1)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(1)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         Apollo Lab, Yale University
       </h2>
 
@@ -67,22 +72,33 @@ const Experience = () => {
             packages to help train a dual arm robot with a viewpoint arm and a
             tactile arm to open a microwave.
           </p>
-          <img
-            src={gif}
-            className="img-rounded"
-            alt="Apollo Lab Research"
-            style={{
-              maxWidth: "100%",
-              height: "auto",
-              display: "block",
-              margin: "0 auto",
-            }}
-          />
+          <a
+            href="https://pypi.org/project/gymnasium/"
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ display: "block" }} // Ensure the link behaves like a block element
+          >
+            <img
+              src={gif}
+              className="img-rounded"
+              alt="Apollo Lab Research"
+              style={{
+                maxWidth: "100%",
+                height: "auto",
+                display: "block",
+                margin: "0 auto",
+              }}
+            />
+          </a>
           <p></p>
         </div>
       )}
 
-      <h2 onClick={() => handleToggle(2)} style={{ cursor: "pointer" }}>
+      <h2
+        onClick={() => handleToggle(2)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
         Center for Functional Neuroimaging, University of Pennsylvania
       </h2>
 
