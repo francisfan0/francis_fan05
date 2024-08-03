@@ -1,0 +1,57 @@
+
+.math-game-content {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+  }
+
+  .flex-center {
+    display: flex;
+    justify-content: space-between; /* Space between items */
+    align-items: center; /* Center items vertically */
+  }
+  
+  
+  /* Container for question and input on the same line */
+  .inline-container {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+  }
+  
+  /* Style for the question text */
+  .question {
+    margin-top: 12px;
+    margin-right: 10px; /* Space between the question and the input */
+  }
+  
+  /* Optional: Add some styling to the input for better appearance */
+  input {
+    width: 100px; /* Set a width for the input box */
+    padding: 5px; /* Add some padding for better appearance */
+    font-size: 1rem; /* Adjust font size if needed */
+  }
+
+  .math-game-box {
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space inside the box */
+    background-color: #f9f9f9; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+    margin-top: 20px; /* Space from other content */
+    max-width: 600px; /* Limit the maximum width */
+    margin-left: auto; /* Center horizontally */
+    margin-right: auto; /* Center horizontally */
+  }
+
+  .contact-message {
+    margin-bottom: 100px; /* Adjust the value as needed */
+  }
+
+  .some-space {
+    margin-bottom: 10px; /* Adjust the value as needed */
+  }
+
+  .spacing {
+    margin-right: 20px; /* Adjust the value as needed */
+    margin-top: 5px;
+  }
