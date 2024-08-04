@@ -106,7 +106,7 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1>Hi, I'm Francis!</h1>
+      <h1 className="slide-in-from-left">Hi, I'm Francis!</h1>
       <p>
         <address>
           <abbr title="Email">E:</abbr>{" "}
@@ -163,7 +163,7 @@ const HomePage = () => {
         </>
       ) : game === 0 ? (
         <>
-          <div className="math-game-box some-space">
+          <div className="math-game-box some-space scale-up">
             <div className="flex-center">
               <span>
                 <p>

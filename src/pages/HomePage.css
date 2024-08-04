@@ -54,3 +54,49 @@
     margin-right: 20px; /* Adjust the value as needed */
     margin-top: 5px;
   }
+
+  /* Keyframes for fade-in animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Keyframes for scale-up animation */
+@keyframes scaleUp {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Apply animations */
+.fade-in {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.scale-up {
+  animation: scaleUp 0.5s ease-in-out;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-5%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+.slide-in-from-left {
+  animation: slideInFromLeft 0.2s ease-out;
+}

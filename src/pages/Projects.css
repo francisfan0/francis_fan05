@@ -1,0 +1,90 @@
+.text-hover-underline {
+    color: black; /* Default text color */
+    text-decoration: none; /* Remove underline by default */
+  }
+  
+  .text-hover-underline:hover {
+    text-decoration: underline; /* Text color on hover */
+  }
+
+/* Projects.css */
+
+.project-item {
+    position: relative;
+    margin-bottom: 4rem; /* Adjust spacing between projects as needed */
+  }
+  
+  .project-details {
+    display: none;
+    position: absolute;
+    top: 100%; /* Position it right below the project item */
+    left: 0;
+    padding: 10px;
+    z-index: 10;
+    width: 100%; /* Adjust width if needed */
+  }
+  
+  .project-item:hover .project-details {
+    display: block;
+  }
+
+  .button-spacing {
+    margin-right: 0.5rem; /* Adjust spacing as needed */
+  }
+  
+  .button-spacing:last-child {
+    margin-right: 0; /* Remove margin from the last button */
+  }
+
+  .strong-spacing {
+    margin-top: 8px; /* Remove margin from the last button */
+  }
+
+  .cursor-pointer {
+    cursor: pointer; /* Change cursor to pointer to indicate it's clickable */
+  }
+
+  .leftspacing {
+    margin-left: 0.5rem; /* Adjust spacing as needed */
+    margin-right: 0.5rem; /* Adjust spacing as needed */
+  }
+
+  @keyframes slideInFromLeftbtn {
+    from {
+        transform: translateX(-100%);
+        opacity: 0;
+        filter: blur(10px);
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+        filter: blur(0);
+      }
+  }
+  
+  /* Add animation to the buttons */
+  .button-container .btn {
+    opacity: 0;
+    animation: slideInFromLeftbtn 0.5s ease-out forwards;
+  }
+  
+  /* Stagger animation for each button */
+  .button-container .btn:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+  
+  .button-container .btn:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+  
+  .button-container .btn:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+  
+  .button-container .btn:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+  
+  .button-container .btn:nth-child(5) {
+    animation-delay: 0.5s;
+  }

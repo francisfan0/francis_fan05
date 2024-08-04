@@ -35,7 +35,7 @@ const Courses = () => {
       {expandedIndices.has(1) && (
         <div>
           <p>
-            <ul>
+            <ul className="list-container">
               <li>CPSC 474: Computational Intelligence for Games</li>
               <li>
                 CPSC 323: Intro to Systems Programming <br></br>
@@ -57,7 +57,7 @@ const Courses = () => {
       {expandedIndices.has(2) && (
         <div>
           <p>
-            <ul>
+            <ul className="list-container">
               <li>CPSC 223: Data Structures and Programming Techniques</li>
               <li>CPSC 201: Intro to Computer Science</li>
               <li>CPSC 381: Intro to Machine Learning</li>
@@ -76,7 +76,7 @@ const Courses = () => {
       {expandedIndices.has(3) && (
         <div>
           <p>
-            <ul>
+            <ul className="list-container">
               <li>S&DS 230: Data Exploration and Analysis</li>
               <li>MATH 120: Multivariable Calculus</li>
               <li>MATH 244: Discrete Math</li>
@@ -96,7 +96,7 @@ const Courses = () => {
       {expandedIndices.has(5) && (
         <div>
           <p>
-            <ul>
+            <ul className="list-container">
               <li>ECON 121: Intermediate Microeconomics</li>
               <li>LITR 020: World Literature After Empire</li>
             </ul>
@@ -114,7 +114,7 @@ const Courses = () => {
       {expandedIndices.has(4) && (
         <div>
           <p>
-            <ul>
+            <ul className="list-container">
               <li>AP Lit: 5</li>
               <li>AP Physics C E&M: 5</li>
               <li>AP Psych: 5</li>

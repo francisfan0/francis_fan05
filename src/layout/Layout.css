@@ -97,11 +97,13 @@
   height: 100%; /* Make sure it spans the container’s height */
 }
 
-.text-hover-gray {
+.text-hover-grayl {
   color: black; /* Default text color */
   text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.text-hover-gray:hover {
+.text-hover-grayl:hover {
   color: gray; /* Text color on hover */
+  transform: scale(1.1);
 }

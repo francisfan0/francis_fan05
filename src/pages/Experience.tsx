@@ -60,7 +60,7 @@ const Experience = () => {
 
       {expandedIndices.has(1) && (
         <div>
-          <p>
+          <p className="slide-in-from-left">
             I have some exposure with machine learning/computer vision
             techniques gaussian splatting and NeRF models. I also have done
             research with decision transformers and diffusion policy, as well as
@@ -80,7 +80,7 @@ const Experience = () => {
           >
             <img
               src={gif}
-              className="img-rounded"
+              className="img-rounded slide-in-from-left"
               alt="Apollo Lab Research"
               style={{
                 maxWidth: "100%",
@@ -125,7 +125,7 @@ const Experience = () => {
       </span>
       {expandedIndices.has(2) && (
         <div>
-          <p>
+          <p className="slide-in-from-left">
             I led a project analyzing the relationship between risk tolerance
             and brain gray matter volume under Professor Hengyi Rao, presented
             at the Organization for Human Brain Mapping Conference in August
@@ -139,7 +139,7 @@ const Experience = () => {
           </p>
           <img
             src={shap}
-            className="img-rounded"
+            className="img-rounded slide-in-from-left"
             alt="shap"
             style={{
               maxWidth: "100%",
@@ -149,7 +149,7 @@ const Experience = () => {
             }}
           />
           <a href={paper} target="_blank" rel="noopener noreferrer">
-            View the full paper
+            <p className="slide-in-from-left">View the full paper</p>
           </a>
         </div>
       )}

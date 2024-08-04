@@ -1,8 +1,29 @@
 .text-hover-gray {
     color: black; /* Default text color */
     text-decoration: none; /* Remove underline by default */
+    transition: color 0.2s ease, transform 0.1s ease;
   }
   
   .text-hover-gray:hover {
     color: gray; /* Text color on hover */
+    transform: scale(1.01);
   }
+
+/* Apply the animation to list items */
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-5%);
+    opacity: 0;
+    filter: blur(10px);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+/* Apply the animation to the container of list items */
+.list-container {
+  animation: slideInFromLeft 0.2s ease-out;
+}
