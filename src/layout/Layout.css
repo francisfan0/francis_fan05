@@ -60,6 +60,7 @@
 
 /* Show dropdown on mobile when button is clicked */
 .navbar-collapse.show {
+  display: -webkit-flex; /* Safari */
   display: flex;
 }
 

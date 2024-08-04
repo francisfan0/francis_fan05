@@ -20,7 +20,7 @@ const Header = () => {
         <Link to="/" className="text-hover-gray fs-3 text-decoration-none">
           Francis
         </Link>
-        <div className="d-flex align-right position-relative">
+        <div className="d-flex align-right">
           <button
             className="btn btn-default d-lg-none"
             onClick={toggleMenu}
@@ -31,9 +31,7 @@ const Header = () => {
               src={menu}
               alt="Menu"
               style={{
-                width: "100%", // Set width
                 height: "19px", // Set height
-                objectFit: "cover", // Ensure the image covers the area without distortion
                 display: "block",
                 margin: "0 auto",
               }}
