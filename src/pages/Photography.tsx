@@ -133,7 +133,7 @@ const Photography = () => {
       const mouseDelta = startPosition.current - clientX;
       const maxDelta = window.innerWidth / 2;
 
-      const movePercentage = (mouseDelta / maxDelta) * -75;
+      const movePercentage = (mouseDelta / maxDelta) * -50;
       const newPercentage = Math.max(
         Math.min(percentage + movePercentage, 0),
         -100
@@ -149,7 +149,7 @@ const Photography = () => {
 
         const scrollDelta = e.deltaY * 0.5;
         const newPercentage = Math.max(
-          Math.min(percentage + (scrollDelta / window.innerWidth) * -100, 0),
+          Math.min(percentage + (scrollDelta / window.innerWidth) * -50, 0),
           -100
         );
 
