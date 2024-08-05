@@ -16,6 +16,7 @@ const Photography = () => {
   const [percentage, setPercentage] = useState<number>(0);
   const startPosition = useRef<number>(0);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
   const trackNames: TrackName[] = [
     "Seattle",
@@ -217,8 +218,48 @@ const Photography = () => {
               .quality("auto")
               .toURL()}
             alt="Photography"
+            data-bs-toggle="modal"
+            data-bs-target="#image"
+            onClick={() =>
+              setSelectedImage(
+                cld
+                  .image(publicId)
+                  .resize(Resize.scale().width(2400).height(1800))
+                  .format("auto")
+                  .quality("auto")
+                  .toURL()
+              )
+            }
           />
         ))}
+      </div>
+      <div
+        className="modal fade"
+        id="image"
+        tabIndex={-1}
+        aria-labelledby="imageModalLabel"
+        aria-hidden="true"
+      >
+        <div className="modal-dialog modal-dialog-centered modal-xl">
+          <div className="modal-content modal-color">
+            <div className="modal-header">
+              <h5 className="modal-title" id="imageModalLabel">
+                Image
+              </h5>
+              <button
+                type="button"
+                className="btn-close btn-close-custom"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div className="modal-body">
+              {selectedImage && (
+                <img src={selectedImage} alt="Selected" className="img-fluid" />
+              )}
+            </div>
+          </div>
+        </div>
       </div>
       <div className="track-controls">
         <button

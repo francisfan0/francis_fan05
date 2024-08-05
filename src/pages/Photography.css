@@ -38,7 +38,7 @@ body.dark-mode .down-button {
     position: absolute;
     left: 50%;
     top: 50%;
-    user-select: none;
+    /* user-select: none; */
     transform: translate(-40%, -50%);
     overflow: hidden;
   }
@@ -52,6 +52,19 @@ body.dark-mode .down-button {
 
   .overflow-none {
     overflow: hidden;
+  }
+
+  body.dark-mode .modal-color {
+    background-color: black;
+  }
+
+  body.dark-mode .btn-close-custom {
+    filter: invert(0.5) sepia(1) 
+    saturate(5) hue-rotate(175deg);
+}
+
+.image {
+    cursor: pointer; /* Change the cursor to a pointer on hover */
   }
 /* 
   .loading-overlay {
