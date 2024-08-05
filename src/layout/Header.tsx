@@ -23,7 +23,7 @@ const Header = () => {
         </Link>
         <div className="d-flex align-right">
           <button
-            className="btn btn-default d-lg-none"
+            className="btn btn-default d-lg-none dark-btn"
             onClick={toggleMenu}
             aria-expanded={isOpen}
             aria-controls="navbarNav"

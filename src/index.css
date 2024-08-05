@@ -67,15 +67,17 @@ button:focus-visible {
   }
 } */
 
-body {
+body, html {
   background-color: white; /* Dark background color */
   transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
 }
 
 body.dark-mode {
   background-color: black; /* Dark background color */
   color: lightblue; /* Light text color */
   transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
 }
 
 body.dark-mode header {

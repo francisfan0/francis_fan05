@@ -128,3 +128,7 @@ body.dark-mode .icon.moon {
   height: 30px;
   transition: filter 0.5s ease;
 }
+
+body.dark-mode .dark-btn {
+  background-color: lightblue;
+}

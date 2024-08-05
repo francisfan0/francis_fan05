@@ -49,6 +49,10 @@ body.dark-mode .down-button {
     object-fit: cover;
     object-position: 100% center;
   }
+
+  .overflow-none {
+    overflow: hidden;
+  }
 /* 
   .loading-overlay {
     position: absolute;
