@@ -1,6 +1,7 @@
 .text-hover-underline {
     color: black; /* Default text color */
     text-decoration: none; /* Remove underline by default */
+    margin-bottom: 8px;
   }
   
   .text-hover-underline:hover {
@@ -10,6 +11,7 @@
   body.dark-mode .text-hover-underline {
     color: lightblue; /* Text color in dark mode */
     text-decoration: none;
+    margin-bottom: 8px;
   }
   
   body.dark-mode .text-hover-underline:hover {
@@ -46,7 +48,7 @@
   }
 
   .strong-spacing {
-    margin-top: 8px; /* Remove margin from the last button */
+    margin-top: 8px;
   }
 
   .cursor-pointer {
@@ -75,6 +77,7 @@
   .button-container .btn {
     opacity: 0;
     animation: slideInFromLeftbtn 0.5s ease-out forwards;
+    margin-bottom: 4px;
   }
   
   /* Stagger animation for each button */

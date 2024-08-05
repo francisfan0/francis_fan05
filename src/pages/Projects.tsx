@@ -236,12 +236,6 @@ const Projects: React.FC = () => {
                 >
                   <code>recharts</code>
                 </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>bcryptjs</code>
-                </button>
               </div>
               <p className="strong-spacing text-secondary">July 2024</p>
             </div>
