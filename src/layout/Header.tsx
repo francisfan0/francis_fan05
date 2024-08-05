@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Layout.css"; // Ensure you include the CSS file for styles
 import menu from "../assets/menu-icon.svg";
+import "../index.css";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

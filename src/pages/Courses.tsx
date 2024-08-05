@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Courses.css";
+import "../index.css";
 
 const Courses = () => {
   const [expandedIndices, setExpandedIndices] = useState<Set<number>>(

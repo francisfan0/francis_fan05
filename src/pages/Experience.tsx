@@ -6,6 +6,7 @@ import shap from "../assets/shap.png";
 import paper from "../assets/ML_risk_taking_supp_final.pdf";
 import "./HomePage.css";
 import "./Courses.css";
+import "../index.css";
 
 const Experience = () => {
   const [expandedIndices, setExpandedIndices] = useState<Set<number>>(

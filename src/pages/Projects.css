@@ -7,6 +7,15 @@
     text-decoration: underline; /* Text color on hover */
   }
 
+  body.dark-mode .text-hover-underline {
+    color: lightblue; /* Text color in dark mode */
+    text-decoration: none;
+  }
+  
+  body.dark-mode .text-hover-underline:hover {
+    text-decoration: underline;
+  }
+
 /* Projects.css */
 
 .project-item {

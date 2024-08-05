@@ -1,4 +1,5 @@
 import "./Projects.css";
+import "../index.css";
 import stockgraph from "../assets/Screenshot 2024-08-03 at 10.59.12 PM.png";
 import gif from "../assets/individualImage (1).gif";
 import fitness1 from "../assets/Screenshot 2024-08-03 at 11.27.51 PM.png";

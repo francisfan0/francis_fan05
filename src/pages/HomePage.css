@@ -42,6 +42,18 @@
     box-sizing: border-box; /* Include padding and border in the element's total width and height */
   }
 
+  body.dark-mode .math-game-box {
+    border: 1px solid #ddd; /* Light grey border */
+    border-radius: 8px; /* Rounded corners */
+    padding: 20px; /* Space inside the box */
+    background-color: black; /* Light background color */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+    margin-top: 20px; /* Space from other content */
+    width: 100%; /* Make the box take up the full width of its container */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+    transition: color 0.3s ease, transform 0.3s ease;
+  }
+
   .contact-message {
     margin-bottom: 100px; /* Adjust the value as needed */
   }
@@ -99,4 +111,35 @@
 
 .slide-in-from-left {
   animation: slideInFromLeft 0.2s ease-out;
+}
+
+.h1-title {
+  position: relative; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  display: inline-block; 
+}
+
+.typewriter {
+  font-family: monospace;
+  display: inline-block; 
+  overflow: hidden; 
+  white-space: nowrap; 
+  border-right: .1em solid black; 
+  animation: typing 4s steps(16, end) forwards, blink-caret .75s step-end infinite; 
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent; }
+  50% { border-color: black; }
+}
+
+.no-blink {
+  border-right: none;
+  animation: typing 4s steps(16, end) forwards;
 }

@@ -66,3 +66,19 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 } */
+
+body {
+  background-color: white; /* Dark background color */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode {
+  background-color: black; /* Dark background color */
+  color: lightblue; /* Light text color */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode header {
+  background-color: black; /* Darker background color for the header */
+  transition: color 0.3s ease, transform 0.3s ease;
+}

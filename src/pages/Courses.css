@@ -9,6 +9,17 @@
     transform: scale(1.01);
   }
 
+  body.dark-mode .text-hover-gray {
+    color: lightblue; /* Text color in dark mode */
+    text-decoration: none; /* Remove underline by default */
+    transition: color 0.2s ease, transform 0.1s ease;
+  }
+  
+  body.dark-mode .text-hover-gray:hover {
+    color: lightgray; /* Hover color in dark mode */
+    transform: scale(1.01);
+  }
+
 /* Apply the animation to list items */
 @keyframes slideInFromLeft {
   from {

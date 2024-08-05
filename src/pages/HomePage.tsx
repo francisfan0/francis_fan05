@@ -1,5 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
+import "../index.css";
 
 // Function to generate a random math question
 const generateQuestion = () => {
@@ -59,6 +60,8 @@ const HomePage = () => {
     return savedScore ? parseInt(savedScore, 10) : 0;
   });
 
+  const typewriterRef = useRef<HTMLSpanElement>(null);
+
   useEffect(() => {
     // Timer logic
     const intervalId = setInterval(() => {
@@ -80,6 +83,25 @@ const HomePage = () => {
     // Clear interval on component unmount
     return () => clearInterval(intervalId);
   }, [counter, bestScore]);
+
+  useEffect(() => {
+    // Logic to stop blinking cursor after typing animation
+    const typewriter = typewriterRef.current;
+
+    if (typewriter) {
+      const handleAnimationEnd = (e: { animationName: string }) => {
+        if (e.animationName === "typing") {
+          typewriter.classList.remove("blink-caret");
+          typewriter.classList.add("no-blink");
+        }
+      };
+
+      typewriter.addEventListener("animationend", handleAnimationEnd);
+
+      return () =>
+        typewriter.removeEventListener("animationend", handleAnimationEnd);
+    }
+  }, []);
 
   const handleAnswerChange = (e: { target: { value: any } }) => {
     const answer = e.target.value;
@@ -106,7 +128,11 @@ const HomePage = () => {
 
   return (
     <div>
-      <h1 className="slide-in-from-left">Hi, I'm Francis!</h1>
+      <h1 className="h1-title">
+        <span ref={typewriterRef} className="typewriter">
+          Hi, I'm Francis.
+        </span>
+      </h1>
       <p>
         <address>
           <abbr title="Email">E:</abbr>{" "}

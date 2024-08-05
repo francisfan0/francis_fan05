@@ -107,3 +107,24 @@
   color: gray; /* Text color on hover */
   transform: scale(1.1);
 }
+
+body.dark-mode .text-hover-grayl {
+  color: lightblue; /* Text color in dark mode */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .text-hover-grayl:hover {
+  color: lightgray; /* Hover color in dark mode */
+  transform: scale(1.1);
+}
+
+body.dark-mode .icon.moon {
+  filter: invert(1); /* Invert colors for the moon to be white on dark background */
+}
+
+.icon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  transition: filter 0.5s ease;
+}
