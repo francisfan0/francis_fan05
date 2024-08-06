@@ -44,7 +44,7 @@ body.dark-mode .down-button {
   }
   
   #image-track > .image {
-    width: 42vmin;
+    width: 38vmin;
     height: 56vmin;
     object-fit: cover;
     object-position: 100% center;

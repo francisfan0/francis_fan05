@@ -8,7 +8,11 @@ type TrackName =
   | "Seattle"
   | "Mt. Rainier"
   | "North Cascades"
-  | "Whale Watching"; // Define more tracks as needed
+  | "Whale Watching"
+  | "Arches"
+  | "Grand Canyon"
+  | "Grand Teton"
+  | "Yellowstone"; // Define more tracks as needed
 
 const Photography = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -23,6 +27,10 @@ const Photography = () => {
     "Mt. Rainier",
     "North Cascades",
     "Whale Watching",
+    "Arches",
+    "Grand Canyon",
+    "Grand Teton",
+    "Yellowstone",
   ]; // List all track names here
 
   const cld = new Cloudinary({ cloud: { cloudName: "ddyvrjaqp" } });
@@ -34,10 +42,10 @@ const Photography = () => {
       "seattle/af0asgfokfvn6tu3yowq",
       "seattle/k8nhlmk7kam3iid6nakd",
       "seattle/vt8xifjq1hvctfxbsyqf",
-      "seattle/dtvcaw0nybpemlvmgfxc",
+      // "seattle/dtvcaw0nybpemlvmgfxc",
       "seattle/gcwyuwjtrdhilka6gysy",
       "seattle/sth5kfawakgdijrjm40g",
-      "seattle/anmxplebbbryeaytbzkm",
+      // "seattle/anmxplebbbryeaytbzkm",
       "seattle/acupyulbnmvsmk9t91sw",
     ],
     "Mt. Rainier": [
@@ -77,6 +85,55 @@ const Photography = () => {
       "whale/xsthfylakiy9bdotke4h",
       "whale/kwuf79pcrkhbrebxgozn",
       "whale/ska2rtobsgclzxolev1s",
+    ],
+    Arches: [
+      "arches/kevgarjwdwjwikdzfcc3",
+      "arches/dzqxgdtzwdqmjxw0zkg2",
+      "arches/wpqxo2z5zhlo5lsmmwgc",
+      "arches/xmnanznzkdpdmkzkk0pd",
+      "arches/wd78h51lpueev3peo4lk",
+      "arches/jzoywhmdojzch31f8nn3",
+      "arches/iixl4iimiupggq8tys6u",
+      "arches/rnyduinoflog8pkllgf3",
+      "arches/kjrqnterivsmh6xcwsuo",
+      "arches/chvb41w9paxnvadec8ui",
+      "arches/fvjckwzxa7wjxadjsh79",
+      "arches/cxjuwrzlojfbxw6exoiq",
+      "arches/efmblkte9901fb8rfv7d",
+    ],
+    "Grand Canyon": [
+      "gc/vj3vghxai8u3mypclqjx",
+      "gc/yhlltvuqm65nhagivpyb",
+      "gc/thhehd0xqakzycx591mi",
+      "gc/ecf4dknqrdkfy6ytulpd",
+      "gc/fkvbyr0v4gu5ctevzqro",
+      "gc/udm0t9fuvd4c1bxorah4",
+      "gc/lcy937ujtlwoxkl1plca",
+      "gc/jxyohjpfwxzrsuh0pyau",
+      "gc/onfu9op2xpysjjw2yfki",
+      "gc/phh6ug4hctxlioog3cez",
+      "gc/xq4oib6qoytwxjt7uptt",
+    ],
+    "Grand Teton": [
+      "gt/lzrvjddlsbcqfuz19fnn",
+      "gt/x72zu2ajlomxwvrk6jpx",
+      "gt/wwffr7mup4dsl9crpmo4",
+      "gt/gjzfbk0kr5naysyb7slq",
+      "gt/vqssqil3ceeqxsy5d9z8",
+      "gt/oa74r1vw5lk459zvui2g",
+      "gt/cqyhlhxznezh1s4texfj",
+      "gt/ebana5pq9kfltahcgkuo",
+    ],
+    Yellowstone: [
+      "ys/i7xt4yb3ebm6kyssk86x",
+      "ys/futkpsketvp7oeewg7jj",
+      "ys/bhiqwhlszv8spnhzpf8v",
+      "ys/b3ssk6ml6owqhspeu7rh",
+      "ys/kn04xljygic9levvi9zf",
+      "ys/sloowsguleotjcykd9mt",
+      "ys/uwgtufizu3ziy7kgr58c",
+      "ys/afb5xrw8uxetmgulf5yc",
+      "ys/ce9troaifzl9hbxseq7c",
     ],
     // Add more tracks as needed
   };
@@ -192,13 +249,15 @@ const Photography = () => {
     <div className="overflow-none">
       <h1>{trackNames[currentTrackIndex]}</h1>
       <div className="track-controls">
-        <button
-          className="up-button btn btn-default"
-          onClick={handlePreviousTrack}
-          disabled={currentTrackIndex === 0}
-        >
-          Previous
-        </button>
+        {currentTrackIndex > 0 && (
+          <button
+            className="up-button btn btn-default"
+            onClick={handlePreviousTrack}
+            disabled={currentTrackIndex === 0}
+          >
+            Previous
+          </button>
+        )}
       </div>
       <div
         id="image-track"
@@ -207,31 +266,58 @@ const Photography = () => {
         data-prev-percentage="0"
         data-percentage="0"
       >
-        {imageTracks[currentTrack].map((publicId) => (
-          <img
-            key={publicId}
-            className="image"
-            src={cld
-              .image(publicId)
-              .resize(Resize.scale().width(2400).height(1800))
-              .format("auto")
-              .quality("auto")
-              .toURL()}
-            alt="Photography"
-            data-bs-toggle="modal"
-            data-bs-target="#image"
-            onClick={() =>
-              setSelectedImage(
-                cld
-                  .image(publicId)
-                  .resize(Resize.scale().width(2400).height(1800))
-                  .format("auto")
-                  .quality("auto")
-                  .toURL()
-              )
-            }
-          />
-        ))}
+        {imageTracks[currentTrack].map((publicId) =>
+          publicId === "seattle/dtvcaw0nybpemlvmgfxc" ||
+          publicId === "seattle/anmxplebbbryeaytbzkm" ? (
+            <img
+              key={publicId}
+              className="image"
+              src={cld
+                .image(publicId)
+                .resize(Resize.scale().width(1800).height(2400))
+                .format("auto")
+                .quality("auto")
+                .toURL()}
+              alt="Photography"
+              data-bs-toggle="modal"
+              data-bs-target="#image"
+              onClick={() =>
+                setSelectedImage(
+                  cld
+                    .image(publicId)
+                    .resize(Resize.scale().width(1800).height(2400))
+                    .format("auto")
+                    .quality("auto")
+                    .toURL()
+                )
+              }
+            />
+          ) : (
+            <img
+              key={publicId}
+              className="image"
+              src={cld
+                .image(publicId)
+                .resize(Resize.scale().width(2400).height(1800))
+                .format("auto")
+                .quality("auto")
+                .toURL()}
+              alt="Photography"
+              data-bs-toggle="modal"
+              data-bs-target="#image"
+              onClick={() =>
+                setSelectedImage(
+                  cld
+                    .image(publicId)
+                    .resize(Resize.scale().width(2400).height(1800))
+                    .format("auto")
+                    .quality("auto")
+                    .toURL()
+                )
+              }
+            />
+          )
+        )}
       </div>
       <div
         className="modal fade"
@@ -243,9 +329,7 @@ const Photography = () => {
         <div className="modal-dialog modal-dialog-centered modal-xl">
           <div className="modal-content modal-color">
             <div className="modal-header">
-              <h5 className="modal-title" id="imageModalLabel">
-                Image
-              </h5>
+              <h5 className="modal-title" id="imageModalLabel"></h5>
               <button
                 type="button"
                 className="btn-close btn-close-custom"
@@ -262,13 +346,15 @@ const Photography = () => {
         </div>
       </div>
       <div className="track-controls">
-        <button
-          className="btn btn-default down-button"
-          onClick={handleNextTrack}
-          disabled={currentTrackIndex === trackNames.length - 1}
-        >
-          Next
-        </button>
+        {currentTrackIndex < trackNames.length - 1 && (
+          <button
+            className="btn btn-default down-button"
+            onClick={handleNextTrack}
+            disabled={currentTrackIndex === trackNames.length - 1}
+          >
+            Next
+          </button>
+        )}
       </div>
     </div>
   );
