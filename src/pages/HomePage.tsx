@@ -140,7 +140,7 @@ const HomePage = () => {
         </address>
       </p>
       <p>
-        I'm a currently @ Yale intending to study CS + Math, a joint major. I'm
+        I'm currently @ Yale intending to study CS + Math, a joint major. I'm
         excited by applications of AI/ML and am currently doing research at the
         Apollo Lab @ Yale with special interests in robotics and deep learning.
       </p>

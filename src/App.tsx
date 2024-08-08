@@ -12,6 +12,8 @@ import Projects from "./pages/Projects";
 import Photography from "./pages/Photography";
 import Experience from "./pages/Experience";
 import { useEffect } from "react";
+import PokerBackground from "./components/PokerBG";
+import Trial from "./components/Trial";
 
 function App() {
   useEffect(() => {
@@ -62,6 +64,22 @@ function App() {
           element={
             <Layout>
               <Photography />
+            </Layout>
+          }
+        />
+        <Route
+          path="/poker"
+          element={
+            <Layout>
+              <PokerBackground />
+            </Layout>
+          }
+        />
+        <Route
+          path="/trial"
+          element={
+            <Layout>
+              <Trial />
             </Layout>
           }
         />
