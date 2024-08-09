@@ -50,6 +50,7 @@
 // export default Footer;
 import "./Layout.css";
 import "../index.css";
+import resume from "../assets/Francis_Fan_Resume (3).pdf";
 import { useEffect, useState } from "react";
 
 // Import SVGs
@@ -96,6 +97,14 @@ const Footer = () => {
           />
         </button>
         <div className="d-flex gap-3">
+          <a
+            href={resume}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"
+          >
+            Resume
+          </a>
           <a
             href="https://github.com/francisfan0"
             target="_blank"
