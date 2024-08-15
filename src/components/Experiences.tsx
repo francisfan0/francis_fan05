@@ -26,7 +26,7 @@ const Experience = () => {
           </mesh>
         </Float>
       </Stage>
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-2}>
+      {/* <mesh rotation={[-Math.PI / 2, 0, 0]} position-y={-2}>
         <planeGeometry args={[170, 170]} />
         <MeshReflectorMaterial
           blur={[300, 100]}
@@ -39,9 +39,9 @@ const Experience = () => {
           maxDepthThreshold={1.4}
           color="#101010"
           metalness={0.5}
-          mirror={-1}
+          mirror={1}
         />
-      </mesh>
+      </mesh> */}
     </PresentationControls>
   );
 };

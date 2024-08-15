@@ -7,7 +7,7 @@ const PokerBG = () => {
     <div style={{ width: "100vw", height: "80vh" }} className="canvas-holder">
       <Canvas
         className="full-canvas"
-        camera={{ fov: 25, position: [0, 0, 100] }}
+        camera={{ fov: 25, position: [0, 0, 1000000] }}
       >
         <color attach="background" args={["#101010"]} />
         <Experience />
