@@ -50,7 +50,7 @@
 // export default Footer;
 import "./Layout.css";
 import "../index.css";
-import resume from "../assets/Francis_Fan_Resume (3).pdf";
+import resume from "../assets/Francis_Fan_Current 2.pdf";
 import { useEffect, useState } from "react";
 
 // Import SVGs
