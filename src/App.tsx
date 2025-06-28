@@ -14,6 +14,7 @@ import Experience from "./pages/Experience";
 import { useEffect } from "react";
 import PokerBackground from "./components/PokerBG";
 import Trial from "./components/Trial";
+import { Analytics } from "@vercel/analytics/react";
 
 function App() {
   useEffect(() => {
@@ -85,6 +86,7 @@ function App() {
         />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
+      <Analytics />
     </Router>
   );
 }
