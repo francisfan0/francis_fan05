@@ -23,7 +23,7 @@ const Courses = () => {
     <div>
       <h1>These are some courses I've taken!</h1>
       <p>
-        <code>curr gpa: 4.0</code>
+        <code>curr gpa: 3.96</code>
       </p>
 
       <h2
@@ -37,12 +37,12 @@ const Courses = () => {
         <div>
           <p>
             <ul className="list-container">
-              <li>CPSC 474: Computational Intelligence for Games</li>
+              <li>CPSC 4390: Software Engineering</li>
               <li>
-                CPSC 323: Intro to Systems Programming <br></br>
-                and Computer Organization
+                CPSC 4470: Quantum Computing
               </li>
-              <li>S&DS 241: Probability Theory</li>
+              <li>CPSC 4210: Compilers</li>
+              <li>LING 2340: Quantitative Linquistics</li>
             </ul>
           </p>
         </div>
@@ -62,6 +62,14 @@ const Courses = () => {
               <li>CPSC 223: Data Structures and Programming Techniques</li>
               <li>CPSC 201: Intro to Computer Science</li>
               <li>CPSC 381: Intro to Machine Learning</li>
+              <li>CPSC 474: Computational Intelligence for Games</li>
+              <li>
+                CPSC 323: Intro to Systems Programming <br></br>
+                and Computer Organization
+              </li>
+              <li>CPSC 365: Algorithms</li>
+              <li>CPSC 424: Parallel Computing</li>
+              <li>PHYS 345: Quantum Information Processing</li>
             </ul>
           </p>
         </div>
@@ -82,6 +90,9 @@ const Courses = () => {
               <li>MATH 120: Multivariable Calculus</li>
               <li>MATH 244: Discrete Math</li>
               <li>MATH 225: Linear Algebra</li>
+              <li>MATH 255: Analysis</li>
+              <li>S&DS 241: Probability Theory</li>
+              <li>S&DS 242: Theory of Statistics</li>
             </ul>
           </p>
         </div>
@@ -100,6 +111,8 @@ const Courses = () => {
             <ul className="list-container">
               <li>ECON 121: Intermediate Microeconomics</li>
               <li>LITR 020: World Literature After Empire</li>
+              <li>CHNS 142: Heritage Chinese</li>
+              <li>CHNS 200: The Chinese Tradition</li>
             </ul>
           </p>
         </div>

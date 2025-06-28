@@ -50,7 +50,7 @@
 // export default Footer;
 import "./Layout.css";
 import "../index.css";
-import resume from "../assets/Francis_Fan_Current 2.pdf";
+import resume from "../assets/FrancisFan.pdf";
 import { useEffect, useState } from "react";
 
 // Import SVGs
@@ -114,7 +114,7 @@ const Footer = () => {
             GitHub
           </a>
           <a
-            href="https://www.linkedin.com/in/francis-fan-51293a236/"
+            href="https://www.linkedin.com/in/francis-fan/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"

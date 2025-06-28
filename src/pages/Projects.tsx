@@ -1,6 +1,6 @@
 import "./Projects.css";
 import "../index.css";
-import stockgraph from "../assets/Screenshot 2024-08-03 at 10.59.12 PM.png";
+// import stockgraph from "../assets/Screenshot 2024-08-03 at 10.59.12 PM.png";
 import gif from "../assets/individualImage (1).gif";
 import fitness1 from "../assets/Screenshot 2024-08-03 at 11.27.51 PM.png";
 import fitness2 from "../assets/Screenshot 2024-08-03 at 11.29.13 PM.png";
@@ -14,9 +14,9 @@ const Projects: React.FC = () => {
           <h2
             className="text-hover-underline cursor-pointer"
             data-bs-toggle="modal"
-            data-bs-target="#stock"
+            data-bs-target="#avenue"
           >
-            Stock Picker
+            Avenue
           </h2>
           <div className="project-details">
             <div className="inline-container flex-center">
@@ -25,38 +25,44 @@ const Projects: React.FC = () => {
                   type="button"
                   className="btn btn-outline-secondary btn-sm button-spacing"
                 >
-                  <code>Pytorch</code>
+                  <code>Redis</code>
                 </button>
                 <button
                   type="button"
                   className="btn btn-outline-secondary btn-sm button-spacing"
                 >
-                  <code>Scikit-Learn</code>
+                  <code>React</code>
                 </button>
                 <button
                   type="button"
                   className="btn btn-outline-secondary btn-sm button-spacing"
                 >
-                  <code>BERT</code>
+                  <code>Node.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Firecrawl</code>
                 </button>
               </div>
-              <p className="strong-spacing text-secondary">April 2023</p>
+              <p className="strong-spacing text-secondary">Feb 2025 - Present</p>
             </div>
           </div>
         </div>
 
         <div
           className="modal fade"
-          id="stock"
+          id="avenue"
           tabIndex={-1}
-          aria-labelledby="stockModalLabel"
+          aria-labelledby="avenueModalLabel"
           aria-hidden="true"
         >
           <div className="modal-dialog modal-dialog-centered">
             <div className="modal-content">
               <div className="modal-header">
                 <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  <code>Stock Picker</code>
+                  <code>Avenue</code>
                 </h1>
                 <button
                   type="button"
@@ -67,20 +73,164 @@ const Projects: React.FC = () => {
               </div>
               <div className="modal-body">
                 <p>
-                  This was my first self-guided exploration into machine
-                  learning, and I had a lot of fun combining my interest in the
-                  stock market with my interest in natural language procressing
-                  (NLP). My goal was to classify tweet sentiment and use that to
-                  gain extra parameters to invest in the stock market. I started
-                  with somewhat crude NLP techniques like using the NLTK library
-                  to use Vader scores to classify tweet sentiment, to using BERT
-                  (I hadn't thought to use OpenAI's ChatGPT at the time).
-                  Although I believe the results are a bit contrived due to the
-                  small sample data, I think it was a good first attempt at
-                  applying NLP.
+                  I developed a price comparison web application and Chrome extension for finding related products at a lower price with optimized result caching using Redis for fast, repeatable user queries with affiliate link APIs to monetize referrals. I implemented AI-driven product matching using natural language embeddings and fuzzy search and Firecrawl for dynamic web crawling and HTML parsing to extract product metadata and pricing across multiple vendors.
                 </p>
+                <a
+                  href="https://app.avenuesaves.com/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Avenue
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="project-item">
+          <h2
+            className="text-hover-underline cursor-pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#brain"
+          >
+            Brain Matter Data Analysis
+          </h2>
+          <div className="project-details">
+            <div className="inline-container flex-center">
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>SHAP</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Random Forests</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>SVM</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>MLR</code>
+                </button>
+              </div>
+              <p className="strong-spacing text-secondary">June 2022 - Aug 2023</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="brain"
+          tabIndex={-1}
+          aria-labelledby="brainModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  <code>Brain Matter Data Analysis</code>
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  I utilized an interpretable model to quantify and confirm the cerebellum's importance in predicting risk tolerance and evaluated the performance of several machine learning techniques using 1000 runs of 10-fold cross-validation. I published work using machine learning to assess the relationship between risk tolerance and brain gray matter volume as first author, and presented at the Organization for Human Brain Mapping (OHBM) Conference 2023.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="project-item">
+          <h2
+            className="text-hover-underline cursor-pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#fitness"
+          >
+            Fit4Lyfe
+          </h2>
+          <div className="project-details">
+            <div className="inline-container flex-center">
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>MongoDB</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Express</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>React</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Node.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>JWT</code>
+                </button>
+              </div>
+              <p className="strong-spacing text-secondary">Jan 2024 - July 2024</p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="fitness"
+          tabIndex={-1}
+          aria-labelledby="fitnessModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  <code>Fit4Lyfe</code>
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  I created a full-stack web app to track workouts, visualize progress, and integrated AI insights for better training. I deployed the app on Render, serving 100+ users and 10,000+ data points through clean UI and optimized backend.
+                </p>
+                <p>Log page:</p>
                 <img
-                  src={stockgraph}
+                  src={fitness1}
                   className="img-rounded"
                   alt="graph"
                   style={{
@@ -91,13 +241,36 @@ const Projects: React.FC = () => {
                     margin: "0 auto",
                   }}
                 />
-                <a
-                  href="https://github.com/francisfan0/stockpicker/tree/main"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Click here to see my code
-                </a>
+                <p>Chat page:</p>
+                <img
+                  src={fitness2}
+                  className="img-rounded"
+                  alt="graph"
+                  style={{
+                    width: "100%", // Set width
+                    height: "100%", // Set height
+                    objectFit: "cover", // Ensure the image covers the area without distortion
+                    display: "block",
+                    margin: "0 auto",
+                  }}
+                />
+                <div className="inline-container">
+                  <a
+                    href="https://fitnesswebappai.onrender.com/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    website
+                  </a>
+                  <p className="leftspacing">.</p>
+                  <a
+                    href="https://github.com/francisfan0/fitnesswebapp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    repo
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -195,199 +368,6 @@ const Projects: React.FC = () => {
                   rel="noopener noreferrer"
                 >
                   See the paper that inspired us
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="project-item">
-          <h2
-            className="text-hover-underline cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#fitness"
-          >
-            fitness_log
-          </h2>
-          <div className="project-details">
-            <div className="inline-container flex-center">
-              <div className="button-container">
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>MERN</code>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>jwt</code>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>groq</code>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>recharts</code>
-                </button>
-              </div>
-              <p className="strong-spacing text-secondary">July 2024</p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="modal fade"
-          id="fitness"
-          tabIndex={-1}
-          aria-labelledby="fitnessModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  <code>fitness_log</code>
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  This is the first full-stack project I have made, and it was
-                  based off of a tutorial by Chris Blakely. He made a clone of
-                  booking.com, but I've always wanted to make a fitness app, so
-                  I pivoted away from his tutorial to make the app. I based my
-                  user login off of his tutorial though, and learned a lot of
-                  full-stack principles. Although it's not super ML involved, I
-                  thought that the addition of groq-api to add an ai assistant
-                  was a nice touch.
-                </p>
-                <p>Log page:</p>
-                <img
-                  src={fitness1}
-                  className="img-rounded"
-                  alt="graph"
-                  style={{
-                    width: "100%", // Set width
-                    height: "100%", // Set height
-                    objectFit: "cover", // Ensure the image covers the area without distortion
-                    display: "block",
-                    margin: "0 auto",
-                  }}
-                />
-                <p>Chat page:</p>
-                <img
-                  src={fitness2}
-                  className="img-rounded"
-                  alt="graph"
-                  style={{
-                    width: "100%", // Set width
-                    height: "100%", // Set height
-                    objectFit: "cover", // Ensure the image covers the area without distortion
-                    display: "block",
-                    margin: "0 auto",
-                  }}
-                />
-                <div className="inline-container">
-                  <a
-                    href="https://fitnesswebappai.onrender.com/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    website
-                  </a>
-                  <p className="leftspacing">.</p>
-                  <a
-                    href="https://github.com/francisfan0/fitnesswebapp"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    repo
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div className="project-item">
-          <h2
-            className="text-hover-underline cursor-pointer"
-            data-bs-toggle="modal"
-            data-bs-target="#math"
-          >
-            Math Game
-          </h2>
-          <div className="project-details">
-            <div className="inline-container flex-center">
-              <div className="button-container">
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>SERN</code>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>Typescript</code>
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-secondary btn-sm button-spacing"
-                >
-                  <code>SQL</code>
-                </button>
-              </div>
-              <p className="strong-spacing text-secondary">August 2024</p>
-            </div>
-          </div>
-        </div>
-
-        <div
-          className="modal fade"
-          id="math"
-          tabIndex={-1}
-          aria-labelledby="mathModalLabel"
-          aria-hidden="true"
-        >
-          <div className="modal-dialog modal-dialog-centered">
-            <div className="modal-content">
-              <div className="modal-header">
-                <h1 className="modal-title fs-5" id="exampleModalLabel">
-                  <code>Math Game</code>
-                </h1>
-                <button
-                  type="button"
-                  className="btn-close"
-                  data-bs-dismiss="modal"
-                  aria-label="Close"
-                ></button>
-              </div>
-              <div className="modal-body">
-                <p>
-                  I'm currently developing this with a friend, and it will be
-                  based on popular mental maths website zetamac but with more
-                  features.
-                </p>
-                <a
-                  href="https://arithmetic.zetamac.com/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  zetamac
                 </a>
               </div>
             </div>
