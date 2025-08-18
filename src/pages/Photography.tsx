@@ -21,6 +21,11 @@ const Photography = () => {
   const startPosition = useRef<number>(0);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const trackNames: TrackName[] = [
     "Seattle",
@@ -222,6 +227,9 @@ const Photography = () => {
     window.addEventListener("touchmove", handleOnMove);
     window.addEventListener("wheel", handleOnScroll, { passive: false });
 
+    // Ensure the track starts at the beginning on mount
+    updateTrackPosition(0);
+
     return () => {
       window.removeEventListener("mousedown", handleOnDown);
       window.removeEventListener("touchstart", handleOnDown);
@@ -235,15 +243,19 @@ const Photography = () => {
 
   const handlePreviousTrack = () => {
     setCurrentTrackIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    setPercentage(0); // Reset percentage when switching tracks
+    setPercentage(0); // Start from the beginning when switching tracks
   };
 
   const handleNextTrack = () => {
     setCurrentTrackIndex((prevIndex) =>
       Math.min(prevIndex + 1, trackNames.length - 1)
     );
-    setPercentage(0); // Reset percentage when switching tracks
+    setPercentage(0); // Start from the beginning when switching tracks
   };
+
+  if (!isClient) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div className="overflow-none">

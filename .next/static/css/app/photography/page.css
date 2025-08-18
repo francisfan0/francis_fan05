@@ -1,0 +1,382 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/layout/Layout.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.custom-container {
+    max-width: 95%; /* Adjust width percentage as needed */
+    margin: 0 auto; /* Center container */
+  }
+  
+  @media (min-width: 768px) { /* Medium devices and up */
+    .custom-container {
+      max-width: 70%;
+    }
+  }
+  
+  @media (min-width: 992px) { /* Large devices and up */
+    .custom-container {
+      max-width: 60%;
+    }
+  }
+  
+  @media (min-width: 1200px) { /* Extra-large devices and up */
+    .custom-container {
+      max-width: 50%;
+    }
+  }
+
+/* Header.css */
+.position-relative {
+  position: relative;
+}
+
+/* Backdrop overlay */
+.backdrop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  z-index: 999; /* Ensure it is behind the menu but above other content */
+}
+
+/* Show backdrop when menu is open */
+.backdrop.show {
+  display: block;
+}
+
+/* Style for the dropdown menu */
+.navbar-collapse {
+  display: none;
+  position: absolute; /* Position dropdown below the button */
+  top: 100%; /* Align dropdown below the button */
+  right: 0; /* Align dropdown to the right edge of the button */
+  z-index: 1000; /* Ensure dropdown is on top of other elements */
+  background-color: #fff; /* White background for the dropdown */
+  border: 1px solid #ddd; /* Light grey border for the dropdown */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+  padding: 10px; /* Padding inside the dropdown */
+  width: 200px; /* Fixed width for the dropdown */
+}
+
+/* Show dropdown on mobile when button is clicked */
+.navbar-collapse.show { /* Safari */
+  display: flex;
+}
+
+/* Ensure vertical stacking on mobile */
+.navbar-collapse {
+  flex-direction: column;
+  background-color: #fff; /* Background color for dropdown */
+}
+
+/* On larger screens, display links horizontally */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    box-shadow: none; /* No shadow on large screens */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border on large screens */
+    width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* Hide the mobile menu button on larger screens */
+  .btn-primary.d-lg-none {
+    display: none;
+  }
+}
+
+.align-right {
+  position: absolute; /* Take elements out of the document flow */
+  right: 0; /* Align to the right edge of the container */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Make sure it spans the container’s height */
+}
+
+.text-hover-grayl {
+  color: black; /* Default text color */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.text-hover-grayl:hover {
+  color: gray; /* Text color on hover */
+  transform: scale(1.1);
+}
+
+body.dark-mode .text-hover-grayl {
+  color: lightblue; /* Text color in dark mode */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .text-hover-grayl:hover {
+  color: lightgray; /* Hover color in dark mode */
+  transform: scale(1.1);
+}
+
+body.dark-mode .icon.moon {
+  filter: invert(1); /* Invert colors for the moon to be white on dark background */
+}
+
+.icon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  transition: filter 0.5s ease;
+}
+
+body.dark-mode .dark-btn {
+  background-color: lightblue;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/index.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+body, html {
+  background-color: white; /* Dark background color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode {
+  background-color: black; /* Dark background color */
+  color: lightblue; /* Light text color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode header {
+  background-color: black; /* Darker background color for the header */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[13].oneOf[10].use[3]!./src/pages/Photography.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************/
+.up-button {
+    position: absolute;
+    top: 17%;
+    left: 25%;
+    right: 25%;
+    text-align: center;
+}
+
+.down-button {
+    position: absolute;
+    top: 79%;
+    left: 25%;
+    right: 25%;
+    text-align: center;
+}
+
+body.dark-mode .up-button {
+    position: absolute;
+    top: 17%;
+    left: 25%;
+    right: 25%;
+    text-align: center;
+    color: lightblue;
+}
+
+body.dark-mode .down-button {
+    position: absolute;
+    top: 79%;
+    left: 25%;
+    right: 25%;
+    text-align: center;
+    color: lightblue;
+}
+
+  #image-track {
+    display: flex;
+    gap: 4vmin;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    /* user-select: none; */
+    /* Start at the beginning; JS will animate from here */
+    transform: translate(0%, -50%);
+    overflow: hidden;
+  }
+  
+  #image-track > .image {
+    width: 38vmin;
+    height: 56vmin;
+    object-fit: cover;
+    object-position: 100% center;
+  }
+
+  .overflow-none {
+    overflow: hidden;
+  }
+
+  body.dark-mode .modal-color {
+    background-color: black;
+  }
+
+  body.dark-mode .btn-close-custom {
+    filter: invert(0.5) sepia(1) 
+    saturate(5) hue-rotate(175deg);
+}
+
+.image {
+    cursor: pointer; /* Change the cursor to a pointer on hover */
+  }
+/* 
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .loading-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+
+  body.dark-mode .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  body.dark-mode .loading-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: lightblue;
+  } */
+
+  /* Photography.css
+
+/* .image-container {
+    position: relative;
+    width: 42vmin;
+    height: 56vmin;
+    overflow: hidden;
+  }
+  
+  .image-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  
+  .image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 100% center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+  
+  .loading-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+  }
+  
+  .loading-text {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+  }
+   */

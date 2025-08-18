@@ -54,13 +54,17 @@ const HomePage = () => {
   const [userAnswer, setUserAnswer] = useState("");
   const [counter, setCounter] = useState(0); // Initialize counter state
   const [timer, setTimer] = useState(120);
-  const [bestScore, setBestScore] = useState(() => {
-    // Retrieve the best score from localStorage if available
-    const savedScore = localStorage.getItem("bestScore");
-    return savedScore ? parseInt(savedScore, 10) : 0;
-  });
+  const [bestScore, setBestScore] = useState(0);
 
   const typewriterRef = useRef<HTMLSpanElement>(null);
+
+  // Load best score from localStorage on client-side only
+  useEffect(() => {
+    const savedScore = localStorage.getItem("bestScore");
+    if (savedScore) {
+      setBestScore(parseInt(savedScore, 10));
+    }
+  }, []);
 
   useEffect(() => {
     // Timer logic
@@ -70,7 +74,10 @@ const HomePage = () => {
           // Reset counter and timer when the timer reaches 0
           if (counter > bestScore) {
             setBestScore(counter);
-            localStorage.setItem("bestScore", counter.toString()); // Save best score to localStorage
+            // Only access localStorage on client side
+            if (typeof window !== "undefined") {
+              localStorage.setItem("bestScore", counter.toString());
+            }
           }
           // setCounter(0);
           setGame(2);
@@ -89,7 +96,7 @@ const HomePage = () => {
     const typewriter = typewriterRef.current;
 
     if (typewriter) {
-      const handleAnimationEnd = (e: { animationName: string }) => {
+      const handleAnimationEnd = (e: AnimationEvent) => {
         if (e.animationName === "typing") {
           typewriter.classList.remove("blink-caret");
           typewriter.classList.add("no-blink");
@@ -103,7 +110,7 @@ const HomePage = () => {
     }
   }, []);
 
-  const handleAnswerChange = (e: { target: { value: any } }) => {
+  const handleAnswerChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const answer = e.target.value;
     setUserAnswer(answer);
 
@@ -116,7 +123,10 @@ const HomePage = () => {
 
   const onClick = () => {
     setBestScore(0);
-    localStorage.setItem("bestScore", "0"); // Save best score to localStorage
+    // Only access localStorage on client side
+    if (typeof window !== "undefined") {
+      localStorage.setItem("bestScore", "0");
+    }
   };
 
   const startGame = () => {
@@ -133,16 +143,14 @@ const HomePage = () => {
           Hi, I'm Francis.
         </span>
       </h1>
+      <address>
+        <abbr title="Email">E:</abbr>{" "}
+        <a href="mailto:francis.fan@yale.edu">francis.fan@yale.edu</a>
+      </address>
       <p>
-        <address>
-          <abbr title="Email">E:</abbr>{" "}
-          <a href="mailto:francis.fan@yale.edu">francis.fan@yale.edu</a>
-        </address>
-      </p>
-      <p>
-        I'm currently @ Yale intending to study CS + Math, a joint major. I'm
-        excited by applications of AI/ML and am currently doing research at the
-        Apollo Lab @ Yale with special interests in robotics and deep learning.
+        I'm currently @ Yale intending to study CS. I'm excited by applications
+        of AI/ML and am currently doing research at the Apollo Lab @ Yale with
+        special interests in robotics and deep learning.
       </p>
       <p className="contact-message">
         Don't hesitate to reach out with any questions!
@@ -153,7 +161,7 @@ const HomePage = () => {
             <div className="flex-center">
               <span>
                 <p>
-                  Here's a li'l zetamac clone to keep you{" "}
+                  Here's a lil zetamac clone to keep you{" "}
                   <abbr title="Clicking on best score resets it">
                     occupied...
                   </abbr>

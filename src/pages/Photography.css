@@ -39,7 +39,8 @@ body.dark-mode .down-button {
     left: 50%;
     top: 50%;
     /* user-select: none; */
-    transform: translate(-40%, -50%);
+    /* Start at the beginning; JS will animate from here */
+    transform: translate(0%, -50%);
     overflow: hidden;
   }
   

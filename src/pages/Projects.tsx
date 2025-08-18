@@ -1,15 +1,206 @@
 import "./Projects.css";
 import "../index.css";
-// import stockgraph from "../assets/Screenshot 2024-08-03 at 10.59.12 PM.png";
-import gif from "../assets/individualImage (1).gif";
-import fitness1 from "../assets/Screenshot 2024-08-03 at 11.27.51 PM.png";
-import fitness2 from "../assets/Screenshot 2024-08-03 at 11.29.13 PM.png";
+import { useEffect } from "react";
+// const stockgraph = "/stockgraph.png";
+const gif = "/roboticarmenv.gif";
+const fitness1 = "/fit4lyfe.png";
+const fitness2 = "/fit4lyfe2.png";
 
 const Projects: React.FC = () => {
+  useEffect(() => {
+    // Import Bootstrap JS only on client side
+    if (typeof window !== "undefined") {
+      const script = document.createElement("script");
+      script.src =
+        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js";
+      script.async = true;
+      document.head.appendChild(script);
+
+      return () => {
+        document.head.removeChild(script);
+      };
+    }
+  }, []);
+
   return (
     <div>
       <h1>These are some projects I have undertaken!</h1>
       <div className="py-4">
+        <div className="project-item">
+          <h2
+            className="text-hover-underline cursor-pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#auren"
+          >
+            Auren - Technical Cofounder
+          </h2>
+          <div className="project-details">
+            <div className="inline-container flex-center">
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Next.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Node.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Prisma</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Stripe</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Vercel</code>
+                </button>
+              </div>
+              <p className="strong-spacing text-secondary">
+                July 2025 - Present
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="auren"
+          tabIndex={-1}
+          aria-labelledby="aurenModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  <code>Auren - Technical Cofounder</code>
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Raised 200k pre-seed to engineer a multi-tenant SaaS platform
+                  empowering users to instantly launch, customize, and manage
+                  e-commerce storefronts on unique subdomains, with real-time
+                  AI-driven site/page/product generation.
+                </p>
+                <p>
+                  Integrated Stripe for secure, multi-variant payments and
+                  automated tax calculation, orchestrated serverless deployment
+                  with 99.9% uptime on Vercel and implemented Redis caching for
+                  faster storefront load times.
+                </p>
+                <a
+                  href="https://auren.co"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Auren
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="project-item">
+          <h2
+            className="text-hover-underline cursor-pointer"
+            data-bs-toggle="modal"
+            data-bs-target="#parallel"
+          >
+            Parallelizing Large Number Multiplication
+          </h2>
+          <div className="project-details">
+            <div className="inline-container flex-center">
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>C++</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>OpenMP</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>ParlayLib</code>
+                </button>
+              </div>
+              <p className="strong-spacing text-secondary">
+                Feb 2025 - May 2025
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="parallel"
+          tabIndex={-1}
+          aria-labelledby="parallelModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="exampleModalLabel">
+                  <code>Parallelizing Large Number Multiplication</code>
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Engineered high-performance implementations of Karatsuba and
+                  3-way Toom–Cook multiplication algorithms for
+                  arbitrary-precision integers, leveraging cache-aware data
+                  structures and optimized vectorized digit arithmetic.
+                </p>
+                <p>
+                  Designed novel parallelization of 3-way Toom–Cook using OpenMP
+                  and ParlayLib primitives, exploiting divide and conquer
+                  independence for fine-grained concurrency, achieved 535.25×
+                  speedup, with asymptotic scaling analysis.
+                </p>
+                <a
+                  href="https://github.com/francisfan0/424final"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  View on GitHub
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         <div className="project-item">
           <h2
             className="text-hover-underline cursor-pointer"
@@ -46,7 +237,9 @@ const Projects: React.FC = () => {
                   <code>Firecrawl</code>
                 </button>
               </div>
-              <p className="strong-spacing text-secondary">Feb 2025 - Present</p>
+              <p className="strong-spacing text-secondary">
+                Feb 2025 - Present
+              </p>
             </div>
           </div>
         </div>
@@ -73,7 +266,14 @@ const Projects: React.FC = () => {
               </div>
               <div className="modal-body">
                 <p>
-                  I developed a price comparison web application and Chrome extension for finding related products at a lower price with optimized result caching using Redis for fast, repeatable user queries with affiliate link APIs to monetize referrals. I implemented AI-driven product matching using natural language embeddings and fuzzy search and Firecrawl for dynamic web crawling and HTML parsing to extract product metadata and pricing across multiple vendors.
+                  I developed a price comparison web application and Chrome
+                  extension for finding related products at a lower price with
+                  optimized result caching using Redis for fast, repeatable user
+                  queries with affiliate link APIs to monetize referrals. I
+                  implemented AI-driven product matching using natural language
+                  embeddings and fuzzy search and Firecrawl for dynamic web
+                  crawling and HTML parsing to extract product metadata and
+                  pricing across multiple vendors.
                 </p>
                 <a
                   href="https://app.avenuesaves.com/"
@@ -123,7 +323,9 @@ const Projects: React.FC = () => {
                   <code>MLR</code>
                 </button>
               </div>
-              <p className="strong-spacing text-secondary">June 2022 - Aug 2023</p>
+              <p className="strong-spacing text-secondary">
+                June 2022 - Aug 2023
+              </p>
             </div>
           </div>
         </div>
@@ -150,8 +352,22 @@ const Projects: React.FC = () => {
               </div>
               <div className="modal-body">
                 <p>
-                  I utilized an interpretable model to quantify and confirm the cerebellum's importance in predicting risk tolerance and evaluated the performance of several machine learning techniques using 1000 runs of 10-fold cross-validation. I published work using machine learning to assess the relationship between risk tolerance and brain gray matter volume as first author, and presented at the Organization for Human Brain Mapping (OHBM) Conference 2023.
+                  I utilized an interpretable model to quantify and confirm the
+                  cerebellum's importance in predicting risk tolerance and
+                  evaluated the performance of several machine learning
+                  techniques using 1000 runs of 10-fold cross-validation. I
+                  published work using machine learning to assess the
+                  relationship between risk tolerance and brain gray matter
+                  volume as first author, and presented at the Organization for
+                  Human Brain Mapping (OHBM) Conference 2023.
                 </p>
+                <a
+                  href="/ML_risk_taking_supp_final.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  See the paper
+                </a>
               </div>
             </div>
           </div>
@@ -199,7 +415,9 @@ const Projects: React.FC = () => {
                   <code>JWT</code>
                 </button>
               </div>
-              <p className="strong-spacing text-secondary">Jan 2024 - July 2024</p>
+              <p className="strong-spacing text-secondary">
+                Jan 2024 - July 2024
+              </p>
             </div>
           </div>
         </div>
@@ -226,7 +444,10 @@ const Projects: React.FC = () => {
               </div>
               <div className="modal-body">
                 <p>
-                  I created a full-stack web app to track workouts, visualize progress, and integrated AI insights for better training. I deployed the app on Render, serving 100+ users and 10,000+ data points through clean UI and optimized backend.
+                  I created a full-stack web app to track workouts, visualize
+                  progress, and integrated AI insights for better training. I
+                  deployed the app on Render, serving 100+ users and 10,000+
+                  data points through clean UI and optimized backend.
                 </p>
                 <p>Log page:</p>
                 <img

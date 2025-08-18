@@ -50,18 +50,22 @@
 // export default Footer;
 import "./Layout.css";
 import "../index.css";
-import resume from "../assets/FrancisFan.pdf";
 import { useEffect, useState } from "react";
 
-// Import SVGs
-import sunSvg from "../assets/sun-svgrepo-com.svg";
-import moonSvg from "../assets/moon-svgrepo-com.svg";
+// SVG paths
+const sunSvg = "/sun-svgrepo-com.svg";
+const moonSvg = "/moon-svgrepo-com.svg";
 
 const Footer = () => {
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    // Check the saved theme in localStorage
-    return localStorage.getItem("theme") === "dark";
-  });
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  // Load theme from localStorage on client-side only
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    if (savedTheme === "dark") {
+      setIsDarkMode(true);
+    }
+  }, []);
 
   const handleDarkModeToggle = () => {
     const body = document.body;
@@ -69,10 +73,14 @@ const Footer = () => {
 
     // Save the user preference
     if (body.classList.contains("dark-mode")) {
-      localStorage.setItem("theme", "dark");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("theme", "dark");
+      }
       setIsDarkMode(true);
     } else {
-      localStorage.setItem("theme", "light");
+      if (typeof window !== "undefined") {
+        localStorage.setItem("theme", "light");
+      }
       setIsDarkMode(false);
     }
   };
@@ -98,7 +106,7 @@ const Footer = () => {
         </button>
         <div className="d-flex gap-3">
           <a
-            href={resume}
+            href="/FrancisFan.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"
