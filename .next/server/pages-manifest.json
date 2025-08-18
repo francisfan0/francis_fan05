@@ -3,9 +3,9 @@
   "/_error": "pages/_error.js",
   "/Courses": "pages/Courses.html",
   "/Experience": "pages/Experience.html",
+  "/HomePage": "pages/HomePage.html",
   "/Photography": "pages/Photography.html",
   "/Projects": "pages/Projects.html",
-  "/HomePage": "pages/HomePage.html",
   "/ResumeSearch": "pages/ResumeSearch.html",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"

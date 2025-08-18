@@ -22,19 +22,19 @@
       "static/css/cfb18acb3accb3c3.css",
       "static/chunks/app/layout-0552c19e4581e721.js"
     ],
-    "/api/auth-resume/route": [
-      "static/chunks/webpack-0a7e41406ac07f77.js",
-      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
-      "static/chunks/964-7a34cadcb7695cec.js",
-      "static/chunks/main-app-54afc16d337cdb5e.js",
-      "static/chunks/app/api/auth-resume/route-93831bcbdfbaddc9.js"
-    ],
     "/api/verify-session/route": [
       "static/chunks/webpack-0a7e41406ac07f77.js",
       "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
       "static/chunks/964-7a34cadcb7695cec.js",
       "static/chunks/main-app-54afc16d337cdb5e.js",
       "static/chunks/app/api/verify-session/route-93831bcbdfbaddc9.js"
+    ],
+    "/api/auth-resume/route": [
+      "static/chunks/webpack-0a7e41406ac07f77.js",
+      "static/chunks/4bd1b696-cf72ae8a39fa05aa.js",
+      "static/chunks/964-7a34cadcb7695cec.js",
+      "static/chunks/main-app-54afc16d337cdb5e.js",
+      "static/chunks/app/api/auth-resume/route-93831bcbdfbaddc9.js"
     ],
     "/courses/page": [
       "static/chunks/webpack-0a7e41406ac07f77.js",

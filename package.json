@@ -9,8 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@cloudinary/react": "^1.13.0",
-    "@cloudinary/url-gen": "^1.20.0",
     "@react-three/cannon": "^6.6.0",
     "@react-three/csg": "^3.2.0",
     "@react-three/drei": "^9.109.2",
