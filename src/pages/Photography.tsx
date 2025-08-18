@@ -1,5 +1,3 @@
-import { Cloudinary } from "@cloudinary/url-gen";
-import { Resize } from "@cloudinary/url-gen/actions/resize";
 import { useRef, useEffect, useState } from "react";
 import "./Photography.css";
 import "../index.css";
@@ -17,15 +15,10 @@ type TrackName =
 const Photography = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const isDragging = useRef(false);
-  const [percentage, setPercentage] = useState<number>(0);
+  const percentageRef = useRef<number>(-20);
   const startPosition = useRef<number>(0);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
-  const [isClient, setIsClient] = useState(false);
-
-  useEffect(() => {
-    setIsClient(true);
-  }, []);
 
   const trackNames: TrackName[] = [
     "Seattle",
@@ -38,7 +31,14 @@ const Photography = () => {
     "Yellowstone",
   ]; // List all track names here
 
-  const cld = new Cloudinary({ cloud: { cloudName: "ddyvrjaqp" } });
+  // Helper function to create deterministic Cloudinary URLs
+  const createCloudinaryUrl = (
+    publicId: string,
+    width: number,
+    height: number
+  ) => {
+    return `https://res.cloudinary.com/ddyvrjaqp/image/upload/c_scale,h_${height},w_${width}/f_auto/q_auto/${publicId}`;
+  };
 
   const imageTracks: Record<TrackName, string[]> = {
     Seattle: [
@@ -150,22 +150,28 @@ const Photography = () => {
 
     if (!track) return;
 
+    // Clamp helper
+    const clamp = (value: number, min: number, max: number) => {
+      return Math.max(Math.min(value, max), min);
+    };
+
     const updateTrackPosition = (newPercentage: number) => {
-      setPercentage(newPercentage);
+      const clamped = clamp(newPercentage, -100, 0);
+      percentageRef.current = clamped;
 
       track.animate(
         {
-          transform: `translate(${newPercentage}%, -50%)`,
+          transform: `translate(${clamped}%, -50%)`,
         },
-        { duration: 1200, fill: "forwards" }
+        { duration: 300, fill: "forwards" }
       );
 
       for (const image of track.getElementsByClassName("image")) {
         (image as HTMLElement).animate(
           {
-            objectPosition: `${100 + newPercentage}% center`,
+            objectPosition: `${100 + clamped}% center`,
           },
-          { duration: 1200, fill: "forwards" }
+          { duration: 300, fill: "forwards" }
         );
       }
     };
@@ -196,10 +202,7 @@ const Photography = () => {
       const maxDelta = window.innerWidth / 2;
 
       const movePercentage = (mouseDelta / maxDelta) * -50;
-      const newPercentage = Math.max(
-        Math.min(percentage + movePercentage, 0),
-        -100
-      );
+      const newPercentage = percentageRef.current + movePercentage;
 
       updateTrackPosition(newPercentage);
       startPosition.current = clientX; // Update start position for continuous dragging
@@ -209,11 +212,9 @@ const Photography = () => {
       if (!isDragging.current) {
         e.preventDefault();
 
-        const scrollDelta = e.deltaY * 0.5;
-        const newPercentage = Math.max(
-          Math.min(percentage + (scrollDelta / window.innerWidth) * -50, 0),
-          -100
-        );
+        // Scroll down should move left (more negative); up should move right
+        const newPercentage =
+          percentageRef.current - (e.deltaY / window.innerWidth) * 100;
 
         updateTrackPosition(newPercentage);
       }
@@ -227,8 +228,9 @@ const Photography = () => {
     window.addEventListener("touchmove", handleOnMove);
     window.addEventListener("wheel", handleOnScroll, { passive: false });
 
-    // Ensure the track starts at the beginning on mount
-    updateTrackPosition(0);
+    // Ensure the track starts at a higher percentage on mount
+    percentageRef.current = -20;
+    updateTrackPosition(-20);
 
     return () => {
       window.removeEventListener("mousedown", handleOnDown);
@@ -239,23 +241,19 @@ const Photography = () => {
       window.removeEventListener("touchmove", handleOnMove);
       window.removeEventListener("wheel", handleOnScroll);
     };
-  }, [percentage, currentTrack]);
+  }, [currentTrack]);
 
   const handlePreviousTrack = () => {
     setCurrentTrackIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    setPercentage(0); // Start from the beginning when switching tracks
+    percentageRef.current = -20; // Start from a higher percentage when switching tracks
   };
 
   const handleNextTrack = () => {
     setCurrentTrackIndex((prevIndex) =>
       Math.min(prevIndex + 1, trackNames.length - 1)
     );
-    setPercentage(0); // Start from the beginning when switching tracks
+    percentageRef.current = -20; // Start from a higher percentage when switching tracks
   };
-
-  if (!isClient) {
-    return <div>Loading...</div>;
-  }
 
   return (
     <div className="overflow-none">
@@ -284,48 +282,24 @@ const Photography = () => {
             <img
               key={publicId}
               className="image"
-              src={cld
-                .image(publicId)
-                .resize(Resize.scale().width(1800).height(2400))
-                .format("auto")
-                .quality("auto")
-                .toURL()}
+              src={createCloudinaryUrl(publicId, 1800, 2400)}
               alt="Photography"
               data-bs-toggle="modal"
               data-bs-target="#image"
               onClick={() =>
-                setSelectedImage(
-                  cld
-                    .image(publicId)
-                    .resize(Resize.scale().width(1800).height(2400))
-                    .format("auto")
-                    .quality("auto")
-                    .toURL()
-                )
+                setSelectedImage(createCloudinaryUrl(publicId, 1800, 2400))
               }
             />
           ) : (
             <img
               key={publicId}
               className="image"
-              src={cld
-                .image(publicId)
-                .resize(Resize.scale().width(2400).height(1800))
-                .format("auto")
-                .quality("auto")
-                .toURL()}
+              src={createCloudinaryUrl(publicId, 2400, 1800)}
               alt="Photography"
               data-bs-toggle="modal"
               data-bs-target="#image"
               onClick={() =>
-                setSelectedImage(
-                  cld
-                    .image(publicId)
-                    .resize(Resize.scale().width(2400).height(1800))
-                    .format("auto")
-                    .quality("auto")
-                    .toURL()
-                )
+                setSelectedImage(createCloudinaryUrl(publicId, 2400, 1800))
               }
             />
           )

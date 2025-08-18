@@ -2,7 +2,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  min-height: 80vh;
 }
 
 .search-header {
@@ -22,15 +21,11 @@
   margin: 0;
 }
 
-.search-interface {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+.search-input-container {
+  margin-bottom: 2rem;
 }
 
-.search-input-container {
-  position: relative;
-}
+
 
 .search-input {
   width: 100%;
@@ -65,12 +60,10 @@
   border-radius: 12px;
   padding: 1rem;
   border: 1px solid var(--border-color);
-  max-height: 600px;
-  overflow-y: auto;
 }
 
 .result-item {
-  padding: 1rem;
+  padding: 0.75rem;
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s ease;
@@ -85,19 +78,19 @@
 
 .result-item.selected {
   background: var(--accent-color);
-  color: white;
+  color: var(--text-color);
   border-color: var(--accent-color);
 }
 
 .result-item h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.1rem;
+  margin: 0 0 0.25rem 0;
+  font-size: 1rem;
   font-weight: 600;
 }
 
 .result-description {
-  margin: 0 0 0.75rem 0;
-  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+  font-size: 0.85rem;
   opacity: 0.8;
 }
 
@@ -108,7 +101,7 @@
 }
 
 .skill-tag {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.1);
   padding: 0.25rem 0.5rem;
   border-radius: 4px;
   font-size: 0.75rem;
@@ -122,18 +115,8 @@
 }
 
 .example-searches {
-  margin-top: 1rem;
+  margin-top: 0.5rem;
   text-align: left;
-}
-
-.example-searches ul {
-  list-style: none;
-  padding: 0;
-  margin: 0.5rem 0 0 0;
-}
-
-.example-searches li {
-  padding: 0.25rem 0;
   font-size: 0.9rem;
 }
 
@@ -142,12 +125,10 @@
   border-radius: 12px;
   padding: 2rem;
   border: 1px solid var(--border-color);
-  max-height: 600px;
-  overflow-y: auto;
 }
 
 .detail-header {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   padding-bottom: 1rem;
   border-bottom: 1px solid var(--border-color);
 }
@@ -164,7 +145,7 @@
 }
 
 .detail-section {
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .detail-section h3 {
@@ -216,7 +197,7 @@
 
 .skill-badge {
   background: var(--accent-color);
-  color: white;
+  color: var(--text-color);
   padding: 0.5rem 1rem;
   border-radius: 20px;
   font-size: 0.9rem;
@@ -270,4 +251,16 @@
 
 .dark-mode .recruiter-notes {
   background: rgba(var(--accent-color-rgb), 0.15);
+}
+
+.dark-mode .result-item.selected {
+  color: white;
+}
+
+.dark-mode .skill-badge {
+  color: white;
+}
+
+.dark-mode .skill-tag {
+  background: rgba(255, 255, 255, 0.2);
 }

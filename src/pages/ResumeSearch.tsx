@@ -1,150 +1,174 @@
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import "./ResumeSearch.css";
 import { resumeData, ResumeItem } from "../data/resumeData";
 
+const fieldsToSearch = (item: ResumeItem) =>
+  [
+    item.keyword,
+    item.title,
+    item.description,
+    item.technicalDetails,
+    item.howItWorks,
+    item.inDepth,
+    ...item.skills,
+  ]
+    .join(" ")
+    .toLowerCase();
+
 const ResumeSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [searchResults, setSearchResults] = useState<ResumeItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ResumeItem | null>(null);
+
+  const allIndex = useMemo(
+    () =>
+      resumeData.map((it) => ({
+        item: it,
+        blob: fieldsToSearch(it),
+      })),
+    []
+  );
+
+  const searchResults = useMemo(() => {
+    const q = searchTerm.trim().toLowerCase();
+    if (!q) return [];
+    // Simple ranking: items that start-with match in title/keyword bubble up
+    const startsWithBoost = (it: ResumeItem) => {
+      const ql = q.toLowerCase();
+      const t = it.title.toLowerCase();
+      const k = it.keyword.toLowerCase();
+      return Number(t.startsWith(ql) || k.startsWith(ql));
+    };
+    return allIndex
+      .filter(({ blob }) => blob.includes(q))
+      .sort(
+        (a, b) =>
+          startsWithBoost(b.item) - startsWithBoost(a.item) ||
+          a.item.title.localeCompare(b.item.title)
+      )
+      .map(({ item }) => item);
+  }, [allIndex, searchTerm]);
 
   const handleSearch = (term: string) => {
     setSearchTerm(term);
-    if (term.trim() === "") {
-      setSearchResults([]);
+    if (!term.trim()) {
       setSelectedItem(null);
       return;
     }
-
-    const results = resumeData.filter(
-      (item) =>
-        item.keyword.toLowerCase().includes(term.toLowerCase()) ||
-        item.title.toLowerCase().includes(term.toLowerCase()) ||
-        item.skills.some((skill) =>
-          skill.toLowerCase().includes(term.toLowerCase())
-        )
-    );
-    setSearchResults(results);
-    setSelectedItem(results.length > 0 ? results[0] : null);
+    // Keep previously selected if it’s in results; otherwise select first
+    const first = searchResults[0] ?? null;
+    if (!first || first.id !== selectedItem?.id) {
+      setSelectedItem(first);
+    }
   };
 
-  const handleItemSelect = (item: ResumeItem) => {
-    setSelectedItem(item);
-  };
+  const handleItemSelect = (item: ResumeItem) => setSelectedItem(item);
 
   return (
     <div className="resume-search-container">
       <div className="search-header">
         <h1>Resume Search</h1>
-        <p>
-          Search through your resume content and recruiter preparation notes
-        </p>
+        <p>Search your skills, projects, and deep-dive explanations</p>
       </div>
 
-      <div className="search-interface">
-        <div className="search-input-container">
-          <input
-            type="text"
-            placeholder="Search for skills, technologies, or concepts..."
-            value={searchTerm}
-            onChange={(e) => handleSearch(e.target.value)}
-            className="search-input"
-          />
-        </div>
+      <div className="search-input-container">
+        <input
+          type="text"
+          placeholder="Search for skills, technologies, or concepts..."
+          value={searchTerm}
+          onChange={(e) => handleSearch(e.target.value)}
+          className="search-input"
+        />
+      </div>
 
-        <div className="search-results-container">
-          <div className="results-list">
-            {searchResults.length > 0 ? (
-              searchResults.map((item) => (
-                <div
-                  key={item.id}
-                  className={`result-item ${
-                    selectedItem?.id === item.id ? "selected" : ""
-                  }`}
-                  onClick={() => handleItemSelect(item)}
-                >
-                  <h3>{item.title}</h3>
-                  <p className="result-description">{item.description}</p>
-                  <div className="result-tags">
-                    {item.skills.slice(0, 3).map((skill, index) => (
-                      <span key={index} className="skill-tag">
-                        {skill}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              ))
-            ) : searchTerm ? (
-              <div className="no-results">
-                <p>No results found for "{searchTerm}"</p>
-                <p>
-                  Try searching for different keywords or check your spelling.
-                </p>
-              </div>
-            ) : (
-              <div className="search-prompt">
-                <p>Start typing to search through your resume content...</p>
-                <div className="example-searches">
-                  <p>Try searching for:</p>
-                  <ul>
-                    <li>
-                      Machine learning algorithms (SVM, Random Forest, etc.)
-                    </li>
-                    <li>Programming languages (Python, JavaScript, etc.)</li>
-                    <li>Frameworks and tools (React, TensorFlow, etc.)</li>
-                    <li>Project names or technologies</li>
-                  </ul>
-                </div>
-              </div>
-            )}
-          </div>
-
-          {selectedItem && (
-            <div className="item-details">
-              <div className="detail-header">
-                <h2>{selectedItem.title}</h2>
-                <p className="detail-description">{selectedItem.description}</p>
-              </div>
-
-              <div className="detail-section">
-                <h3>Technical Details</h3>
-                <p>{selectedItem.technicalDetails}</p>
-              </div>
-
-              <div className="detail-section">
-                <h3>Recruiter Call Preparation</h3>
-                <div className="recruiter-notes">
-                  {selectedItem.recruiterNotes
-                    .split("\n")
-                    .map((note, index) => (
-                      <p key={index} className="note-item">
-                        {note}
-                      </p>
-                    ))}
-                </div>
-              </div>
-
-              <div className="detail-section">
-                <h3>Related Projects</h3>
-                <ul className="projects-list">
-                  {selectedItem.projects.map((project, index) => (
-                    <li key={index}>{project}</li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="detail-section">
-                <h3>Skills & Technologies</h3>
-                <div className="skills-container">
-                  {selectedItem.skills.map((skill, index) => (
-                    <span key={index} className="skill-badge">
+      <div className="search-results-container">
+        <div className="results-list">
+          {searchResults.length > 0 ? (
+            searchResults.map((item) => (
+              <div
+                key={item.id}
+                className={`result-item ${
+                  selectedItem?.id === item.id ? "selected" : ""
+                }`}
+                onClick={() => handleItemSelect(item)}
+              >
+                <h3>{item.title}</h3>
+                <p className="result-description">{item.description}</p>
+                <div className="result-tags">
+                  {item.skills.slice(0, 2).map((skill, index) => (
+                    <span key={index} className="skill-tag">
                       {skill}
                     </span>
                   ))}
                 </div>
               </div>
+            ))
+          ) : searchTerm ? (
+            <div className="no-results">
+              <p>No results found for "{searchTerm}"</p>
+            </div>
+          ) : (
+            <div className="search-prompt">
+              <p>Start typing to search through your resume content...</p>
+              <div className="example-searches">
+                <p>Try: SVM, Python, React, Diffusion Policy, Redis</p>
+              </div>
             </div>
           )}
         </div>
+
+        {selectedItem && (
+          <div className="item-details">
+            <div className="detail-header">
+              <h2>{selectedItem.title}</h2>
+              <p className="detail-description">{selectedItem.description}</p>
+            </div>
+
+            <div className="detail-section">
+              <h3>Technical Details</h3>
+              <p>{selectedItem.technicalDetails}</p>
+            </div>
+
+            <div className="detail-section">
+              <h3>How it works</h3>
+              <p>{selectedItem.howItWorks}</p>
+            </div>
+
+            <div className="detail-section">
+              <h3>In depth</h3>
+              <p>{selectedItem.inDepth}</p>
+            </div>
+
+            {selectedItem.codeExample?.code && (
+              <div className="detail-section">
+                <h3>Code example</h3>
+                {/* If you use a syntax highlighter, add appropriate className like language-ts */}
+                <pre className="code-block">
+                  <code>{selectedItem.codeExample.code}</code>
+                </pre>
+              </div>
+            )}
+
+            <div className="detail-section">
+              <h3>Related Projects</h3>
+              <ul className="projects-list">
+                {selectedItem.projects.map((project, index) => (
+                  <li key={index}>{project}</li>
+                ))}
+              </ul>
+            </div>
+
+            <div className="detail-section">
+              <h3>Skills & Technologies</h3>
+              <div className="skills-container">
+                {selectedItem.skills.map((skill, index) => (
+                  <span key={index} className="skill-badge">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
