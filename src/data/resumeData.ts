@@ -970,5 +970,79 @@ export const resumeData: ResumeItem[] = [
     },
     projects: ["Auren - Technical Cofounder", "Yale Clubs", "Personal Website"],
     skills: ["TypeScript", "React", "Node.js", "Next.js"]
-  }  
+  },
+  {
+    id: "35",
+    keyword: "gans",
+    title: "Generative Adversarial Networks (GANs)",
+    description: "Framework for training generative models via adversarial objectives",
+    technicalDetails:
+      "Used GANs in robotics research to augment training data and improve robustness of policies. Implemented conditional GANs for trajectory generation and visual domain randomization.",
+    howItWorks:
+      "GANs consist of a generator G and discriminator D in a minimax game: G learns to produce realistic samples, D learns to distinguish real vs. fake. Training alternates between improving D and G until equilibrium.",
+    inDepth:
+      "Stability challenges: mode collapse, vanishing gradients. Techniques: Wasserstein GAN with gradient penalty, spectral norm, and minibatch discrimination. Conditional GANs use labels/conditions to steer generation. Applications include image synthesis, trajectory augmentation, and simulation-to-real transfer.",
+    codeExample: {
+      language: "py",
+      code: `import torch, torch.nn as nn, torch.optim as optim
+      
+  class Generator(nn.Module):
+      def __init__(self): super().__init__(); 
+      self.net = nn.Sequential(nn.Linear(100,256), nn.ReLU(), nn.Linear(256,784), nn.Tanh())
+      def forward(self,z): return self.net(z)
+  
+  class Discriminator(nn.Module):
+      def __init__(self): super().__init__();
+      self.net = nn.Sequential(nn.Linear(784,256), nn.LeakyReLU(0.2), nn.Linear(256,1), nn.Sigmoid())
+      def forward(self,x): return self.net(x)
+  
+  G, D = Generator(), Discriminator()
+  optG, optD = optim.Adam(G.parameters(),1e-3), optim.Adam(D.parameters(),1e-3)
+  z = torch.randn(64,100); fake = G(z); pred = D(fake)`
+    },
+    projects: ["Diffusion Policy for Manipulation", "Robotics Generative AI RL Pipeline"],
+    skills: ["PyTorch", "Deep Learning", "Generative Models"]
+  },
+  {
+    id: "36",
+    keyword: "algorithms",
+    title: "Algorithms",
+    description: "Design and analysis of efficient computational procedures",
+    technicalDetails:
+      "Implemented divide-and-conquer big integer multiplication (Karatsuba, Toom–Cook) with parallelism. Applied graph and dynamic programming algorithms in coursework.",
+    howItWorks:
+      "Algorithms are step-by-step procedures with provable correctness and complexity. Design paradigms include greedy, divide-and-conquer, dynamic programming, and randomized algorithms.",
+    inDepth:
+      "Analyzed runtime using asymptotic complexity (Big-O/Θ/Ω). Proved correctness via loop invariants and induction. Practical trade-offs: constant factors, cache locality, parallelization. Benchmarked parallel algorithms with OpenMP/ParlayLib.",
+    projects: ["Parallelizing Large Number Multiplication", "Course Projects"],
+    skills: ["Algorithm Design", "C++", "Parallel Algorithms"]
+  },
+  {
+    id: "37",
+    keyword: "compilers",
+    title: "Compilers and Interpreters",
+    description: "Translation of high-level languages into machine code or bytecode",
+    technicalDetails:
+      "Built a toy compiler with parsing, semantic analysis, and code generation phases. Implemented a Racket interpreter as part of coursework.",
+    howItWorks:
+      "A compiler has phases: lexical analysis, parsing (AST), semantic checks, optimization, and code generation. Interpreters directly walk AST or bytecode to execute programs.",
+    inDepth:
+      "Trade-offs: compiled code is fast but requires upfront compilation; interpreters enable rapid iteration but incur overhead. Modern VMs use JIT to balance speed and flexibility.",
+    projects: ["Course Compiler Project"],
+    skills: ["Compilers", "Interpreters", "Racket", "C++", "LLVM"]
+  },
+  {
+    id: "38",
+    keyword: "quantum computing",
+    title: "Quantum Computing",
+    description: "Computation based on quantum mechanics principles",
+    technicalDetails:
+      "Studied qubits, gates, and algorithms like Grover’s and Shor’s. Implemented simulations of quantum circuits in coursework.",
+    howItWorks:
+      "Quantum computing uses qubits in superposition, evolving under unitary transformations. Measurement collapses states to classical outcomes. Algorithms exploit interference and entanglement for speedups.",
+    inDepth:
+      "Quantum algorithms are probabilistic; error correction and decoherence are challenges. Quantum parallelism accelerates unstructured search (Grover) and factoring (Shor). Simulators approximate small-scale circuits.",
+    projects: ["Quantum Computing Coursework"],
+    skills: ["Quantum Algorithms", "Qiskit", "Simulation"]
+  }
 ];
