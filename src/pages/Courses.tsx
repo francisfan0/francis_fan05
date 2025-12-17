@@ -116,6 +116,7 @@ const Courses = () => {
               <li>LITR 020: World Literature After Empire</li>
               <li>CHNS 142: Heritage Chinese</li>
               <li>CHNS 200: The Chinese Tradition</li>
+              <li>HSAR 3290: Arts and the Silk Road</li>
             </ul>
           </p>
         </div>
