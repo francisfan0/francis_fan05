@@ -37,12 +37,12 @@ const Courses = () => {
         <div>
           <p>
             <ul className="list-container">
-              <li>CPSC 4390: Software Engineering</li>
+              <li>CPSC 4230: Operating Systems</li>
               <li>
-                CPSC 4470: Quantum Computing
+                CPSC 4840: Human Computer Interfaces
               </li>
-              <li>CPSC 4210: Compilers</li>
-              <li>LING 2340: Quantitative Linquistics</li>
+              <li>CPSC 4371: Database Design and Implementation</li>
+              <li>ENGL 1020: Reading and Writing the Modern English Essay</li>
             </ul>
           </p>
         </div>
@@ -70,6 +70,9 @@ const Courses = () => {
               <li>CPSC 365: Algorithms</li>
               <li>CPSC 424: Parallel Computing</li>
               <li>PHYS 345: Quantum Information Processing</li>
+              <li>CPSC 4270: C++</li>
+              <li>CPSC 4210: Compilers</li>
+              <li>CPSC 4470: Intro to Quantum Computing</li>
             </ul>
           </p>
         </div>
