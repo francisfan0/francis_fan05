@@ -1,0 +1,707 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/layout/Layout.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.custom-container {
+    max-width: 95%; /* Adjust width percentage as needed */
+    margin: 0 auto; /* Center container */
+  }
+  
+  @media (min-width: 768px) { /* Medium devices and up */
+    .custom-container {
+      max-width: 70%;
+    }
+  }
+  
+  @media (min-width: 992px) { /* Large devices and up */
+    .custom-container {
+      max-width: 60%;
+    }
+  }
+  
+  @media (min-width: 1200px) { /* Extra-large devices and up */
+    .custom-container {
+      max-width: 50%;
+    }
+  }
+
+/* Header.css */
+.position-relative {
+  position: relative;
+}
+
+/* Backdrop overlay */
+.backdrop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  z-index: 999; /* Ensure it is behind the menu but above other content */
+}
+
+/* Show backdrop when menu is open */
+.backdrop.show {
+  display: block;
+}
+
+/* Style for the dropdown menu */
+.navbar-collapse {
+  display: none;
+  position: absolute; /* Position dropdown below the button */
+  top: 100%; /* Align dropdown below the button */
+  right: 0; /* Align dropdown to the right edge of the button */
+  z-index: 1000; /* Ensure dropdown is on top of other elements */
+  background-color: #fff; /* White background for the dropdown */
+  border: 1px solid #ddd; /* Light grey border for the dropdown */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+  padding: 10px; /* Padding inside the dropdown */
+  width: 200px; /* Fixed width for the dropdown */
+}
+
+/* Show dropdown on mobile when button is clicked */
+.navbar-collapse.show { /* Safari */
+  display: flex;
+}
+
+/* Ensure vertical stacking on mobile */
+.navbar-collapse {
+  flex-direction: column;
+  background-color: #fff; /* Background color for dropdown */
+}
+
+/* On larger screens, display links horizontally */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    box-shadow: none; /* No shadow on large screens */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border on large screens */
+    width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* Hide the mobile menu button on larger screens */
+  .btn-primary.d-lg-none {
+    display: none;
+  }
+}
+
+.align-right {
+  position: absolute; /* Take elements out of the document flow */
+  right: 0; /* Align to the right edge of the container */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Make sure it spans the container’s height */
+}
+
+.text-hover-grayl {
+  color: black; /* Default text color */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.text-hover-grayl:hover {
+  color: gray; /* Text color on hover */
+  transform: scale(1.1);
+}
+
+body.dark-mode .text-hover-grayl {
+  color: lightblue; /* Text color in dark mode */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .text-hover-grayl:hover {
+  color: lightgray; /* Hover color in dark mode */
+  transform: scale(1.1);
+}
+
+body.dark-mode .icon.moon {
+  filter: invert(1); /* Invert colors for the moon to be white on dark background */
+}
+
+.icon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  transition: filter 0.5s ease;
+}
+
+body.dark-mode .dark-btn {
+  background-color: lightblue;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/index.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+body, html {
+  background-color: white; /* Dark background color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode {
+  background-color: black; /* Dark background color */
+  color: lightblue; /* Light text color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode header {
+  background-color: black; /* Darker background color for the header */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+/*!**********************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/pages/BlockBlast.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************/
+.blockblast-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 2rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+}
+
+.blockblast-title {
+  text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+body.dark-mode .blockblast-title {
+  color: #f0f0f0;
+}
+
+.blockblast-description {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 2rem;
+}
+
+body.dark-mode .blockblast-description {
+  color: #aaa;
+}
+
+.blockblast-content {
+  display: flex;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.board-section {
+  flex: 1 1;
+  min-width: 400px;
+}
+
+.pieces-section {
+  flex: 1 1;
+  min-width: 400px;
+}
+
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.section-header h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin: 0;
+}
+
+body.dark-mode .section-header h2 {
+  color: #f0f0f0;
+}
+
+.game-board {
+  display: inline-block;
+  border: 3px solid #333;
+  border-radius: 8px;
+  background-color: #fff;
+  padding: 4px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .game-board {
+  border-color: #555;
+  background-color: #2a2a2a;
+}
+
+.board-row {
+  display: flex;
+}
+
+.board-cell {
+  width: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .board-cell {
+  border-color: #444;
+  background-color: #333;
+}
+
+.board-cell:hover {
+  background-color: #e0e0e0;
+}
+
+body.dark-mode .board-cell:hover {
+  background-color: #444;
+}
+
+.board-cell.filled {
+  background-color: #4caf50;
+  border-color: #45a049;
+}
+
+body.dark-mode .board-cell.filled {
+  background-color: #388e3c;
+  border-color: #2e7d32;
+}
+
+.pieces-container {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.piece-wrapper {
+  flex: 1 1;
+  min-width: 150px;
+}
+
+.piece-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.piece-header h3 {
+  font-size: 1rem;
+  color: #333;
+  margin: 0;
+}
+
+body.dark-mode .piece-header h3 {
+  color: #f0f0f0;
+}
+
+.piece-grid {
+  display: inline-block;
+  border: 2px solid #666;
+  border-radius: 6px;
+  background-color: #fff;
+  padding: 2px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .piece-grid {
+  border-color: #555;
+  background-color: #2a2a2a;
+}
+
+.piece-row {
+  display: flex;
+}
+
+.piece-cell {
+  width: 24px;
+  height: 24px;
+  border: 1px solid #ddd;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+body.dark-mode .piece-cell {
+  border-color: #444;
+  background-color: #333;
+}
+
+.piece-cell:hover {
+  background-color: #e0e0e0;
+}
+
+body.dark-mode .piece-cell:hover {
+  background-color: #444;
+}
+
+.piece-cell.filled {
+  background-color: #2196f3;
+  border-color: #1976d2;
+}
+
+body.dark-mode .piece-cell.filled {
+  background-color: #1565c0;
+  border-color: #0d47a1;
+}
+
+.btn-clear,
+.btn-clear-small {
+  padding: 0.5rem 1rem;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-clear-small {
+  padding: 0.3rem 0.7rem;
+  font-size: 0.8rem;
+}
+
+.btn-clear:hover,
+.btn-clear-small:hover {
+  background-color: #d32f2f;
+}
+
+.solve-section {
+  text-align: center;
+  margin: 2rem 0;
+}
+
+.btn-solve {
+  padding: 1rem 3rem;
+  background-color: #2196f3;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1.2rem;
+  font-weight: bold;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-solve:hover:not(:disabled) {
+  background-color: #1976d2;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.btn-solve:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+.solutions-section {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background-color: #f5f5f5;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .solutions-section {
+  background-color: #2a2a2a;
+}
+
+.solutions-section h2 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+body.dark-mode .solutions-section h2 {
+  color: #f0f0f0;
+}
+
+.solution-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.solution-step {
+  padding: 1rem;
+  background-color: white;
+  border-radius: 6px;
+  border-left: 4px solid #2196f3;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+body.dark-mode .solution-step {
+  background-color: #333;
+  border-left-color: #1565c0;
+}
+
+.solution-step p {
+  margin: 0;
+  color: #333;
+  font-size: 1rem;
+}
+
+body.dark-mode .solution-step p {
+  color: #f0f0f0;
+}
+
+.btn-apply {
+  padding: 0.5rem 1.5rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-apply:hover {
+  background-color: #45a049;
+}
+
+/* Responsive design */
+@media (max-width: 900px) {
+  .blockblast-content {
+    flex-direction: column;
+  }
+
+  .board-section,
+  .pieces-section {
+    min-width: 100%;
+  }
+
+  .game-board {
+    margin: 0 auto;
+  }
+
+  .pieces-container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 600px) {
+  .blockblast-container {
+    padding: 1rem;
+  }
+
+  .blockblast-title {
+    font-size: 1.8rem;
+  }
+
+  .board-cell {
+    width: 32px;
+    height: 32px;
+  }
+
+  .piece-cell {
+    width: 20px;
+    height: 20px;
+  }
+
+  .solution-step {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/components/PasswordProtection.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.password-protection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 1rem;
+}
+
+.password-form-container {
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  max-width: 300px;
+  width: 100%;
+}
+
+.password-form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.password-form-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.password-form-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password-input-group {
+  display: block;
+}
+
+.password-input {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+  background: transparent;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent-color);
+}
+
+.password-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+
+.password-error {
+  color: #dc3545;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.password-loading {
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+  font-style: italic;
+}
+
+
+
+.password-protected-content {
+  position: relative;
+}
+
+/* Dark mode support */
+.dark-mode .password-input {
+  color: var(--text-color);
+  border-bottom-color: var(--border-color);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .password-protection-container {
+    padding: 1rem;
+  }
+
+  .password-form-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .password-input-group {
+    flex-direction: column;
+  }
+
+  .password-submit-btn {
+    width: 100%;
+  }
+}
+

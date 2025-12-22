@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import "./ResumeSearch.css";
 import { resumeData, ResumeItem } from "../data/resumeData";
+import BlockBlast from "./BlockBlast";
 
 const fieldsToSearch = (item: ResumeItem) =>
   [
@@ -16,6 +17,7 @@ const fieldsToSearch = (item: ResumeItem) =>
     .toLowerCase();
 
 const ResumeSearch = () => {
+  const [activeTab, setActiveTab] = useState<"resume" | "blockblast">("resume");
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedItem, setSelectedItem] = useState<ResumeItem | null>(null);
 
@@ -66,11 +68,26 @@ const ResumeSearch = () => {
   return (
     <div className="resume-search-container">
       <div className="search-header">
-        <h1>Resume Search</h1>
-        <p>Search your skills, projects, and deep-dive explanations</p>
+        <h1>Private Tools</h1>
+        <div className="tab-buttons">
+          <button
+            className={`tab-button ${activeTab === "resume" ? "active" : ""}`}
+            onClick={() => setActiveTab("resume")}
+          >
+            Resume Search
+          </button>
+          <button
+            className={`tab-button ${activeTab === "blockblast" ? "active" : ""}`}
+            onClick={() => setActiveTab("blockblast")}
+          >
+            Block Blast Solver
+          </button>
+        </div>
       </div>
 
-      <div className="search-input-container">
+      {activeTab === "resume" ? (
+        <>
+          <div className="search-input-container">
         <input
           type="text"
           placeholder="Search for skills, technologies, or concepts..."
@@ -170,6 +187,10 @@ const ResumeSearch = () => {
           </div>
         )}
       </div>
+        </>
+      ) : (
+        <BlockBlast />
+      )}
     </div>
   );
 };
