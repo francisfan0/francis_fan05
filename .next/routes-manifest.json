@@ -1,1 +1,125 @@
-{"version":3,"caseSensitive":false,"basePath":"","rewrites":{"beforeFiles":[],"afterFiles":[],"fallback":[]},"redirects":[{"source":"/:path+/","destination":"/:path+","permanent":true,"internal":true,"regex":"^(?:\\/((?:[^\\/]+?)(?:\\/(?:[^\\/]+?))*))\\/$"}],"headers":[]}
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/BlockBlast",
+      "regex": "^/BlockBlast(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/BlockBlast(?:/)?$"
+    },
+    {
+      "page": "/courses",
+      "regex": "^/courses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/courses(?:/)?$"
+    },
+    {
+      "page": "/Courses",
+      "regex": "^/Courses(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Courses(?:/)?$"
+    },
+    {
+      "page": "/experience",
+      "regex": "^/experience(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/experience(?:/)?$"
+    },
+    {
+      "page": "/Experience",
+      "regex": "^/Experience(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Experience(?:/)?$"
+    },
+    {
+      "page": "/HomePage",
+      "regex": "^/HomePage(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/HomePage(?:/)?$"
+    },
+    {
+      "page": "/photography",
+      "regex": "^/photography(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/photography(?:/)?$"
+    },
+    {
+      "page": "/Photography",
+      "regex": "^/Photography(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Photography(?:/)?$"
+    },
+    {
+      "page": "/projects",
+      "regex": "^/projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/projects(?:/)?$"
+    },
+    {
+      "page": "/Projects",
+      "regex": "^/Projects(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/Projects(?:/)?$"
+    },
+    {
+      "page": "/resume-search",
+      "regex": "^/resume\\-search(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/resume\\-search(?:/)?$"
+    },
+    {
+      "page": "/ResumeSearch",
+      "regex": "^/ResumeSearch(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/ResumeSearch(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

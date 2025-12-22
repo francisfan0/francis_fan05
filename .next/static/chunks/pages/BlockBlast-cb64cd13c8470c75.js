@@ -1,0 +1,1 @@
+(self.webpackChunk_N_E=self.webpackChunk_N_E||[]).push([[719],{5858:(_,n,s)=>{(window.__NEXT_P=window.__NEXT_P||[]).push(["/BlockBlast",function(){return s(9427)}])}},_=>{_.O(0,[427,636,593,792],()=>_(_.s=5858)),_N_E=_.O()}]);

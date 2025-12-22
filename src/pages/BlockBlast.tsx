@@ -363,7 +363,7 @@ const BlockBlast = () => {
     );
     const totalPieceCells = pieceSizes.reduce((sum, p) => sum + p.cells, 0);
 
-    let allSolutions: {
+    const allSolutions: {
       solution: Solution[];
       totalLinesCleared: number;
       finalBoard: boolean[][];

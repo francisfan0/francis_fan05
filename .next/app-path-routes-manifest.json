@@ -1,0 +1,11 @@
+{
+  "/_not-found/page": "/_not-found",
+  "/api/auth-resume/route": "/api/auth-resume",
+  "/api/verify-session/route": "/api/verify-session",
+  "/courses/page": "/courses",
+  "/page": "/",
+  "/experience/page": "/experience",
+  "/photography/page": "/photography",
+  "/projects/page": "/projects",
+  "/resume-search/page": "/resume-search"
+}

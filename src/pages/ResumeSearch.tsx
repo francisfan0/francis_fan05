@@ -77,7 +77,9 @@ const ResumeSearch = () => {
             Resume Search
           </button>
           <button
-            className={`tab-button ${activeTab === "blockblast" ? "active" : ""}`}
+            className={`tab-button ${
+              activeTab === "blockblast" ? "active" : ""
+            }`}
             onClick={() => setActiveTab("blockblast")}
           >
             Block Blast Solver
@@ -88,105 +90,107 @@ const ResumeSearch = () => {
       {activeTab === "resume" ? (
         <>
           <div className="search-input-container">
-        <input
-          type="text"
-          placeholder="Search for skills, technologies, or concepts..."
-          value={searchTerm}
-          onChange={(e) => handleSearch(e.target.value)}
-          className="search-input"
-        />
-      </div>
+            <input
+              type="text"
+              placeholder="Search for skills, technologies, or concepts..."
+              value={searchTerm}
+              onChange={(e) => handleSearch(e.target.value)}
+              className="search-input"
+            />
+          </div>
 
-      <div className="search-results-container">
-        <div className="results-list">
-          {searchResults.length > 0 ? (
-            searchResults.map((item) => (
-              <div
-                key={item.id}
-                className={`result-item ${
-                  selectedItem?.id === item.id ? "selected" : ""
-                }`}
-                onClick={() => handleItemSelect(item)}
-              >
-                <h3>{item.title}</h3>
-                <p className="result-description">{item.description}</p>
-                <div className="result-tags">
-                  {item.skills.slice(0, 2).map((skill, index) => (
-                    <span key={index} className="skill-tag">
-                      {skill}
-                    </span>
-                  ))}
+          <div className="search-results-container">
+            <div className="results-list">
+              {searchResults.length > 0 ? (
+                searchResults.map((item) => (
+                  <div
+                    key={item.id}
+                    className={`result-item ${
+                      selectedItem?.id === item.id ? "selected" : ""
+                    }`}
+                    onClick={() => handleItemSelect(item)}
+                  >
+                    <h3>{item.title}</h3>
+                    <p className="result-description">{item.description}</p>
+                    <div className="result-tags">
+                      {item.skills.slice(0, 2).map((skill, index) => (
+                        <span key={index} className="skill-tag">
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                ))
+              ) : searchTerm ? (
+                <div className="no-results">
+                  <p>No results found for "{searchTerm}"</p>
+                </div>
+              ) : (
+                <div className="search-prompt">
+                  <p>Start typing to search through your resume content...</p>
+                  <div className="example-searches">
+                    <p>Try: SVM, Python, React, Diffusion Policy, Redis</p>
+                  </div>
+                </div>
+              )}
+            </div>
+
+            {selectedItem && (
+              <div className="item-details">
+                <div className="detail-header">
+                  <h2>{selectedItem.title}</h2>
+                  <p className="detail-description">
+                    {selectedItem.description}
+                  </p>
+                </div>
+
+                <div className="detail-section">
+                  <h3>Technical Details</h3>
+                  <p>{selectedItem.technicalDetails}</p>
+                </div>
+
+                <div className="detail-section">
+                  <h3>How it works</h3>
+                  <p>{selectedItem.howItWorks}</p>
+                </div>
+
+                <div className="detail-section">
+                  <h3>In depth</h3>
+                  <p>{selectedItem.inDepth}</p>
+                </div>
+
+                {selectedItem.codeExample?.code && (
+                  <div className="detail-section">
+                    <h3>Code example</h3>
+                    {/* If you use a syntax highlighter, add appropriate className like language-ts */}
+                    <pre className="code-block">
+                      <code>{selectedItem.codeExample.code}</code>
+                    </pre>
+                  </div>
+                )}
+
+                <div className="detail-section">
+                  <h3>Related Projects</h3>
+                  <ul className="projects-list">
+                    {selectedItem.projects.map((project, index) => (
+                      <li key={index}>{project}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="detail-section">
+                  <h3>Skills & Technologies</h3>
+                  <div className="skills-container">
+                    {selectedItem.skills.map((skill, index) => (
+                      <span key={index} className="skill-badge">
+                        {skill}
+                      </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            ))
-          ) : searchTerm ? (
-            <div className="no-results">
-              <p>No results found for "{searchTerm}"</p>
-            </div>
-          ) : (
-            <div className="search-prompt">
-              <p>Start typing to search through your resume content...</p>
-              <div className="example-searches">
-                <p>Try: SVM, Python, React, Diffusion Policy, Redis</p>
-              </div>
-            </div>
-          )}
-        </div>
-
-        {selectedItem && (
-          <div className="item-details">
-            <div className="detail-header">
-              <h2>{selectedItem.title}</h2>
-              <p className="detail-description">{selectedItem.description}</p>
-            </div>
-
-            <div className="detail-section">
-              <h3>Technical Details</h3>
-              <p>{selectedItem.technicalDetails}</p>
-            </div>
-
-            <div className="detail-section">
-              <h3>How it works</h3>
-              <p>{selectedItem.howItWorks}</p>
-            </div>
-
-            <div className="detail-section">
-              <h3>In depth</h3>
-              <p>{selectedItem.inDepth}</p>
-            </div>
-
-            {selectedItem.codeExample?.code && (
-              <div className="detail-section">
-                <h3>Code example</h3>
-                {/* If you use a syntax highlighter, add appropriate className like language-ts */}
-                <pre className="code-block">
-                  <code>{selectedItem.codeExample.code}</code>
-                </pre>
-              </div>
             )}
-
-            <div className="detail-section">
-              <h3>Related Projects</h3>
-              <ul className="projects-list">
-                {selectedItem.projects.map((project, index) => (
-                  <li key={index}>{project}</li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="detail-section">
-              <h3>Skills & Technologies</h3>
-              <div className="skills-container">
-                {selectedItem.skills.map((skill, index) => (
-                  <span key={index} className="skill-badge">
-                    {skill}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
-        )}
-      </div>
         </>
       ) : (
         <BlockBlast />
