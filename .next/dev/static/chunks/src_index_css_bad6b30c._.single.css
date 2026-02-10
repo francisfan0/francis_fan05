@@ -1,0 +1,22 @@
+/* [project]/src/index.css [app-client] (css) */
+body, html {
+  background-color: #fff;
+  transition: color .3s, transform .3s;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body.dark-mode {
+  color: #add8e6;
+  background-color: #000;
+  transition: color .3s, transform .3s;
+  position: relative;
+  overflow-x: hidden;
+}
+
+body.dark-mode header {
+  background-color: #000;
+  transition: color .3s, transform .3s;
+}
+
+/*# sourceMappingURL=src_index_css_bad6b30c._.single.css.map*/

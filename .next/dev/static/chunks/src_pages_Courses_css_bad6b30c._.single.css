@@ -1,0 +1,42 @@
+/* [project]/src/pages/Courses.css [app-client] (css) */
+.text-hover-gray {
+  color: #000;
+  text-decoration: none;
+  transition: color .2s, transform .1s;
+}
+
+.text-hover-gray:hover {
+  color: gray;
+  transform: scale(1.01);
+}
+
+body.dark-mode .text-hover-gray {
+  color: #add8e6;
+  text-decoration: none;
+  transition: color .2s, transform .1s;
+}
+
+body.dark-mode .text-hover-gray:hover {
+  color: #d3d3d3;
+  transform: scale(1.01);
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-5%);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur();
+    transform: translateX(0);
+  }
+}
+
+.list-container {
+  animation: .2s ease-out slideInFromLeft;
+}
+
+/*# sourceMappingURL=src_pages_Courses_css_bad6b30c._.single.css.map*/
