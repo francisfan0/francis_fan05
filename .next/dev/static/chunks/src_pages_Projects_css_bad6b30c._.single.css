@@ -1,0 +1,102 @@
+/* [project]/src/pages/Projects.css [app-client] (css) */
+.text-hover-underline {
+  color: #000;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+.text-hover-underline:hover {
+  text-decoration: underline;
+}
+
+body.dark-mode .text-hover-underline {
+  color: #add8e6;
+  margin-bottom: 8px;
+  text-decoration: none;
+}
+
+body.dark-mode .text-hover-underline:hover {
+  text-decoration: underline;
+}
+
+.project-item {
+  margin-bottom: 4rem;
+  position: relative;
+}
+
+.project-details {
+  z-index: 10;
+  width: 100%;
+  padding: 10px;
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.project-item:hover .project-details {
+  display: block;
+}
+
+.button-spacing {
+  margin-right: .5rem;
+}
+
+.button-spacing:last-child {
+  margin-right: 0;
+}
+
+.strong-spacing {
+  margin-top: 8px;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.leftspacing {
+  margin-left: .5rem;
+  margin-right: .5rem;
+}
+
+@keyframes slideInFromLeftbtn {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateX(-100%);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur();
+    transform: translateX(0);
+  }
+}
+
+.button-container .btn {
+  opacity: 0;
+  margin-bottom: 4px;
+  animation: .5s ease-out forwards slideInFromLeftbtn;
+}
+
+.button-container .btn:first-child {
+  animation-delay: .1s;
+}
+
+.button-container .btn:nth-child(2) {
+  animation-delay: .2s;
+}
+
+.button-container .btn:nth-child(3) {
+  animation-delay: .3s;
+}
+
+.button-container .btn:nth-child(4) {
+  animation-delay: .4s;
+}
+
+.button-container .btn:nth-child(5) {
+  animation-delay: .5s;
+}
+
+/*# sourceMappingURL=src_pages_Projects_css_bad6b30c._.single.css.map*/

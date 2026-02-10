@@ -1,0 +1,153 @@
+/* [project]/src/pages/HomePage.css [app-client] (css) */
+.math-game-content {
+  flex-direction: column;
+  align-items: center;
+  display: flex;
+}
+
+.flex-center {
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+}
+
+.inline-container {
+  align-items: center;
+  display: flex;
+}
+
+.question {
+  margin-top: 12px;
+  margin-right: 10px;
+}
+
+input {
+  width: 100px;
+  padding: 5px;
+  font-size: 1rem;
+}
+
+.math-game-box {
+  box-sizing: border-box;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+body.dark-mode .math-game-box {
+  box-sizing: border-box;
+  background-color: #000;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  width: 100%;
+  margin-top: 20px;
+  padding: 20px;
+  transition: color .3s, transform .3s;
+  box-shadow: 0 4px 8px #0000001a;
+}
+
+.contact-message {
+  margin-bottom: 100px;
+}
+
+.some-space {
+  margin-bottom: 10px;
+}
+
+.spacing {
+  margin-top: 5px;
+  margin-right: 20px;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleUp {
+  from {
+    opacity: 0;
+    transform: scale(.9);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation: 1s ease-in-out fadeIn;
+}
+
+.scale-up {
+  animation: .5s ease-in-out scaleUp;
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-5%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.slide-in-from-left {
+  animation: .2s ease-out slideInFromLeft;
+}
+
+.h1-title {
+  white-space: nowrap;
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.typewriter {
+  white-space: nowrap;
+  border-right: .1em solid #000;
+  font-family: monospace;
+  animation: 4s steps(16, end) forwards typing, .75s step-end infinite blink-caret;
+  display: inline-block;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blink-caret {
+  from, to {
+    border-color: #0000;
+  }
+
+  50% {
+    border-color: #000;
+  }
+}
+
+.no-blink {
+  border-right: none;
+  animation: 4s steps(16, end) forwards typing;
+}
+
+/*# sourceMappingURL=src_pages_HomePage_css_bad6b30c._.single.css.map*/
