@@ -5,11 +5,11 @@
   "devFiles": [],
   "ampDevFiles": [],
   "lowPriorityFiles": [
-    "static/ssH_jmavYpCB1Za_8EGR0/_buildManifest.js",
-    "static/ssH_jmavYpCB1Za_8EGR0/_ssgManifest.js"
+    "static/NSGdC6Ik11uIUshywPhJe/_buildManifest.js",
+    "static/NSGdC6Ik11uIUshywPhJe/_ssgManifest.js"
   ],
   "rootMainFiles": [
-    "static/chunks/webpack-49ecc3b69d12209e.js",
+    "static/chunks/webpack-7387d8689fbc3fb5.js",
     "static/chunks/4bd1b696-c023c6e3521b1417.js",
     "static/chunks/255-cb395327542b56ef.js",
     "static/chunks/main-app-8904c86df83cc2e7.js"
@@ -17,7 +17,7 @@
   "rootMainFilesTree": {},
   "pages": {
     "/BlockBlast": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/chunks/427-385e8795dd298bca.js",
@@ -25,42 +25,50 @@
       "static/chunks/pages/BlockBlast-cb64cd13c8470c75.js"
     ],
     "/Courses": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/css/0b8bce8894cd0c61.css",
       "static/chunks/pages/Courses-f99ef1e1f96a4549.js"
     ],
     "/Experience": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/css/0e9b62622e0d4f70.css",
       "static/chunks/pages/Experience-10b5fb9676488d0a.js"
     ],
     "/HomePage": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/css/9978c2ccc597c285.css",
       "static/chunks/pages/HomePage-b19b6154ac8f2100.js"
     ],
+    "/InitialsGame": [
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
+      "static/chunks/framework-a6e0b7e30f98059a.js",
+      "static/chunks/main-534e4d9802842052.js",
+      "static/chunks/150-18a86d302db0c028.js",
+      "static/css/172f3be35a74a787.css",
+      "static/chunks/pages/InitialsGame-cee83bb3baf45b44.js"
+    ],
     "/Photography": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/css/932ae31a883b6727.css",
       "static/chunks/pages/Photography-467535ff3f137a54.js"
     ],
     "/Projects": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/css/4fc63a512f0c090a.css",
       "static/chunks/pages/Projects-e849b1937079a2e7.js"
     ],
     "/ResumeSearch": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/chunks/427-385e8795dd298bca.js",
@@ -68,13 +76,13 @@
       "static/chunks/pages/ResumeSearch-5583302ac2ce6924.js"
     ],
     "/_app": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/chunks/pages/_app-7d307437aca18ad4.js"
     ],
     "/_error": [
-      "static/chunks/webpack-49ecc3b69d12209e.js",
+      "static/chunks/webpack-7387d8689fbc3fb5.js",
       "static/chunks/framework-a6e0b7e30f98059a.js",
       "static/chunks/main-534e4d9802842052.js",
       "static/chunks/pages/_error-cb2a52f75f2162e2.js"

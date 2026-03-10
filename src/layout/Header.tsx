@@ -94,6 +94,22 @@ const Header = () => {
                 ·
               </Link>
             )}
+            <Link
+              href="/initials-game"
+              onClick={closeMenu}
+              className="text-hover-grayl fs-3 text-decoration-none"
+              style={{
+                opacity: 0.1,
+                fontSize: "0.6rem",
+                cursor: "default",
+                userSelect: "none",
+              }}
+              title=""
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.3")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.1")}
+            >
+              ·
+            </Link>
           </div>
         </div>
       </div>

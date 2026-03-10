@@ -1,13 +1,14 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/BlockBlast": "pages/BlockBlast.html",
   "/Courses": "pages/Courses.html",
+  "/BlockBlast": "pages/BlockBlast.html",
   "/Experience": "pages/Experience.html",
+  "/InitialsGame": "pages/InitialsGame.html",
   "/HomePage": "pages/HomePage.html",
-  "/Photography": "pages/Photography.html",
-  "/Projects": "pages/Projects.html",
   "/ResumeSearch": "pages/ResumeSearch.html",
+  "/Projects": "pages/Projects.html",
+  "/Photography": "pages/Photography.html",
   "/_document": "pages/_document.js",
   "/404": "pages/404.html"
 }

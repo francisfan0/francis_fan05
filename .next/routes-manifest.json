@@ -69,6 +69,18 @@
       "namedRegex": "^/HomePage(?:/)?$"
     },
     {
+      "page": "/initials-game",
+      "regex": "^/initials\\-game(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/initials\\-game(?:/)?$"
+    },
+    {
+      "page": "/InitialsGame",
+      "regex": "^/InitialsGame(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/InitialsGame(?:/)?$"
+    },
+    {
       "page": "/photography",
       "regex": "^/photography(?:/)?$",
       "routeKeys": {},
