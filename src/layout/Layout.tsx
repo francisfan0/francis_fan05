@@ -1,6 +1,5 @@
 import Footer from "./Footer";
 import Header from "./Header";
-import HiddenAccess from "../components/HiddenAccess";
 import "./Layout.css";
 import "../index.css";
 
@@ -14,7 +13,6 @@ const Layout = ({ children }: Props) => {
       <Header />
       <main className="flex-grow-1 custom-container my-4">{children}</main>
       <Footer />
-      <HiddenAccess />
     </div>
   );
 };

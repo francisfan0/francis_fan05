@@ -31,6 +31,7 @@ interface GameRoom {
   guest_vote: "yes" | "no" | null;
   host_wants_skip: boolean;
   guest_wants_skip: boolean;
+  host_picks_first: boolean;
   round_number: number;
   max_rounds: number;
   last_round_result: string | null;
@@ -104,7 +105,7 @@ const InitialsGame = () => {
         },
         (payload: { new: GameRoom }) => {
           setRoom(payload.new as GameRoom);
-        }
+        },
       )
       .subscribe();
     channelRef.current = channel;
@@ -118,19 +119,16 @@ const InitialsGame = () => {
     };
   }, []);
 
-  const updateRoom = useCallback(
-    async (updates: Partial<GameRoom>) => {
-      if (!roomRef.current || !supabase.current) return;
-      const { data, error: err } = await supabase.current
-        .from("initials_game_rooms")
-        .update(updates)
-        .eq("id", roomRef.current.id)
-        .select()
-        .single();
-      if (!err && data) setRoom(data as GameRoom);
-    },
-    []
-  );
+  const updateRoom = useCallback(async (updates: Partial<GameRoom>) => {
+    if (!roomRef.current || !supabase.current) return;
+    const { data, error: err } = await supabase.current
+      .from("initials_game_rooms")
+      .update(updates)
+      .eq("id", roomRef.current.id)
+      .select()
+      .single();
+    if (!err && data) setRoom(data as GameRoom);
+  }, []);
 
   const advanceRound = useCallback(
     async (result?: string) => {
@@ -150,22 +148,26 @@ const InitialsGame = () => {
         guest_vote: null,
         host_wants_skip: false,
         guest_wants_skip: false,
+        host_picks_first: Math.random() < 0.5,
         last_round_result: result ?? r.last_round_result,
         racing_started_at: null,
       });
     },
-    [updateRoom]
+    [updateRoom],
   );
 
   // Host: transition letter_pick → racing when both letters are set
   useEffect(() => {
     if (!room || !isHost || room.phase !== "letter_pick") return;
     if (room.host_letter && room.guest_letter) {
-      const swap = Math.random() < 0.5;
-      const initials = swap
-        ? `${room.guest_letter}.${room.host_letter}.`
-        : `${room.host_letter}.${room.guest_letter}.`;
-      updateRoom({ phase: "racing", initials, racing_started_at: new Date().toISOString() });
+      const initials = room.host_picks_first
+        ? `${room.host_letter}.${room.guest_letter}.`
+        : `${room.guest_letter}.${room.host_letter}.`;
+      updateRoom({
+        phase: "racing",
+        initials,
+        racing_started_at: new Date().toISOString(),
+      });
     }
   }, [room?.host_letter, room?.guest_letter, room?.phase, isHost, updateRoom]);
 
@@ -178,7 +180,8 @@ const InitialsGame = () => {
         const proposerName =
           room.proposer === "host" ? room.host_username : room.guest_username;
         const newScores: Partial<GameRoom> = {};
-        if (room.proposer === "host") newScores.host_score = room.host_score + 1;
+        if (room.proposer === "host")
+          newScores.host_score = room.host_score + 1;
         else newScores.guest_score = room.guest_score + 1;
         updateRoom({
           ...newScores,
@@ -214,10 +217,17 @@ const InitialsGame = () => {
         guest_vote: null,
         host_wants_skip: false,
         guest_wants_skip: false,
+        host_picks_first: Math.random() < 0.5,
         racing_started_at: null,
       });
     }
-  }, [room?.host_wants_skip, room?.guest_wants_skip, room?.phase, isHost, updateRoom]);
+  }, [
+    room?.host_wants_skip,
+    room?.guest_wants_skip,
+    room?.phase,
+    isHost,
+    updateRoom,
+  ]);
 
   // Host: auto-advance from round_result after 4 seconds
   useEffect(() => {
@@ -226,10 +236,15 @@ const InitialsGame = () => {
     return () => clearTimeout(timer);
   }, [room?.phase, room?.round_number, isHost, advanceRound]);
 
-
   const createRoom = async () => {
-    if (!username.trim()) { setError("Enter a username first"); return; }
-    if (!supabase.current) { setError("Supabase not configured — see setup instructions."); return; }
+    if (!username.trim()) {
+      setError("Enter a username first");
+      return;
+    }
+    if (!supabase.current) {
+      setError("Supabase not configured — see setup instructions.");
+      return;
+    }
     setIsLoading(true);
     setError("");
     const code = generateCode();
@@ -245,15 +260,27 @@ const InitialsGame = () => {
       .select()
       .single();
     setIsLoading(false);
-    if (err) { setError(err.message); return; }
+    if (err) {
+      setError(err.message);
+      return;
+    }
     setRoom(data as GameRoom);
     subscribeToRoom((data as GameRoom).id);
   };
 
   const joinRoom = async () => {
-    if (!username.trim()) { setError("Enter a username first"); return; }
-    if (!joinCode.trim()) { setError("Enter a room code"); return; }
-    if (!supabase.current) { setError("Supabase not configured."); return; }
+    if (!username.trim()) {
+      setError("Enter a username first");
+      return;
+    }
+    if (!joinCode.trim()) {
+      setError("Enter a room code");
+      return;
+    }
+    if (!supabase.current) {
+      setError("Supabase not configured.");
+      return;
+    }
     setIsLoading(true);
     setError("");
     const { data: existing, error: fetchErr } = await supabase.current
@@ -273,18 +300,30 @@ const InitialsGame = () => {
     }
     const { data, error: updateErr } = await supabase.current
       .from("initials_game_rooms")
-      .update({ guest_id: playerIdRef.current, guest_username: username.trim() })
+      .update({
+        guest_id: playerIdRef.current,
+        guest_username: username.trim(),
+      })
       .eq("id", existing.id)
       .select()
       .single();
     setIsLoading(false);
-    if (updateErr) { setError(updateErr.message); return; }
+    if (updateErr) {
+      setError(updateErr.message);
+      return;
+    }
     setRoom(data as GameRoom);
     subscribeToRoom((data as GameRoom).id);
   };
 
   const startGame = () =>
-    updateRoom({ phase: "letter_pick", round_number: 0, host_score: 0, guest_score: 0 });
+    updateRoom({
+      phase: "letter_pick",
+      round_number: 0,
+      host_score: 0,
+      guest_score: 0,
+      host_picks_first: Math.random() < 0.5,
+    });
 
   const pickLetter = (letter: string) => {
     if (!room) return;
@@ -367,7 +406,11 @@ const InitialsGame = () => {
     setTimeout(() => setCopied(false), 2000);
   };
 
-  const myLetter = room ? (isHost ? room.host_letter : room.guest_letter) : null;
+  const myLetter = room
+    ? isHost
+      ? room.host_letter
+      : room.guest_letter
+    : null;
   const myVote = room ? (isHost ? room.host_vote : room.guest_vote) : null;
   const mySkipRequest = room
     ? isHost
@@ -410,7 +453,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
           </div>
           <h1 className="ig-title">Initials</h1>
           <p className="ig-subtitle">
-            Race to name a famous person matching two random initials
+            Race to name a person matching two random initials
           </p>
 
           <div className="ig-lobby-form">
@@ -505,7 +548,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
               <p className="ig-waiting-label">Share this code:</p>
               <div className="ig-code-display" onClick={copyCode}>
                 <span className="ig-code-text">{room.code}</span>
-                <span className="ig-copy-hint">{copied ? "Copied!" : "click to copy"}</span>
+                <span className="ig-copy-hint">
+                  {copied ? "Copied!" : "click to copy"}
+                </span>
               </div>
               <div className="ig-pulse-dots">
                 <span />
@@ -531,7 +576,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
                       value={maxRoundsInput}
                       onChange={(e) => setMaxRoundsInput(e.target.value)}
                       onBlur={() => {
-                        const v = Math.max(1, Math.min(30, parseInt(maxRoundsInput) || 10));
+                        const v = Math.max(
+                          1,
+                          Math.min(30, parseInt(maxRoundsInput) || 10),
+                        );
                         setMaxRoundsInput(String(v));
                         updateRoom({ max_rounds: v });
                       }}
@@ -548,7 +596,10 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
           )}
 
           {isHost && room.guest_id && (
-            <button className="ig-btn ig-btn-danger-ghost ig-reset-btn" onClick={resetGame}>
+            <button
+              className="ig-btn ig-btn-danger-ghost ig-reset-btn"
+              onClick={resetGame}
+            >
               ↺ Reset Room
             </button>
           )}
@@ -577,7 +628,14 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
   // ── Letter pick ─────────────────────────────────────────────────────────────
   if (room.phase === "letter_pick") {
     const theirLetter = isHost ? room.guest_letter : room.host_letter;
-    const myRole = isHost ? "first initial" : "second initial";
+    // iPickFirst: true if my letter goes in the first (left) slot
+    const iPickFirst = room.host_picks_first ? isHost : !isHost;
+    const myRole = iPickFirst ? "first initial" : "second initial";
+
+    // Derive what each slot shows
+    const firstSlotLetter = room.host_picks_first ? room.host_letter : room.guest_letter;
+    const secondSlotLetter = room.host_picks_first ? room.guest_letter : room.host_letter;
+    const firstSlotIsMe = iPickFirst;
 
     return (
       <div className="ig-container">
@@ -589,12 +647,16 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
           </p>
 
           <div className="ig-initials-preview">
-            <span className={`ig-initial-slot ${isHost && myLetter ? "ig-slot-set" : ""}`}>
-              {isHost ? (myLetter ?? "?") : (room.host_letter ? "✓" : "?")}
+            <span
+              className={`ig-initial-slot ${firstSlotLetter ? (firstSlotIsMe ? "ig-slot-set" : "ig-slot-theirs") : ""}`}
+            >
+              {firstSlotIsMe ? (myLetter ?? "?") : firstSlotLetter ? "✓" : "?"}
             </span>
             <span className="ig-initial-dot">.</span>
-            <span className={`ig-initial-slot ${!isHost && myLetter ? "ig-slot-set" : ""}`}>
-              {!isHost ? (myLetter ?? "?") : (room.guest_letter ? "✓" : "?")}
+            <span
+              className={`ig-initial-slot ${secondSlotLetter ? (!firstSlotIsMe ? "ig-slot-set" : "ig-slot-theirs") : ""}`}
+            >
+              {!firstSlotIsMe ? (myLetter ?? "?") : secondSlotLetter ? "✓" : "?"}
             </span>
             <span className="ig-initial-dot">.</span>
           </div>
@@ -640,7 +702,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
         <ScoreBar />
         <div className="ig-phase-card ig-race-card">
           <div className="ig-initials-display">{room.initials}</div>
-          <p className="ig-race-hint">Name a famous person with these initials</p>
+          <p className="ig-race-hint">Name a person with these initials</p>
 
           {!room.proposed_name ? (
             <div className="ig-race-input-row">
@@ -668,17 +730,22 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           )}
 
-          {!room.proposed_name && (
-            <button
-              className={`ig-btn ${mySkipRequest ? "ig-btn-skip-active" : "ig-btn-ghost"}`}
-              onClick={requestSkip}
-              disabled={mySkipRequest}
-            >
-              {mySkipRequest
-                ? `Skipping… (waiting for ${opponentName})`
-                : "⏭ Skip this round"}
-            </button>
-          )}
+          {!room.proposed_name && (() => {
+            const opponentWantsSkip = isHost ? room.guest_wants_skip : room.host_wants_skip;
+            return (
+              <button
+                className={`ig-btn ${mySkipRequest || opponentWantsSkip ? "ig-btn-skip-active" : "ig-btn-ghost"}`}
+                onClick={requestSkip}
+                disabled={mySkipRequest}
+              >
+                {mySkipRequest
+                  ? `You skipped — waiting for ${opponentName}…`
+                  : opponentWantsSkip
+                  ? `${opponentName} wants to skip — skip too?`
+                  : "⏭ Skip this round"}
+              </button>
+            );
+          })()}
         </div>
       </div>
     );
@@ -707,7 +774,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
           {iProposed ? (
             <div className="ig-waiting-votes">
               <p>You proposed this — your vote is ✓ yes.</p>
-              <p className="ig-waiting-sub">Waiting for {opponentName} to vote…</p>
+              <p className="ig-waiting-sub">
+                Waiting for {opponentName} to vote…
+              </p>
               <div className="ig-pulse-dots">
                 <span />
                 <span />
@@ -716,17 +785,25 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           ) : myVote ? (
             <div className="ig-voted-indicator">
-              <span>{myVote === "yes" ? "✓ You voted Yes" : "✗ You voted No"}</span>
+              <span>
+                {myVote === "yes" ? "✓ You voted Yes" : "✗ You voted No"}
+              </span>
               <p className="ig-waiting-sub">Waiting for {proposerName}…</p>
             </div>
           ) : (
             <div className="ig-vote-actions">
               <p className="ig-vote-question">Do you recognize this person?</p>
               <div className="ig-vote-buttons">
-                <button className="ig-btn ig-btn-yes" onClick={() => castVote("yes")}>
+                <button
+                  className="ig-btn ig-btn-yes"
+                  onClick={() => castVote("yes")}
+                >
                   ✓ Yes, I know them!
                 </button>
-                <button className="ig-btn ig-btn-no" onClick={() => castVote("no")}>
+                <button
+                  className="ig-btn ig-btn-no"
+                  onClick={() => castVote("no")}
+                >
                   ✗ Don't recognize
                 </button>
               </div>
@@ -744,7 +821,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
       <div className="ig-container">
         <ScoreBar />
         <div className="ig-phase-card ig-result-card">
-          <div className={`ig-result-icon ${isPoint ? "ig-result-win" : "ig-result-skip"}`}>
+          <div
+            className={`ig-result-icon ${isPoint ? "ig-result-win" : "ig-result-skip"}`}
+          >
             {isPoint ? "🎉" : "⏭"}
           </div>
           <p className="ig-result-text">{room.last_round_result}</p>
@@ -754,7 +833,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
               <span className="ig-result-score-num">{room.host_score}</span>
             </div>
             <div className="ig-result-score-item">
-              <span className="ig-result-score-name">{room.guest_username}</span>
+              <span className="ig-result-score-name">
+                {room.guest_username}
+              </span>
               <span className="ig-result-score-num">{room.guest_score}</span>
             </div>
           </div>
@@ -779,8 +860,8 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
     const winnerName = tied
       ? null
       : hostWon
-      ? room.host_username
-      : room.guest_username;
+        ? room.host_username
+        : room.guest_username;
 
     return (
       <div className="ig-container">
@@ -793,13 +874,17 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             <div
               className={`ig-gameover-score-item ${!tied && hostWon ? "ig-gameover-winner" : ""}`}
             >
-              <span className="ig-gameover-score-name">{room.host_username}</span>
+              <span className="ig-gameover-score-name">
+                {room.host_username}
+              </span>
               <span className="ig-gameover-score-num">{room.host_score}</span>
             </div>
             <div
               className={`ig-gameover-score-item ${!tied && !hostWon ? "ig-gameover-winner" : ""}`}
             >
-              <span className="ig-gameover-score-name">{room.guest_username}</span>
+              <span className="ig-gameover-score-name">
+                {room.guest_username}
+              </span>
               <span className="ig-gameover-score-num">{room.guest_score}</span>
             </div>
           </div>
@@ -809,7 +894,9 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </button>
           )}
           {!isHost && (
-            <p className="ig-waiting-sub">Waiting for host to start a new game…</p>
+            <p className="ig-waiting-sub">
+              Waiting for host to start a new game…
+            </p>
           )}
         </div>
       </div>

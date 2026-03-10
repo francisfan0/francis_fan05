@@ -1,6 +1,0 @@
-{
-  "version": 3,
-  "sources": [],
-  "sections": [
-    {"offset": {"line": 1, "column": 0}, "map": {"version":3,"sources":["turbopack:///[project]/src/pages/Courses.css"],"sourcesContent":[".text-hover-gray {\n    color: black; /* Default text color */\n    text-decoration: none; /* Remove underline by default */\n    transition: color 0.2s ease, transform 0.1s ease;\n  }\n  \n  .text-hover-gray:hover {\n    color: gray; /* Text color on hover */\n    transform: scale(1.01);\n  }\n\n  body.dark-mode .text-hover-gray {\n    color: lightblue; /* Text color in dark mode */\n    text-decoration: none; /* Remove underline by default */\n    transition: color 0.2s ease, transform 0.1s ease;\n  }\n  \n  body.dark-mode .text-hover-gray:hover {\n    color: lightgray; /* Hover color in dark mode */\n    transform: scale(1.01);\n  }\n\n/* Apply the animation to list items */\n@keyframes slideInFromLeft {\n  from {\n    transform: translateX(-5%);\n    opacity: 0;\n    filter: blur(10px);\n  }\n  to {\n    transform: translateX(0);\n    opacity: 1;\n    filter: blur(0);\n  }\n}\n\n/* Apply the animation to the container of list items */\n.list-container {\n  animation: slideInFromLeft 0.2s ease-out;\n}\n\n\n"],"names":[],"mappings":"AAAA;;;;;;AAME;;;;;AAKA;;;;;;AAMA;;;;;AAMF;;;;;;;;;;;;;;AAcA"}}]
-}

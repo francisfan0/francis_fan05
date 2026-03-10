@@ -1,0 +1,1321 @@
+/*!*******************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/layout/Layout.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************/
+.custom-container {
+    max-width: 95%; /* Adjust width percentage as needed */
+    margin: 0 auto; /* Center container */
+  }
+  
+  @media (min-width: 768px) { /* Medium devices and up */
+    .custom-container {
+      max-width: 70%;
+    }
+  }
+  
+  @media (min-width: 992px) { /* Large devices and up */
+    .custom-container {
+      max-width: 60%;
+    }
+  }
+  
+  @media (min-width: 1200px) { /* Extra-large devices and up */
+    .custom-container {
+      max-width: 50%;
+    }
+  }
+
+/* Header.css */
+.position-relative {
+  position: relative;
+}
+
+/* Backdrop overlay */
+.backdrop {
+  display: none; /* Hidden by default */
+  position: fixed; /* Cover the whole screen */
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Dark semi-transparent background */
+  z-index: 999; /* Ensure it is behind the menu but above other content */
+}
+
+/* Show backdrop when menu is open */
+.backdrop.show {
+  display: block;
+}
+
+/* Style for the dropdown menu */
+.navbar-collapse {
+  display: none;
+  position: absolute; /* Position dropdown below the button */
+  top: 100%; /* Align dropdown below the button */
+  right: 0; /* Align dropdown to the right edge of the button */
+  z-index: 1000; /* Ensure dropdown is on top of other elements */
+  background-color: #fff; /* White background for the dropdown */
+  border: 1px solid #ddd; /* Light grey border for the dropdown */
+  border-radius: 8px; /* Rounded corners for a softer look */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow for a lifted effect */
+  padding: 10px; /* Padding inside the dropdown */
+  width: 200px; /* Fixed width for the dropdown */
+}
+
+/* Show dropdown on mobile when button is clicked */
+.navbar-collapse.show { /* Safari */
+  display: flex;
+}
+
+/* Ensure vertical stacking on mobile */
+.navbar-collapse {
+  flex-direction: column;
+  background-color: #fff; /* Background color for dropdown */
+}
+
+/* On larger screens, display links horizontally */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex;
+    flex-direction: row;
+    position: static;
+    box-shadow: none; /* No shadow on large screens */
+    background-color: transparent; /* Transparent background */
+    border: none; /* No border on large screens */
+    width: auto !important;
+    max-width: none !important;
+  }
+  
+  /* Hide the mobile menu button on larger screens */
+  .btn-primary.d-lg-none {
+    display: none;
+  }
+}
+
+.align-right {
+  position: absolute; /* Take elements out of the document flow */
+  right: 0; /* Align to the right edge of the container */
+  display: flex; /* Use flexbox for alignment */
+  align-items: center; /* Center items vertically */
+  height: 100%; /* Make sure it spans the container’s height */
+}
+
+.text-hover-grayl {
+  color: black; /* Default text color */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.text-hover-grayl:hover {
+  color: gray; /* Text color on hover */
+  transform: scale(1.1);
+}
+
+body.dark-mode .text-hover-grayl {
+  color: lightblue; /* Text color in dark mode */
+  text-decoration: none; /* Remove underline by default */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+body.dark-mode .text-hover-grayl:hover {
+  color: lightgray; /* Hover color in dark mode */
+  transform: scale(1.1);
+}
+
+body.dark-mode .icon.moon {
+  filter: invert(1); /* Invert colors for the moon to be white on dark background */
+}
+
+.icon {
+  width: 30px; /* Adjust size as needed */
+  height: 30px;
+  transition: filter 0.5s ease;
+}
+
+body.dark-mode .dark-btn {
+  background-color: lightblue;
+}
+/*!***********************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/index.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************/
+/* :root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  color-scheme: light dark;
+  color: rgba(255, 255, 255, 0.87);
+  background-color: #242424;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  font-weight: 500;
+  color: #646cff;
+  text-decoration: inherit;
+}
+a:hover {
+  color: #535bf2;
+}
+
+body {
+  margin: 0;
+  display: flex;
+  place-items: center;
+  min-width: 320px;
+  min-height: 100vh;
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */
+
+body, html {
+  background-color: white; /* Dark background color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode {
+  background-color: black; /* Dark background color */
+  color: lightblue; /* Light text color */
+  transition: color 0.3s ease, transform 0.3s ease;
+  overflow-x: hidden;
+  position:relative;
+}
+
+body.dark-mode header {
+  background-color: black; /* Darker background color for the header */
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+/*!************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/pages/InitialsGame.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************/
+/* ── Initials Game ─────────────────────────────────────────── */
+
+.ig-container {
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto",
+    "Helvetica Neue", sans-serif;
+}
+
+/* ── Cards ─────────────────────────────────────────────────── */
+
+.ig-lobby-card,
+.ig-waiting-card,
+.ig-phase-card,
+.ig-gameover-card,
+.ig-setup-card {
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 12px;
+  padding: 2rem 1.75rem;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.875rem;
+}
+
+body.dark-mode .ig-lobby-card,
+body.dark-mode .ig-waiting-card,
+body.dark-mode .ig-phase-card,
+body.dark-mode .ig-gameover-card,
+body.dark-mode .ig-setup-card {
+  border-color: #333;
+}
+
+/* ── Logo ──────────────────────────────────────────────────── */
+
+.ig-logo {
+  display: flex;
+  align-items: baseline;
+  gap: 0.05rem;
+  line-height: 1;
+  margin-bottom: 0.25rem;
+}
+
+.ig-logo-letter {
+  font-size: 3rem;
+  font-weight: 900;
+  color: #333;
+  letter-spacing: -0.05em;
+}
+
+.ig-logo-letter2 {
+  color: #555;
+}
+
+.ig-logo-dot {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #bbb;
+}
+
+body.dark-mode .ig-logo-letter  { color: lightblue; }
+body.dark-mode .ig-logo-letter2 { color: #aaa; }
+body.dark-mode .ig-logo-dot     { color: #555; }
+
+/* ── Typography ────────────────────────────────────────────── */
+
+.ig-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  margin: 0;
+  color: #111;
+}
+
+.ig-subtitle {
+  font-size: 0.875rem;
+  color: #666;
+  text-align: center;
+  margin: 0 0 0.75rem;
+  line-height: 1.5;
+}
+
+.ig-phase-title {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+
+.ig-phase-hint,
+.ig-race-hint,
+.ig-vote-question,
+.ig-waiting-label {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  text-align: center;
+}
+
+.ig-waiting-sub {
+  font-size: 0.875rem;
+  color: #999;
+  text-align: center;
+  margin: 0;
+}
+
+body.dark-mode .ig-title,
+body.dark-mode .ig-phase-title { color: lightblue; }
+
+body.dark-mode .ig-subtitle,
+body.dark-mode .ig-phase-hint,
+body.dark-mode .ig-race-hint,
+body.dark-mode .ig-vote-question,
+body.dark-mode .ig-waiting-label { color: #aaa; }
+
+body.dark-mode .ig-waiting-sub { color: #666; }
+
+/* ── Inputs ────────────────────────────────────────────────── */
+
+.ig-lobby-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  width: 100%;
+}
+
+.ig-input {
+  width: 100%;
+  padding: 0.6rem 0;
+  border: none;
+  border-bottom: 1px solid #ccc;
+  font-size: 1rem;
+  background: transparent;
+  color: #111;
+  outline: none;
+  transition: border-color 0.2s;
+  box-sizing: border-box;
+  font-family: inherit;
+}
+
+.ig-input:focus {
+  border-bottom-color: #333;
+}
+
+.ig-input::placeholder {
+  color: #bbb;
+}
+
+.ig-code-input {
+  text-transform: uppercase;
+  letter-spacing: 0.25em;
+  font-size: 1.25rem;
+  font-weight: 700;
+  text-align: center;
+}
+
+.ig-rounds-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ig-label {
+  color: #888;
+  font-size: 0.875rem;
+  white-space: nowrap;
+}
+
+.ig-rounds-input {
+  max-width: 70px;
+}
+
+body.dark-mode .ig-input {
+  color: lightblue;
+  border-bottom-color: #444;
+}
+
+body.dark-mode .ig-input:focus {
+  border-bottom-color: lightblue;
+}
+
+body.dark-mode .ig-input::placeholder {
+  color: #555;
+}
+
+/* ── Buttons ───────────────────────────────────────────────── */
+
+.ig-btn {
+  padding: 0.6rem 1.25rem;
+  border-radius: 8px;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+  font-family: inherit;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ig-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ig-btn-primary {
+  background: #111;
+  color: #fff;
+  border-color: #111;
+}
+
+.ig-btn-primary:hover:not(:disabled) {
+  background: #333;
+  border-color: #333;
+}
+
+.ig-btn-ghost {
+  background: transparent;
+  color: #555;
+  border-color: #ddd;
+}
+
+.ig-btn-ghost:hover:not(:disabled) {
+  border-color: #aaa;
+  color: #111;
+}
+
+.ig-btn-yes {
+  background: transparent;
+  color: #16a34a;
+  border-color: #16a34a;
+  flex: 1 1;
+}
+
+.ig-btn-yes:hover:not(:disabled) {
+  background: #16a34a;
+  color: #fff;
+}
+
+.ig-btn-no {
+  background: transparent;
+  color: #dc2626;
+  border-color: #dc2626;
+  flex: 1 1;
+}
+
+.ig-btn-no:hover:not(:disabled) {
+  background: #dc2626;
+  color: #fff;
+}
+
+.ig-btn-danger-ghost {
+  background: transparent;
+  color: #bbb;
+  border-color: transparent;
+  font-size: 0.8125rem;
+}
+
+.ig-btn-danger-ghost:hover:not(:disabled) {
+  color: #dc2626;
+}
+
+.ig-btn-skip-active {
+  background: transparent;
+  color: #f59e0b;
+  border-color: #f59e0b;
+}
+
+body.dark-mode .ig-btn-primary {
+  background: lightblue;
+  color: #000;
+  border-color: lightblue;
+}
+
+body.dark-mode .ig-btn-primary:hover:not(:disabled) {
+  background: #aad4e8;
+  border-color: #aad4e8;
+}
+
+body.dark-mode .ig-btn-ghost {
+  color: #aaa;
+  border-color: #444;
+}
+
+body.dark-mode .ig-btn-ghost:hover:not(:disabled) {
+  color: lightblue;
+  border-color: #777;
+}
+
+body.dark-mode .ig-btn-danger-ghost {
+  color: #555;
+}
+
+body.dark-mode .ig-btn-danger-ghost:hover:not(:disabled) {
+  color: #f87171;
+}
+
+/* ── Error ─────────────────────────────────────────────────── */
+
+.ig-error {
+  color: #dc2626;
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* ── Waiting card ──────────────────────────────────────────── */
+
+.ig-waiting-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.ig-you-badge {
+  background: #f3f4f6;
+  color: #111;
+  border-radius: 2rem;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.ig-opp-badge {
+  background: #f3f4f6;
+  color: #555;
+  border-radius: 2rem;
+  padding: 0.2rem 0.75rem;
+  font-size: 0.875rem;
+}
+
+.ig-vs {
+  color: #bbb;
+  font-size: 0.8125rem;
+}
+
+body.dark-mode .ig-you-badge {
+  background: #1a1a1a;
+  color: lightblue;
+}
+
+body.dark-mode .ig-opp-badge {
+  background: #1a1a1a;
+  color: #aaa;
+}
+
+.ig-waiting-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.ig-code-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  cursor: pointer;
+  padding: 1rem 2rem;
+  border: 1px dashed #ccc;
+  border-radius: 10px;
+  transition: all 0.15s;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ig-code-display:hover {
+  border-color: #999;
+  background: #fafafa;
+}
+
+.ig-code-text {
+  font-size: 2.25rem;
+  font-weight: 900;
+  letter-spacing: 0.3em;
+  color: #111;
+  font-family: monospace;
+}
+
+.ig-copy-hint {
+  font-size: 0.75rem;
+  color: #bbb;
+}
+
+body.dark-mode .ig-code-display {
+  border-color: #444;
+}
+
+body.dark-mode .ig-code-display:hover {
+  background: #111;
+  border-color: #666;
+}
+
+body.dark-mode .ig-code-text { color: lightblue; }
+
+.ig-ready-text {
+  font-size: 1rem;
+  color: #111;
+  margin: 0;
+}
+
+body.dark-mode .ig-ready-text { color: lightblue; }
+
+.ig-host-start {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+  width: 100%;
+}
+
+.ig-reset-btn {
+  margin-top: 0.25rem;
+}
+
+/* ── Pulse dots ────────────────────────────────────────────── */
+
+.ig-pulse-dots {
+  display: flex;
+  gap: 0.375rem;
+  align-items: center;
+}
+
+.ig-pulse-dots span {
+  width: 5px;
+  height: 5px;
+  background: #ccc;
+  border-radius: 50%;
+  animation: ig-pulse 1.4s ease-in-out infinite;
+}
+
+.ig-pulse-dots span:nth-child(2) { animation-delay: 0.2s; }
+.ig-pulse-dots span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes ig-pulse {
+  0%, 80%, 100% { transform: scale(0.8); opacity: 0.4; }
+  40%           { transform: scale(1.2); opacity: 1; }
+}
+
+/* ── Score bar ─────────────────────────────────────────────── */
+
+.ig-score-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 1px solid #e0e0e0;
+  padding: 0 0 0.75rem;
+  gap: 1rem;
+}
+
+body.dark-mode .ig-score-bar { border-bottom-color: #333; }
+
+.ig-score-player {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ig-score-name {
+  font-size: 0.875rem;
+  color: #999;
+  font-weight: 500;
+}
+
+.ig-score-num {
+  font-size: 1.375rem;
+  font-weight: 800;
+  color: #ccc;
+  min-width: 1.5rem;
+  text-align: center;
+  font-family: monospace;
+}
+
+.ig-score-me .ig-score-name { color: #111; }
+.ig-score-me .ig-score-num  { color: #111; }
+
+.ig-score-round {
+  font-size: 0.8125rem;
+  color: #bbb;
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+body.dark-mode .ig-score-me .ig-score-name { color: lightblue; }
+body.dark-mode .ig-score-me .ig-score-num  { color: lightblue; }
+body.dark-mode .ig-score-name { color: #555; }
+body.dark-mode .ig-score-num  { color: #444; }
+body.dark-mode .ig-score-round { color: #555; }
+
+/* ── Initials preview / display ────────────────────────────── */
+
+.ig-initials-preview {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+  margin: 0.25rem 0;
+}
+
+.ig-initial-slot {
+  width: 2.75rem;
+  height: 3.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.75rem;
+  font-weight: 900;
+  font-family: monospace;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  color: #ccc;
+  background: #fafafa;
+  transition: all 0.2s;
+}
+
+.ig-initial-slot.ig-slot-set {
+  border-color: #111;
+  color: #111;
+  background: #fff;
+}
+
+.ig-initial-slot.ig-slot-theirs {
+  border-color: #aaa;
+  color: #aaa;
+  background: #f5f5f5;
+}
+
+.ig-initial-dot {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ddd;
+}
+
+body.dark-mode .ig-initial-slot {
+  border-color: #333;
+  color: #444;
+  background: transparent;
+}
+
+body.dark-mode .ig-initial-slot.ig-slot-set {
+  border-color: lightblue;
+  color: lightblue;
+}
+
+body.dark-mode .ig-initial-slot.ig-slot-theirs {
+  border-color: #555;
+  color: #555;
+  background: transparent;
+}
+
+body.dark-mode .ig-initial-dot { color: #333; }
+
+.ig-initials-display {
+  font-size: clamp(4rem, 15vw, 7rem);
+  font-weight: 900;
+  font-family: monospace;
+  letter-spacing: 0.1em;
+  color: #111;
+  line-height: 1;
+}
+
+body.dark-mode .ig-initials-display { color: lightblue; }
+
+/* ── Alphabet grid ─────────────────────────────────────────── */
+
+.ig-alphabet-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-gap: 0.3rem;
+  gap: 0.3rem;
+  width: 100%;
+}
+
+.ig-letter-btn {
+  aspect-ratio: 1;
+  background: transparent;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  color: #555;
+  font-size: 0.875rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.12s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: inherit;
+}
+
+.ig-letter-btn:hover {
+  border-color: #111;
+  color: #111;
+  background: #f5f5f5;
+}
+
+.ig-letter-btn:active {
+  transform: scale(0.94);
+}
+
+body.dark-mode .ig-letter-btn {
+  border-color: #333;
+  color: #888;
+}
+
+body.dark-mode .ig-letter-btn:hover {
+  border-color: lightblue;
+  color: lightblue;
+  background: transparent;
+}
+
+/* ── Letter picked state ───────────────────────────────────── */
+
+.ig-picked-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.ig-picked-letter {
+  font-size: 5rem;
+  font-weight: 900;
+  font-family: monospace;
+  color: #111;
+  line-height: 1;
+  animation: ig-pop-in 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+body.dark-mode .ig-picked-letter { color: lightblue; }
+
+@keyframes ig-pop-in {
+  from { transform: scale(0.5); opacity: 0; }
+  to   { transform: scale(1);   opacity: 1; }
+}
+
+/* ── Race card ─────────────────────────────────────────────── */
+
+.ig-race-card { gap: 0.625rem; }
+
+
+.ig-race-input-row {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+  align-items: center;
+}
+
+.ig-race-input {
+  flex: 1 1;
+  min-width: 0;
+  border: 1px solid #ccc !important;
+  border-radius: 8px !important;
+  padding: 0.6rem 0.875rem !important;
+}
+
+.ig-race-input:focus {
+  border-color: #333 !important;
+}
+
+body.dark-mode .ig-race-input {
+  border-color: #444 !important;
+}
+
+body.dark-mode .ig-race-input:focus {
+  border-color: lightblue !important;
+}
+
+.ig-race-input-row .ig-btn {
+  width: auto;
+  flex-shrink: 0;
+}
+
+.ig-submitted-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.875rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ig-submitted-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+}
+
+body.dark-mode .ig-submitted-indicator { border-color: #333; }
+body.dark-mode .ig-submitted-name { color: #aaa; }
+
+/* ── Vote card ─────────────────────────────────────────────── */
+
+.ig-vote-card { gap: 0.75rem; }
+
+.ig-vote-proposer {
+  font-size: 0.875rem;
+  color: #888;
+  margin: 0;
+}
+
+.ig-vote-proposer-name {
+  font-weight: 600;
+  color: #333;
+}
+
+body.dark-mode .ig-vote-proposer-name { color: lightblue; }
+
+.ig-vote-name {
+  font-size: clamp(1.5rem, 6vw, 2.5rem);
+  font-weight: 900;
+  color: #111;
+  text-align: center;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+body.dark-mode .ig-vote-name { color: lightblue; }
+
+.ig-vote-initials-check { margin: 0; }
+
+.ig-initials-small {
+  background: #f5f5f5;
+  color: #555;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  padding: 0.15rem 0.5rem;
+  font-family: monospace;
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+}
+
+body.dark-mode .ig-initials-small {
+  background: transparent;
+  color: lightblue;
+  border-color: #444;
+}
+
+.ig-vote-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.625rem;
+  width: 100%;
+}
+
+.ig-vote-buttons {
+  display: flex;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.ig-waiting-votes,
+.ig-voted-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+  color: #888;
+  font-size: 0.9375rem;
+}
+
+.ig-voted-indicator span {
+  font-weight: 600;
+  color: #333;
+}
+
+body.dark-mode .ig-voted-indicator span { color: #aaa; }
+
+/* ── Round result ──────────────────────────────────────────── */
+
+.ig-result-card {
+  gap: 0.75rem;
+  animation: ig-fade-in 0.35s ease;
+}
+
+@keyframes ig-fade-in {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.ig-result-icon {
+  font-size: 2.5rem;
+  line-height: 1;
+  animation: ig-pop-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.ig-result-text {
+  font-size: 0.9375rem;
+  color: #555;
+  text-align: center;
+  margin: 0;
+  line-height: 1.5;
+}
+
+body.dark-mode .ig-result-text { color: #aaa; }
+
+.ig-result-scores {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.ig-result-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.ig-result-score-name {
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+.ig-result-score-num {
+  font-size: 2rem;
+  font-weight: 900;
+  color: #ddd;
+  font-family: monospace;
+}
+
+.ig-next-round-hint {
+  font-size: 0.8125rem;
+  color: #bbb;
+}
+
+body.dark-mode .ig-result-score-num { color: #444; }
+
+/* ── Game over ─────────────────────────────────────────────── */
+
+.ig-gameover-card {
+  padding: 2.5rem 1.75rem;
+  animation: ig-fade-in 0.4s ease;
+}
+
+.ig-gameover-trophy {
+  font-size: 3.5rem;
+  animation: ig-float 3s ease-in-out infinite;
+}
+
+@keyframes ig-float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-6px); }
+}
+
+.ig-gameover-title {
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: #111;
+  margin: 0;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+body.dark-mode .ig-gameover-title { color: lightblue; }
+
+.ig-gameover-scores {
+  display: flex;
+  gap: 1.5rem;
+  margin: 0.5rem 0;
+}
+
+.ig-gameover-score-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.875rem 1.25rem;
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  min-width: 90px;
+}
+
+.ig-gameover-winner {
+  border-color: #111;
+}
+
+body.dark-mode .ig-gameover-score-item { border-color: #333; }
+body.dark-mode .ig-gameover-winner     { border-color: lightblue; }
+
+.ig-gameover-score-name {
+  font-size: 0.8125rem;
+  color: #999;
+}
+
+.ig-gameover-score-num {
+  font-size: 2.75rem;
+  font-weight: 900;
+  color: #ddd;
+  font-family: monospace;
+  line-height: 1;
+}
+
+.ig-gameover-winner .ig-gameover-score-num {
+  color: #111;
+}
+
+body.dark-mode .ig-gameover-winner .ig-gameover-score-num { color: lightblue; }
+
+/* ── Setup card ────────────────────────────────────────────── */
+
+.ig-setup-card {
+  text-align: center;
+  gap: 0.75rem;
+}
+
+.ig-setup-icon { font-size: 2rem; }
+
+.ig-setup-card h2 {
+  font-size: 1.375rem;
+  font-weight: 700;
+  margin: 0;
+  color: #111;
+}
+
+.ig-setup-card p {
+  font-size: 0.875rem;
+  color: #666;
+  margin: 0;
+  line-height: 1.6;
+}
+
+.ig-code-block {
+  background: #f8f8f8;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  font-size: 0.8125rem;
+  color: #333;
+  text-align: left;
+  white-space: pre;
+  width: 100%;
+  box-sizing: border-box;
+  overflow-x: auto;
+  font-family: monospace;
+}
+
+.ig-setup-hint {
+  font-size: 0.8125rem !important;
+  color: #aaa !important;
+}
+
+body.dark-mode .ig-setup-card h2 { color: lightblue; }
+body.dark-mode .ig-code-block {
+  background: #111;
+  border-color: #333;
+  color: #aaa;
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .ig-alphabet-grid    { grid-template-columns: repeat(6, 1fr); }
+  .ig-vote-buttons     { flex-direction: column; }
+  .ig-gameover-scores  { gap: 1rem; }
+}
+
+/*!***********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[14].oneOf[10].use[3]!./src/components/PasswordProtection.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************/
+.password-protection-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 60vh;
+  padding: 1rem;
+}
+
+.password-form-container {
+  background: transparent;
+  border: none;
+  padding: 1rem;
+  max-width: 300px;
+  width: 100%;
+}
+
+.password-form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.password-form-header h2 {
+  margin: 0 0 0.5rem 0;
+  color: var(--text-color);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+.password-form-header p {
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  font-weight: 300;
+}
+
+.password-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.password-input-group {
+  display: block;
+}
+
+.password-input {
+  width: 100%;
+  padding: 0.5rem 0;
+  border: none;
+  border-bottom: 1px solid var(--border-color);
+  font-size: 1rem;
+  background: transparent;
+  color: var(--text-color);
+  transition: all 0.3s ease;
+}
+
+.password-input:focus {
+  outline: none;
+  border-bottom-color: var(--accent-color);
+}
+
+.password-input:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+
+
+.password-error {
+  color: #dc3545;
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.password-loading {
+  color: var(--text-secondary);
+  padding: 0.5rem 0;
+  font-size: 0.8rem;
+  text-align: center;
+  font-style: italic;
+}
+
+
+
+.password-protected-content {
+  position: relative;
+}
+
+/* Dark mode support */
+.dark-mode .password-input {
+  color: var(--text-color);
+  border-bottom-color: var(--border-color);
+}
+
+
+
+/* Responsive design */
+@media (max-width: 480px) {
+  .password-protection-container {
+    padding: 1rem;
+  }
+
+  .password-form-container {
+    padding: 2rem 1.5rem;
+  }
+
+  .password-input-group {
+    flex-direction: column;
+  }
+
+  .password-submit-btn {
+    width: 100%;
+  }
+}
+

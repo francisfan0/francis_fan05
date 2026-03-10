@@ -128,6 +128,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../src/app/valentine/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/valentine">> = Specific
+  const handler = {} as typeof import("../../src/app/valentine/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../src/app/api/auth-resume/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/auth-resume">> = Specific

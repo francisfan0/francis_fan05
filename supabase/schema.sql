@@ -20,6 +20,7 @@ create table if not exists initials_game_rooms (
   guest_vote text,
   host_wants_skip boolean default false,
   guest_wants_skip boolean default false,
+  host_picks_first boolean default true,
   round_number integer default 0,
   max_rounds integer default 10,
   last_round_result text,

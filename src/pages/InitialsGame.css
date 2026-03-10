@@ -530,6 +530,12 @@ body.dark-mode .ig-score-round { color: #555; }
   background: #fff;
 }
 
+.ig-initial-slot.ig-slot-theirs {
+  border-color: #aaa;
+  color: #aaa;
+  background: #f5f5f5;
+}
+
 .ig-initial-dot {
   font-size: 1.5rem;
   font-weight: 700;
@@ -545,6 +551,12 @@ body.dark-mode .ig-initial-slot {
 body.dark-mode .ig-initial-slot.ig-slot-set {
   border-color: lightblue;
   color: lightblue;
+}
+
+body.dark-mode .ig-initial-slot.ig-slot-theirs {
+  border-color: #555;
+  color: #555;
+  background: transparent;
 }
 
 body.dark-mode .ig-initial-dot { color: #333; }
