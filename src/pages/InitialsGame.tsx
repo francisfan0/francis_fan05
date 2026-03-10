@@ -161,40 +161,63 @@ const InitialsGame = () => {
   useEffect(() => {
     if (!room || !isHost || room.phase !== "letter_pick") return;
     if (room.host_letter && room.guest_letter) {
-      const initials = `${room.host_letter}.${room.guest_letter}.`;
+      const swap = Math.random() < 0.5;
+      const initials = swap
+        ? `${room.guest_letter}.${room.host_letter}.`
+        : `${room.host_letter}.${room.guest_letter}.`;
       updateRoom({ phase: "racing", initials, racing_started_at: new Date().toISOString() });
     }
   }, [room?.host_letter, room?.guest_letter, room?.phase, isHost, updateRoom]);
 
-  // Host: transition voting → round_result when both votes are in
+  // Host: resolve voting when both votes are in
   useEffect(() => {
     if (!room || !isHost || room.phase !== "voting") return;
     if (room.host_vote && room.guest_vote) {
       const bothYes = room.host_vote === "yes" && room.guest_vote === "yes";
-      const proposerName =
-        room.proposer === "host" ? room.host_username : room.guest_username;
-      const newScores: Partial<GameRoom> = {};
       if (bothYes) {
+        const proposerName =
+          room.proposer === "host" ? room.host_username : room.guest_username;
+        const newScores: Partial<GameRoom> = {};
         if (room.proposer === "host") newScores.host_score = room.host_score + 1;
         else newScores.guest_score = room.guest_score + 1;
+        updateRoom({
+          ...newScores,
+          phase: "round_result",
+          last_round_result: `✓ Point to ${proposerName}! "${room.proposed_name}" accepted.`,
+        });
+      } else {
+        // Someone voted no — keep same initials, go back to racing
+        updateRoom({
+          phase: "racing",
+          proposed_name: null,
+          proposer: null,
+          host_vote: null,
+          guest_vote: null,
+          racing_started_at: new Date().toISOString(),
+        });
       }
-      updateRoom({
-        ...newScores,
-        phase: "round_result",
-        last_round_result: bothYes
-          ? `✓ Point to ${proposerName}! "${room.proposed_name}" accepted.`
-          : `✗ Skipped — "${room.proposed_name}" not recognized by both.`,
-      });
     }
   }, [room?.host_vote, room?.guest_vote, room?.phase, isHost, updateRoom]);
 
-  // Host: both players want to skip in racing → skip round
+  // Host: both players want to skip → new initials, same round number
   useEffect(() => {
     if (!room || !isHost || room.phase !== "racing") return;
     if (room.host_wants_skip && room.guest_wants_skip) {
-      advanceRound("⏭ Both players skipped this round.");
+      updateRoom({
+        phase: "letter_pick",
+        host_letter: null,
+        guest_letter: null,
+        initials: null,
+        proposed_name: null,
+        proposer: null,
+        host_vote: null,
+        guest_vote: null,
+        host_wants_skip: false,
+        guest_wants_skip: false,
+        racing_started_at: null,
+      });
     }
-  }, [room?.host_wants_skip, room?.guest_wants_skip, room?.phase, isHost, advanceRound]);
+  }, [room?.host_wants_skip, room?.guest_wants_skip, room?.phase, isHost, updateRoom]);
 
   // Host: auto-advance from round_result after 4 seconds
   useEffect(() => {
@@ -312,6 +335,27 @@ const InitialsGame = () => {
       last_round_result: null,
       guest_id: null,
       guest_username: null,
+      racing_started_at: null,
+    });
+  };
+
+  const playAgain = () => {
+    if (!room || !isHost) return;
+    updateRoom({
+      phase: "waiting",
+      host_score: 0,
+      guest_score: 0,
+      round_number: 0,
+      host_letter: null,
+      guest_letter: null,
+      initials: null,
+      proposed_name: null,
+      proposer: null,
+      host_vote: null,
+      guest_vote: null,
+      host_wants_skip: false,
+      guest_wants_skip: false,
+      last_round_result: null,
       racing_started_at: null,
     });
   };
@@ -585,11 +629,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           )}
         </div>
-        {isHost && (
-          <button className="ig-btn ig-btn-danger-ghost ig-reset-btn" onClick={resetGame}>
-            ↺ Reset Game
-          </button>
-        )}
       </div>
     );
   }
@@ -641,11 +680,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </button>
           )}
         </div>
-        {isHost && (
-          <button className="ig-btn ig-btn-danger-ghost ig-reset-btn" onClick={resetGame}>
-            ↺ Reset Game
-          </button>
-        )}
       </div>
     );
   }
@@ -699,11 +733,6 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           )}
         </div>
-        {isHost && (
-          <button className="ig-btn ig-btn-danger-ghost ig-reset-btn" onClick={resetGame}>
-            ↺ Reset Game
-          </button>
-        )}
       </div>
     );
   }
@@ -775,7 +804,7 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           </div>
           {isHost && (
-            <button className="ig-btn ig-btn-primary" onClick={resetGame}>
+            <button className="ig-btn ig-btn-primary" onClick={playAgain}>
               Play Again
             </button>
           )}
