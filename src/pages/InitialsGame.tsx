@@ -633,8 +633,12 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
     const myRole = iPickFirst ? "first initial" : "second initial";
 
     // Derive what each slot shows
-    const firstSlotLetter = room.host_picks_first ? room.host_letter : room.guest_letter;
-    const secondSlotLetter = room.host_picks_first ? room.guest_letter : room.host_letter;
+    const firstSlotLetter = room.host_picks_first
+      ? room.host_letter
+      : room.guest_letter;
+    const secondSlotLetter = room.host_picks_first
+      ? room.guest_letter
+      : room.host_letter;
     const firstSlotIsMe = iPickFirst;
 
     return (
@@ -656,7 +660,11 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             <span
               className={`ig-initial-slot ${secondSlotLetter ? (!firstSlotIsMe ? "ig-slot-set" : "ig-slot-theirs") : ""}`}
             >
-              {!firstSlotIsMe ? (myLetter ?? "?") : secondSlotLetter ? "✓" : "?"}
+              {!firstSlotIsMe
+                ? (myLetter ?? "?")
+                : secondSlotLetter
+                  ? "✓"
+                  : "?"}
             </span>
             <span className="ig-initial-dot">.</span>
           </div>
@@ -730,22 +738,25 @@ NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key`}</pre>
             </div>
           )}
 
-          {!room.proposed_name && (() => {
-            const opponentWantsSkip = isHost ? room.guest_wants_skip : room.host_wants_skip;
-            return (
-              <button
-                className={`ig-btn ${mySkipRequest || opponentWantsSkip ? "ig-btn-skip-active" : "ig-btn-ghost"}`}
-                onClick={requestSkip}
-                disabled={mySkipRequest}
-              >
-                {mySkipRequest
-                  ? `You skipped — waiting for ${opponentName}…`
-                  : opponentWantsSkip
-                  ? `${opponentName} wants to skip — skip too?`
-                  : "⏭ Skip this round"}
-              </button>
-            );
-          })()}
+          {!room.proposed_name &&
+            (() => {
+              const opponentWantsSkip = isHost
+                ? room.guest_wants_skip
+                : room.host_wants_skip;
+              return (
+                <button
+                  className={`ig-btn ${mySkipRequest || opponentWantsSkip ? "ig-btn-skip-active" : "ig-btn-ghost"}`}
+                  onClick={requestSkip}
+                  disabled={mySkipRequest}
+                >
+                  {mySkipRequest
+                    ? `You skipped — waiting for ${opponentName}…`
+                    : opponentWantsSkip
+                      ? `${opponentName} wants to skip — skip too?`
+                      : "⏭ Skip this round"}
+                </button>
+              );
+            })()}
         </div>
       </div>
     );
