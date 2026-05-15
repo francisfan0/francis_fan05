@@ -106,7 +106,7 @@ const Footer = () => {
         </button>
         <div className="d-flex gap-3">
           <a
-            href="/Francis_27.pdf"
+            href="/FrancisFan-2027.pdf"
             target="_blank"
             rel="noopener noreferrer"
             className="text-hover-gray text-lg d-flex align-items-center text-decoration-none"

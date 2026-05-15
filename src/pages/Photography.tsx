@@ -15,10 +15,18 @@ type TrackName =
 const Photography = () => {
   const trackRef = useRef<HTMLDivElement | null>(null);
   const isDragging = useRef(false);
+  const hasDragged = useRef(false);
   const percentageRef = useRef<number>(-20);
   const startPosition = useRef<number>(0);
   const [currentTrackIndex, setCurrentTrackIndex] = useState<number>(0);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
+
+  // Lightbox zoom / pan state
+  const [zoom, setZoom] = useState(1);
+  const [pan, setPan] = useState({ x: 0, y: 0 });
+  const lbPanStart = useRef<{ mx: number; my: number; px: number; py: number } | null>(null);
+  const lbHasPanned = useRef(false);
 
   const trackNames: TrackName[] = [
     "Seattle",
@@ -35,7 +43,7 @@ const Photography = () => {
   const createCloudinaryUrl = (
     publicId: string,
     width: number,
-    height: number
+    height: number,
   ) => {
     return `https://res.cloudinary.com/ddyvrjaqp/image/upload/c_scale,h_${height},w_${width}/f_auto/q_auto/${publicId}`;
   };
@@ -150,20 +158,29 @@ const Photography = () => {
 
     if (!track) return;
 
-    // Clamp helper
-    const clamp = (value: number, min: number, max: number) => {
-      return Math.max(Math.min(value, max), min);
+    const clamp = (value: number, min: number, max: number) =>
+      Math.max(Math.min(value, max), min);
+
+    // Compute scroll bounds so the first/last image stays at a visible edge margin.
+    const getBounds = () => {
+      const trackWidth = track.scrollWidth;
+      const vw = window.innerWidth;
+      const edgePx = Math.min(vw * 0.06, 72);
+      const maxPct = ((edgePx - vw / 2) / trackWidth) * 100;
+      const minPct = ((vw / 2 - edgePx - trackWidth) / trackWidth) * 100;
+      return { minPct, maxPct };
     };
 
     const updateTrackPosition = (newPercentage: number) => {
-      const clamped = clamp(newPercentage, -100, 0);
+      const { minPct, maxPct } = getBounds();
+      const clamped = clamp(newPercentage, minPct, maxPct);
       percentageRef.current = clamped;
 
       track.animate(
         {
           transform: `translate(${clamped}%, -50%)`,
         },
-        { duration: 300, fill: "forwards" }
+        { duration: 300, fill: "forwards" },
       );
 
       for (const image of track.getElementsByClassName("image")) {
@@ -171,14 +188,16 @@ const Photography = () => {
           {
             objectPosition: `${100 + clamped}% center`,
           },
-          { duration: 300, fill: "forwards" }
+          { duration: 300, fill: "forwards" },
         );
       }
     };
 
     const handleOnDown = (e: MouseEvent | TouchEvent) => {
-      e.preventDefault();
+      // Only prevent default for touch to avoid blocking click events on mouse.
+      if (e.type === "touchstart") e.preventDefault();
       isDragging.current = true;
+      hasDragged.current = false;
 
       if (e.type === "mousedown") {
         startPosition.current = (e as MouseEvent).clientX;
@@ -198,6 +217,10 @@ const Photography = () => {
         e.type === "mousemove"
           ? (e as MouseEvent).clientX
           : (e as TouchEvent).touches[0].clientX;
+
+      const delta = Math.abs(startPosition.current - clientX);
+      if (delta > 6) hasDragged.current = true;
+
       const mouseDelta = startPosition.current - clientX;
       const maxDelta = window.innerWidth / 2;
 
@@ -205,7 +228,7 @@ const Photography = () => {
       const newPercentage = percentageRef.current + movePercentage;
 
       updateTrackPosition(newPercentage);
-      startPosition.current = clientX; // Update start position for continuous dragging
+      startPosition.current = clientX;
     };
 
     const handleOnScroll = (e: WheelEvent) => {
@@ -228,9 +251,10 @@ const Photography = () => {
     window.addEventListener("touchmove", handleOnMove);
     window.addEventListener("wheel", handleOnScroll, { passive: false });
 
-    // Ensure the track starts at a higher percentage on mount
-    percentageRef.current = -20;
-    updateTrackPosition(-20);
+    // Start at the beginning of the album (first image at the left edge margin).
+    const { maxPct: startPct } = getBounds();
+    percentageRef.current = startPct;
+    updateTrackPosition(startPct);
 
     return () => {
       window.removeEventListener("mousedown", handleOnDown);
@@ -243,32 +267,78 @@ const Photography = () => {
     };
   }, [currentTrack]);
 
-  const handlePreviousTrack = () => {
-    setCurrentTrackIndex((prevIndex) => Math.max(prevIndex - 1, 0));
-    percentageRef.current = -20; // Start from a higher percentage when switching tracks
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") closeLightbox();
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
+
+  const closeLightbox = () => {
+    setLightboxOpen(false);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    lbPanStart.current = null;
   };
 
-  const handleNextTrack = () => {
-    setCurrentTrackIndex((prevIndex) =>
-      Math.min(prevIndex + 1, trackNames.length - 1)
-    );
-    percentageRef.current = -20; // Start from a higher percentage when switching tracks
+  const openLightbox = (url: string) => {
+    if (hasDragged.current) return;
+    setSelectedImage(url);
+    setZoom(1);
+    setPan({ x: 0, y: 0 });
+    setLightboxOpen(true);
+  };
+
+  const handleLbWheel = (e: React.WheelEvent) => {
+    e.stopPropagation();
+    const step = e.deltaY < 0 ? 0.3 : -0.3;
+    setZoom((prev) => {
+      const next = Math.max(1, Math.min(6, prev + step));
+      if (next <= 1) setPan({ x: 0, y: 0 });
+      return next;
+    });
+  };
+
+  const handleLbImageMouseDown = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    lbHasPanned.current = false;
+    if (zoom > 1) {
+      lbPanStart.current = { mx: e.clientX, my: e.clientY, px: pan.x, py: pan.y };
+    }
+  };
+
+  const handleLbMouseMove = (e: React.MouseEvent) => {
+    if (!lbPanStart.current) return;
+    const dx = e.clientX - lbPanStart.current.mx;
+    const dy = e.clientY - lbPanStart.current.my;
+    if (Math.abs(dx) > 3 || Math.abs(dy) > 3) lbHasPanned.current = true;
+    setPan({ x: lbPanStart.current.px + dx, y: lbPanStart.current.py + dy });
+  };
+
+  const handleLbMouseUp = () => {
+    lbPanStart.current = null;
+  };
+
+  const handleLbOverlayClick = () => {
+    if (!lbHasPanned.current) closeLightbox();
+    lbHasPanned.current = false;
+  };
+
+  const handleSelectTrack = (index: number) => {
+    setCurrentTrackIndex(index);
+    percentageRef.current = -20;
   };
 
   return (
     <div className="overflow-none">
-      <h1>{trackNames[currentTrackIndex]}</h1>
-      <div className="track-controls">
-        {currentTrackIndex > 0 && (
-          <button
-            className="up-button btn btn-default"
-            onClick={handlePreviousTrack}
-            disabled={currentTrackIndex === 0}
-          >
-            Previous
-          </button>
-        )}
+      <div className="photo-header">
+        <h1 className="photo-title">{trackNames[currentTrackIndex]}</h1>
       </div>
+
+      <div className="track-fade-left" />
+      <div className="track-fade-right" />
+
       <div
         id="image-track"
         ref={trackRef}
@@ -276,71 +346,81 @@ const Photography = () => {
         data-prev-percentage="0"
         data-percentage="0"
       >
-        {imageTracks[currentTrack].map((publicId) =>
-          publicId === "seattle/dtvcaw0nybpemlvmgfxc" ||
-          publicId === "seattle/anmxplebbbryeaytbzkm" ? (
+        {imageTracks[currentTrack].map((publicId) => {
+          const isPortrait =
+            publicId === "seattle/dtvcaw0nybpemlvmgfxc" ||
+            publicId === "seattle/anmxplebbbryeaytbzkm";
+          const url = isPortrait
+            ? createCloudinaryUrl(publicId, 1800, 2400)
+            : createCloudinaryUrl(publicId, 2400, 1800);
+          return (
             <img
               key={publicId}
               className="image"
-              src={createCloudinaryUrl(publicId, 1800, 2400)}
+              src={url}
               alt="Photography"
-              data-bs-toggle="modal"
-              data-bs-target="#image"
-              onClick={() =>
-                setSelectedImage(createCloudinaryUrl(publicId, 1800, 2400))
-              }
+              onClick={() => openLightbox(url)}
             />
-          ) : (
-            <img
-              key={publicId}
-              className="image"
-              src={createCloudinaryUrl(publicId, 2400, 1800)}
-              alt="Photography"
-              data-bs-toggle="modal"
-              data-bs-target="#image"
-              onClick={() =>
-                setSelectedImage(createCloudinaryUrl(publicId, 2400, 1800))
-              }
-            />
-          )
-        )}
+          );
+        })}
       </div>
-      <div
-        className="modal fade"
-        id="image"
-        tabIndex={-1}
-        aria-labelledby="imageModalLabel"
-        aria-hidden="true"
-      >
-        <div className="modal-dialog modal-dialog-centered modal-xl">
-          <div className="modal-content modal-color">
-            <div className="modal-header">
-              <h5 className="modal-title" id="imageModalLabel"></h5>
-              <button
-                type="button"
-                className="btn-close btn-close-custom"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div className="modal-body">
-              {selectedImage && (
-                <img src={selectedImage} alt="Selected" className="img-fluid" />
-              )}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="track-controls">
-        {currentTrackIndex < trackNames.length - 1 && (
+
+      {lightboxOpen && selectedImage && (
+        <div
+          className="lightbox-overlay"
+          onClick={handleLbOverlayClick}
+          onWheel={handleLbWheel}
+          onMouseMove={handleLbMouseMove}
+          onMouseUp={handleLbMouseUp}
+          onMouseLeave={handleLbMouseUp}
+          style={{ cursor: zoom > 1 ? "default" : "zoom-out" }}
+        >
           <button
-            className="btn btn-default down-button"
-            onClick={handleNextTrack}
-            disabled={currentTrackIndex === trackNames.length - 1}
+            className="lightbox-close"
+            aria-label="Close"
+            onClick={(e) => { e.stopPropagation(); closeLightbox(); }}
           >
-            Next
+            ×
           </button>
-        )}
+          {zoom > 1 && (
+            <span className="lightbox-zoom-level">{zoom.toFixed(1)}×</span>
+          )}
+          <img
+            src={selectedImage}
+            alt="Selected"
+            className="lightbox-image"
+            draggable={false}
+            style={{
+              transform: `translate(${pan.x}px, ${pan.y}px) scale(${zoom})`,
+              cursor: zoom > 1 ? "grab" : "zoom-in",
+              transition: lbPanStart.current ? "none" : "transform 0.18s ease",
+            }}
+            onClick={(e) => e.stopPropagation()}
+            onMouseDown={handleLbImageMouseDown}
+            onDoubleClick={() => { setZoom(1); setPan({ x: 0, y: 0 }); }}
+          />
+          <span className="lightbox-hint">
+            {zoom > 1 ? "drag to pan · double-click to reset" : "scroll to zoom · click outside to close"}
+          </span>
+        </div>
+      )}
+
+      <div className="album-selector">
+        <div className="album-selector-meta">
+          {imageTracks[currentTrack].length} photos &middot; drag or scroll to
+          explore
+        </div>
+        <div className="album-pills">
+          {trackNames.map((name, index) => (
+            <button
+              key={name}
+              className={`album-pill${index === currentTrackIndex ? " active" : ""}`}
+              onClick={() => handleSelectTrack(index)}
+            >
+              {name}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );

@@ -1,4 +1,9 @@
 {
+  "/photography/page": "app/photography/page.js",
+  "/projects/page": "app/projects/page.js",
   "/page": "app/page.js",
-  "/initials-game/page": "app/initials-game/page.js"
+  "/initials-game/page": "app/initials-game/page.js",
+  "/resume-search/page": "app/resume-search/page.js",
+  "/courses/page": "app/courses/page.js",
+  "/experience/page": "app/experience/page.js"
 }

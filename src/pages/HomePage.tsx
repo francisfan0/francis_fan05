@@ -148,9 +148,10 @@ const HomePage = () => {
         <a href="mailto:francis.fan@yale.edu">francis.fan@yale.edu</a>
       </address>
       <p>
-        I'm currently @ Yale intending to study CS. I'm excited by applications
-        of AI/ML and am currently doing research at the Apollo Lab @ Yale with
-        special interests in robotics and deep learning.
+        I'm currently @ Yale pursuing a combined BS/MS in Computer Science.
+        I'm excited by applications of AI/ML — I've done research at the Apollo
+        Lab @ Yale with special interests in robotics and deep learning, and
+        I'll be joining Databricks this summer as a Software Engineering Intern.
       </p>
       <p className="contact-message">
         Don't hesitate to reach out with any questions!

@@ -124,6 +124,99 @@ const Projects: React.FC = () => {
           <h2
             className="text-hover-underline cursor-pointer"
             data-bs-toggle="modal"
+            data-bs-target="#yaleclubs"
+          >
+            Yale Clubs
+          </h2>
+          <div className="project-details">
+            <div className="inline-container flex-center">
+              <div className="button-container">
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>TypeScript</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>React.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>Node.js</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>MongoDB</code>
+                </button>
+                <button
+                  type="button"
+                  className="btn btn-outline-secondary btn-sm button-spacing"
+                >
+                  <code>JWT</code>
+                </button>
+              </div>
+              <p className="strong-spacing text-secondary">
+                Sept 2024 - Present
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="modal fade"
+          id="yaleclubs"
+          tabIndex={-1}
+          aria-labelledby="yaleclubsModalLabel"
+          aria-hidden="true"
+        >
+          <div className="modal-dialog modal-dialog-centered">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h1 className="modal-title fs-5" id="yaleclubsModalLabel">
+                  <code>Yale Clubs</code>
+                </h1>
+                <button
+                  type="button"
+                  className="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div className="modal-body">
+                <p>
+                  Built Yale's club management app with secure student
+                  authorization using TypeScript, React.js, and CAS, reducing
+                  manual administrative workload and ensuring data protection for
+                  6,000+ users.
+                </p>
+                <p>
+                  Integrated AI-powered event verification and submission
+                  workflows using OpenAI APIs, Node.js, and MongoDB with JWT
+                  authentication to support scalable, secure club operations.
+                </p>
+                <a
+                  href="https://yaleclubs.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit Yale Clubs
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div className="project-item">
+          <h2
+            className="text-hover-underline cursor-pointer"
+            data-bs-toggle="modal"
             data-bs-target="#parallel"
           >
             Parallelizing Large Number Multiplication

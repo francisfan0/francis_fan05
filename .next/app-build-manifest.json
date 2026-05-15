@@ -6,6 +6,18 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
+    "/photography/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/photography/page.css",
+      "static/chunks/app/photography/page.js"
+    ],
+    "/projects/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/projects/page.css",
+      "static/chunks/app/projects/page.js"
+    ],
     "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
@@ -27,6 +39,24 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/api/auth-resume/route.js"
+    ],
+    "/resume-search/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/resume-search/page.css",
+      "static/chunks/app/resume-search/page.js"
+    ],
+    "/courses/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/courses/page.css",
+      "static/chunks/app/courses/page.js"
+    ],
+    "/experience/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/css/app/experience/page.css",
+      "static/chunks/app/experience/page.js"
     ]
   }
 }

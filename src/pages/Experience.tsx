@@ -6,7 +6,6 @@ const brain = "/neuroimage.png";
 const shap = "/shap.png";
 const paper = "/ML_risk_taking_supp_final.pdf";
 const ramen = "/ramen.png";
-const yaleclubs = "/yaleclubs.png";
 import "./HomePage.css";
 import "./Courses.css";
 import "../index.css";
@@ -33,11 +32,40 @@ const Experience = () => {
       <h1>These are some experiences I've had!</h1>
 
       <h2
+        onClick={() => handleToggle(0)}
+        style={{ cursor: "pointer" }}
+        className="text-hover-gray"
+      >
+        Databricks
+      </h2>
+
+      <p></p>
+
+      <span className="flex-center">
+        <p>Software Engineering Intern</p>
+        <p>May 2026 – Aug 2026</p>
+      </span>
+
+      {expandedIndices.has(0) && (
+        <div>
+          <p className="slide-in-from-left">
+            Incoming intern on a data replication platform team building ELT
+            pipelines that extract data from MySQL/TiDB sources and load
+            analytical Delta Lake tables for internal analytics, monitoring, and
+            reporting. Developing an agentic operations platform for pipeline
+            health monitoring, root cause analysis, oncall assistance, and
+            lightweight mitigation across CDC, Kafka, Spark streaming, and Delta
+            Lake infrastructure.
+          </p>
+        </div>
+      )}
+
+      <h2
         onClick={() => handleToggle(1)}
         style={{ cursor: "pointer" }}
         className="text-hover-gray"
       >
-        Ramen Inc.
+        Ramen Inc. <span style={{ fontSize: "0.65em", fontWeight: "normal", opacity: 0.6 }}>(Series A)</span>
       </h2>
 
       {!expandedIndices.has(1) && (
@@ -46,9 +74,9 @@ const Experience = () => {
           className="img-rounded"
           alt="SWE Intern"
           style={{
-            width: "100%", // Set width
-            height: "120px", // Set height
-            objectFit: "cover", // Ensure the image covers the area without distortion
+            width: "100%",
+            height: "120px",
+            objectFit: "cover",
             display: "block",
             margin: "0 auto",
           }}
@@ -59,72 +87,20 @@ const Experience = () => {
 
       <span className="flex-center">
         <p>Software Engineering Intern</p>
-        <p>May 2025 – Present</p>
+        <p>May 2025 – July 2025</p>
       </span>
 
       {expandedIndices.has(1) && (
         <div>
           <p className="slide-in-from-left">
-            I engineered modular multi-step AI agents using MLflow, OpenAI APIs,
-            and LangChain to deliver dynamic UI features such as user-adaptive
-            components as well as allowing for users to access real-time
-            diagnostics. I tested and deployed AI agents with PostgreSQL,
-            Kubernetes, and Docker, emphasizing stability and output coherence
-            through automated testing of agent behavior against database state
-            and system performance metrics.
+            I tested and engineered modular multi-step AI agents using MLflow,
+            RAG pipelines, and ChromaDB to power user-adaptive UI components,
+            boosting diagnostic engagement by 50% and reducing time-to-diagnosis
+            by 35%. I deployed AI agents with PostgreSQL, Kubernetes, and Docker,
+            achieving 99.9% system uptime and enhancing output coherence through
+            automated behavior validation against live database state and
+            performance benchmarks.
           </p>
-        </div>
-      )}
-
-      <h2
-        onClick={() => handleToggle(2)}
-        style={{ cursor: "pointer" }}
-        className="text-hover-gray"
-      >
-        Yale Computer Society
-      </h2>
-
-      {!expandedIndices.has(2) && (
-        <img
-          src={yaleclubs}
-          className="img-rounded"
-          alt="Yale Clubs"
-          style={{
-            width: "100%", // Set width
-            height: "120px", // Set height
-            objectFit: "cover", // Ensure the image covers the area without distortion
-            display: "block",
-            margin: "0 auto",
-          }}
-        />
-      )}
-
-      <p></p>
-
-      <span className="flex-center">
-        <p>Lead Software Engineer for Yale Clubs</p>
-        <p>Sept 2024 – Present</p>
-      </span>
-
-      {expandedIndices.has(2) && (
-        <div>
-          <p className="slide-in-from-left">
-            I produced club management webpage and other foundational features
-            with secure student authorization using TypeScript, React.js, and
-            CAS, reducing administrative workload and ensuring data protection
-            for 6,000+ users. I designed an AI-powered event verification tool
-            using OpenAI APIs, Node.js, and MongoDB, integrated with JWT
-            authentication, enabling secure and scalable event submissions
-            beyond club activities, increasing user engagement.
-          </p>
-          <a
-            href="https://yaleclubs.io/"
-            target="_blank"
-            rel="noopener noreferrer"
-            style={{ display: "block" }}
-          >
-            <p className="slide-in-from-left">Visit Yale Clubs</p>
-          </a>
         </div>
       )}
 
@@ -142,9 +118,9 @@ const Experience = () => {
           className="img-rounded"
           alt="Yale Robotics Research"
           style={{
-            width: "100%", // Set width
-            height: "120px", // Set height
-            objectFit: "cover", // Ensure the image covers the area without distortion
+            width: "100%",
+            height: "120px",
+            objectFit: "cover",
             display: "block",
             margin: "0 auto",
           }}
@@ -155,7 +131,7 @@ const Experience = () => {
 
       <span className="flex-center">
         <p>Undergraduate Research Intern under Prof. Danny Rakita</p>
-        <p>Sept 2023 – Present</p>
+        <p>Sept 2023 – Dec 2025</p>
       </span>
 
       {expandedIndices.has(3) && (
@@ -172,16 +148,16 @@ const Experience = () => {
             <strong>
               Project 2: Robotics Generative AI Reinforcement Learning Pipeline
             </strong>{" "}
-            - I used OpenRouter, PyTorch, and OpenAI Gymnasium to develop an
-            agentic reward generation and task analysis pipeline to allow for
-            autonomous RL capabilities and integrated ROS within a virtual
-            environment with efficient publisher and subscriber nodes.
+            - I developed a high-throughput, autonomous reward-generation and
+            task-analysis pipeline with PyTorch, ROS (publisher/subscriber
+            nodes), and OpenAI Gymnasium, enabling continuous RL training in a
+            virtual environment and reducing manual intervention by 25%.
           </p>
           <a
             href="https://pypi.org/project/gymnasium/"
             target="_blank"
             rel="noopener noreferrer"
-            style={{ display: "block" }} // Ensure the link behaves like a block element
+            style={{ display: "block" }}
           >
             <img
               src={gif}

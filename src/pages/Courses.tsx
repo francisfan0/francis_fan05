@@ -37,12 +37,11 @@ const Courses = () => {
         <div>
           <p>
             <ul className="list-container">
-              <li>CPSC 4230: Operating Systems</li>
-              <li>
-                CPSC 4840: Human Computer Interfaces
-              </li>
-              <li>CPSC 4371: Database Design and Implementation</li>
-              <li>ENGL 1020: Reading and Writing the Modern English Essay</li>
+              <li>CPSC 4260: Building Distributed Systems</li>
+              <li>CPSC 4310: Algorithmic Computer Music</li>
+              <li>CPSC 4900: Senior Project</li>
+              <li>PLSC 2600: Game Theory &amp; Political Science</li>
+              <li>ART 1514: Basic Drawing</li>
             </ul>
           </p>
         </div>
@@ -59,20 +58,21 @@ const Courses = () => {
         <div>
           <p>
             <ul className="list-container">
-              <li>CPSC 223: Data Structures and Programming Techniques</li>
               <li>CPSC 201: Intro to Computer Science</li>
-              <li>CPSC 381: Intro to Machine Learning</li>
-              <li>CPSC 474: Computational Intelligence for Games</li>
-              <li>
-                CPSC 323: Intro to Systems Programming <br></br>
-                and Computer Organization
-              </li>
+              <li>CPSC 223: Data Structures &amp; Programming Techniques</li>
+              <li>CPSC 323: Systems Programming &amp; Computer Organization</li>
               <li>CPSC 365: Algorithms</li>
-              <li>CPSC 424: Parallel Computing</li>
-              <li>PHYS 345: Quantum Information Processing</li>
-              <li>CPSC 4270: C++</li>
-              <li>CPSC 4210: Compilers</li>
+              <li>CPSC 381: Introduction to Machine Learning</li>
+              <li>CPSC 424: Parallel Programming Techniques</li>
+              <li>CPSC 474: Computational Intelligence for Games</li>
+              <li>CPSC 4270: Advanced C++ Programming</li>
               <li>CPSC 4470: Intro to Quantum Computing</li>
+              <li>CPSC 5150: Law and Large Language Models</li>
+              <li>CPSC 5210: Compilers and Interpreters</li>
+              <li>CPSC 5230: Operating Systems Design &amp; Implementation</li>
+              <li>CPSC 5371: Database Design &amp; Implementation</li>
+              <li>CPSC 5391: Advanced Software Engineering</li>
+              <li>PHYS 345: Intro to Quantum Information</li>
             </ul>
           </p>
         </div>
@@ -89,13 +89,13 @@ const Courses = () => {
         <div>
           <p>
             <ul className="list-container">
-              <li>S&DS 230: Data Exploration and Analysis</li>
-              <li>MATH 120: Multivariable Calculus</li>
-              <li>MATH 244: Discrete Math</li>
+              <li>MATH 120: Calculus: Functions of Several Variables</li>
+              <li>AMTH 244: Discrete Mathematics</li>
               <li>MATH 225: Linear Algebra</li>
-              <li>MATH 255: Analysis</li>
-              <li>S&DS 241: Probability Theory</li>
-              <li>S&DS 242: Theory of Statistics</li>
+              <li>MATH 255: Analysis 1</li>
+              <li>S&amp;DS 230: Data Exploration and Analysis</li>
+              <li>S&amp;DS 241: Probability Theory</li>
+              <li>S&amp;DS 242: Theory of Statistics</li>
             </ul>
           </p>
         </div>
@@ -114,9 +114,10 @@ const Courses = () => {
             <ul className="list-container">
               <li>ECON 121: Intermediate Microeconomics</li>
               <li>LITR 020: World Literature After Empire</li>
-              <li>CHNS 142: Heritage Chinese</li>
-              <li>CHNS 200: The Chinese Tradition</li>
-              <li>HSAR 3290: Arts and the Silk Road</li>
+              <li>CHNS 142: Intermediate Modern Chinese for Heritage Speakers</li>
+              <li>EALL 200: The Chinese Tradition</li>
+              <li>HSAR 3290: Arts of the Silk Road</li>
+              <li>ENGL 1020: Reading &amp; Writing the Modern Essay</li>
             </ul>
           </p>
         </div>

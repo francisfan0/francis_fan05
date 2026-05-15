@@ -1,24 +1,31 @@
+"use client";
+
 import { useState } from "react";
 import Link from "next/link";
-import "./Layout.css"; // Ensure you include the CSS file for styles
-const menu = "/menu-icon.svg";
+import { usePathname } from "next/navigation";
+import "./Layout.css";
 import "../index.css";
+
+const menu = "/menu-icon.svg";
+
+const navLinks = [
+  { href: "/courses", label: "Courses" },
+  { href: "/experience", label: "Experience" },
+  { href: "/projects", label: "Projects" },
+  { href: "/photography", label: "Photography" },
+];
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const pathname = usePathname();
 
-  const toggleMenu = () => {
-    setIsOpen(!isOpen);
-  };
-
-  const closeMenu = () => {
-    setIsOpen(false);
-  };
+  const toggleMenu = () => setIsOpen(!isOpen);
+  const closeMenu = () => setIsOpen(false);
 
   return (
-    <header className="py-3">
+    <header className="site-header">
       <div className="custom-container d-flex justify-content-between align-items-center position-relative">
-        <Link href="/" className="text-hover-grayl fs-3 text-decoration-none">
+        <Link href="/" className="site-brand text-decoration-none" onClick={closeMenu}>
           Francis
         </Link>
         <div className="d-flex align-right">
@@ -31,63 +38,33 @@ const Header = () => {
             <img
               src={menu}
               alt="Menu"
-              style={{
-                height: "19px", // Set height
-                display: "block",
-                margin: "0 auto",
-              }}
+              style={{ height: "19px", display: "block", margin: "0 auto" }}
             />
           </button>
           <div
             className={`backdrop ${isOpen ? "show" : ""}`}
-            onClick={closeMenu} // Close the menu when clicking outside
-          ></div>
-          <div
-            className={`navbar-collapse ${
-              isOpen ? "show" : ""
-            } d-lg-flex flex-column flex-lg-row text-align text-end`}
+            onClick={closeMenu}
+          />
+          <nav
+            className={`navbar-collapse ${isOpen ? "show" : ""} d-lg-flex flex-column flex-lg-row text-align text-end`}
             id="navbarNav"
           >
-            <Link
-              href="/courses"
-              onClick={closeMenu}
-              className="text-hover-grayl fs-3 text-decoration-none"
-            >
-              Courses
-            </Link>
-            <Link
-              href="/experience"
-              onClick={closeMenu}
-              className="text-hover-grayl fs-3 text-decoration-none"
-            >
-              Experience
-            </Link>
-            <Link
-              href="/projects"
-              onClick={closeMenu}
-              className="text-hover-grayl fs-3 text-decoration-none"
-            >
-              Projects
-            </Link>
-            <Link
-              href="/photography"
-              onClick={closeMenu}
-              className="text-hover-grayl fs-3 text-decoration-none"
-            >
-              Photography
-            </Link>
+            {navLinks.map(({ href, label }) => (
+              <Link
+                key={href}
+                href={href}
+                onClick={closeMenu}
+                className={`nav-link-item text-decoration-none${pathname === href ? " nav-active" : ""}`}
+              >
+                {label}
+              </Link>
+            ))}
             {process.env.NEXT_PUBLIC_ENABLE_RESUME_SEARCH !== "false" && (
               <Link
                 href="/resume-search"
                 onClick={closeMenu}
-                className="text-hover-grayl fs-3 text-decoration-none"
-                style={{
-                  opacity: 0.1,
-                  fontSize: "0.6rem",
-                  cursor: "default",
-                  userSelect: "none",
-                }}
-                title=""
+                className="text-decoration-none"
+                style={{ opacity: 0.1, fontSize: "0.6rem", cursor: "default", userSelect: "none" }}
                 onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.3")}
                 onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.1")}
               >
@@ -97,20 +74,14 @@ const Header = () => {
             <Link
               href="/initials-game"
               onClick={closeMenu}
-              className="text-hover-grayl fs-3 text-decoration-none"
-              style={{
-                opacity: 0.1,
-                fontSize: "0.6rem",
-                cursor: "default",
-                userSelect: "none",
-              }}
-              title=""
+              className="text-decoration-none"
+              style={{ opacity: 0.1, fontSize: "0.6rem", cursor: "default", userSelect: "none" }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.3")}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = "0.1")}
             >
               ·
             </Link>
-          </div>
+          </nav>
         </div>
       </div>
     </header>

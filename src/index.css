@@ -75,14 +75,14 @@ body, html {
 }
 
 body.dark-mode {
-  background-color: black; /* Dark background color */
-  color: lightblue; /* Light text color */
+  background-color: #111;
+  color: #e8e8e8;
   transition: color 0.3s ease, transform 0.3s ease;
   overflow-x: hidden;
-  position:relative;
+  position: relative;
 }
 
 body.dark-mode header {
-  background-color: black; /* Darker background color for the header */
+  background-color: #111;
   transition: color 0.3s ease, transform 0.3s ease;
 }
