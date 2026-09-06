@@ -1,27 +1,17 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import Layout from "../../layout/Layout";
 import Courses from "../../pages/Courses";
-import { Analytics } from "@vercel/analytics/react";
+
+export const metadata: Metadata = {
+  title: "Courses",
+  description:
+    "Courses Francis Fan has taken at Yale, including current classes and GPA.",
+};
 
 export default function CoursesPage() {
-  useEffect(() => {
-    // Check and apply the saved theme on component mount
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  }, []);
-
   return (
-    <>
-      <Layout>
-        <Courses />
-      </Layout>
-      <Analytics />
-    </>
+    <Layout>
+      <Courses />
+    </Layout>
   );
 }

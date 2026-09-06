@@ -1,27 +1,17 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import Layout from "../../layout/Layout";
 import Projects from "../../pages/Projects";
-import { Analytics } from "@vercel/analytics/react";
+
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Selected projects by Francis Fan, including Auren, Yale Clubs, and robotics work.",
+};
 
 export default function ProjectsPage() {
-  useEffect(() => {
-    // Check and apply the saved theme on component mount
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  }, []);
-
   return (
-    <>
-      <Layout>
-        <Projects />
-      </Layout>
-      <Analytics />
-    </>
+    <Layout>
+      <Projects />
+    </Layout>
   );
 }

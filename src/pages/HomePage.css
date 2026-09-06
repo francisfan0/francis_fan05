@@ -120,6 +120,23 @@
   display: inline-block; 
 }
 
+@media (max-width: 520px) {
+  .h1-title {
+    display: block;
+    overflow: visible;
+    white-space: normal;
+  }
+
+  .typewriter {
+    display: inline;
+    overflow: visible;
+    white-space: normal;
+    border-right: none;
+    animation: none;
+    width: auto;
+  }
+}
+
 .typewriter {
   font-family: monospace;
   display: inline-block; 

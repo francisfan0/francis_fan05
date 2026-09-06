@@ -1,27 +1,17 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import Layout from "../../layout/Layout";
 import Experience from "../../pages/Experience";
-import { Analytics } from "@vercel/analytics/react";
+
+export const metadata: Metadata = {
+  title: "Experience",
+  description:
+    "Work and research experience, including Databricks, Ramen Inc., and Yale CS.",
+};
 
 export default function ExperiencePage() {
-  useEffect(() => {
-    // Check and apply the saved theme on component mount
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  }, []);
-
   return (
-    <>
-      <Layout>
-        <Experience />
-      </Layout>
-      <Analytics />
-    </>
+    <Layout>
+      <Experience />
+    </Layout>
   );
 }

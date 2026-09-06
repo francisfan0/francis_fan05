@@ -1,4 +1,7 @@
+"use client";
+
 import { useState } from "react";
+import ExpandToggle from "../components/ExpandToggle";
 const gif =
   "/68747470733a2f2f7261772e67697468756275736572636f6e74656e742e636f6d2f466172616d612d466f756e646174696f6e2f47796d6e617369756d2f6d61696e2f67796d6e617369756d2d746578742e706e67.png";
 const robotics = "/apollolab.png";
@@ -31,13 +34,13 @@ const Experience = () => {
     <div>
       <h1>These are some experiences I've had!</h1>
 
-      <h2
-        onClick={() => handleToggle(0)}
-        style={{ cursor: "pointer" }}
-        className="text-hover-gray"
+      <ExpandToggle
+        controlsId="exp-databricks"
+        expanded={expandedIndices.has(0)}
+        onToggle={() => handleToggle(0)}
       >
         Databricks
-      </h2>
+      </ExpandToggle>
 
       <p></p>
 
@@ -47,26 +50,32 @@ const Experience = () => {
       </span>
 
       {expandedIndices.has(0) && (
-        <div>
+        <div id="exp-databricks">
           <p className="slide-in-from-left">
-            Incoming intern on a data replication platform team building ELT
-            pipelines that extract data from MySQL/TiDB sources and load
-            analytical Delta Lake tables for internal analytics, monitoring, and
-            reporting. Developing an agentic operations platform for pipeline
-            health monitoring, root cause analysis, oncall assistance, and
-            lightweight mitigation across CDC, Kafka, Spark streaming, and Delta
-            Lake infrastructure.
+            I developed an agentic operations platform for pipeline health
+            monitoring, root cause analysis, oncall assistance, and mitigation
+            across CDC, Kafka, Spark streaming, and Delta Lake infrastructure,
+            and diagnosed 100+ incidents.
+          </p>
+          <p className="slide-in-from-left">
+            I reduced on-call incident root cause analysis time from 30 minutes
+            to 3 minutes using deterministic diagnostic tooling, structured
+            agent context management, and automated synthesis of logs, metrics,
+            and pipeline metadata.
           </p>
         </div>
       )}
 
-      <h2
-        onClick={() => handleToggle(1)}
-        style={{ cursor: "pointer" }}
-        className="text-hover-gray"
+      <ExpandToggle
+        controlsId="exp-ramen"
+        expanded={expandedIndices.has(1)}
+        onToggle={() => handleToggle(1)}
       >
-        Ramen Inc. <span style={{ fontSize: "0.65em", fontWeight: "normal", opacity: 0.6 }}>(Series A)</span>
-      </h2>
+        Ramen Inc.{" "}
+        <span style={{ fontSize: "0.65em", fontWeight: "normal", opacity: 0.6 }}>
+          (Series A)
+        </span>
+      </ExpandToggle>
 
       {!expandedIndices.has(1) && (
         <img
@@ -91,26 +100,25 @@ const Experience = () => {
       </span>
 
       {expandedIndices.has(1) && (
-        <div>
+        <div id="exp-ramen">
           <p className="slide-in-from-left">
             I tested and engineered modular multi-step AI agents using MLflow,
             RAG pipelines, and ChromaDB to power user-adaptive UI components,
             boosting diagnostic engagement by 50% and reducing time-to-diagnosis
             by 35%. I deployed AI agents with PostgreSQL, Kubernetes, and Docker,
-            achieving 99.9% system uptime and enhancing output coherence through
-            automated behavior validation against live database state and
-            performance benchmarks.
+            enhancing output coherence through automated behavior validation
+            against live database state and performance benchmarks.
           </p>
         </div>
       )}
 
-      <h2
-        onClick={() => handleToggle(3)}
-        style={{ cursor: "pointer" }}
-        className="text-hover-gray"
+      <ExpandToggle
+        controlsId="exp-yale-cs"
+        expanded={expandedIndices.has(3)}
+        onToggle={() => handleToggle(3)}
       >
         Yale Department of Computer Science
-      </h2>
+      </ExpandToggle>
 
       {!expandedIndices.has(3) && (
         <img
@@ -135,7 +143,7 @@ const Experience = () => {
       </span>
 
       {expandedIndices.has(3) && (
-        <div>
+        <div id="exp-yale-cs">
           <p className="slide-in-from-left">
             <strong>Project 1: Diffusion Policy for Manipulation</strong> - I
             implemented diffusion policy, reinforcement learning (RL), and
@@ -175,13 +183,13 @@ const Experience = () => {
         </div>
       )}
 
-      <h2
-        onClick={() => handleToggle(4)}
-        style={{ cursor: "pointer" }}
-        className="text-hover-gray"
+      <ExpandToggle
+        controlsId="exp-penn"
+        expanded={expandedIndices.has(4)}
+        onToggle={() => handleToggle(4)}
       >
         Center for Functional Neuroimaging, University of Pennsylvania
-      </h2>
+      </ExpandToggle>
 
       {!expandedIndices.has(4) && (
         <img
@@ -205,7 +213,7 @@ const Experience = () => {
         <p>Jun 2022 – Aug 2023</p>
       </span>
       {expandedIndices.has(4) && (
-        <div>
+        <div id="exp-penn">
           <p className="slide-in-from-left">
             I led a project analyzing the relationship between risk tolerance
             and brain gray matter volume under Professor Hengyi Rao, presented

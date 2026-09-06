@@ -1,27 +1,17 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import Layout from "../../layout/Layout";
 import Photography from "../../pages/Photography";
-import { Analytics } from "@vercel/analytics/react";
+
+export const metadata: Metadata = {
+  title: "Photography",
+  description:
+    "Photography by Francis Fan from national parks, Seattle, and more.",
+};
 
 export default function PhotographyPage() {
-  useEffect(() => {
-    // Check and apply the saved theme on component mount
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  }, []);
-
   return (
-    <>
-      <Layout>
-        <Photography />
-      </Layout>
-      <Analytics />
-    </>
+    <Layout>
+      <Photography />
+    </Layout>
   );
 }

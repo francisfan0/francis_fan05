@@ -1,3 +1,5 @@
+"use client";
+
 import { useRef, useEffect, useState } from "react";
 import "./Photography.css";
 import "../index.css";
@@ -350,16 +352,20 @@ const Photography = () => {
           const isPortrait =
             publicId === "seattle/dtvcaw0nybpemlvmgfxc" ||
             publicId === "seattle/anmxplebbbryeaytbzkm";
-          const url = isPortrait
+          const thumbUrl = isPortrait
+            ? createCloudinaryUrl(publicId, 800, 1067)
+            : createCloudinaryUrl(publicId, 800, 600);
+          const fullUrl = isPortrait
             ? createCloudinaryUrl(publicId, 1800, 2400)
             : createCloudinaryUrl(publicId, 2400, 1800);
           return (
             <img
               key={publicId}
               className="image"
-              src={url}
-              alt="Photography"
-              onClick={() => openLightbox(url)}
+              src={thumbUrl}
+              alt={`${currentTrack} photograph`}
+              loading="lazy"
+              onClick={() => openLightbox(fullUrl)}
             />
           );
         })}

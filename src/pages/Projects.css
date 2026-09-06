@@ -22,21 +22,34 @@
 
 .project-item {
     position: relative;
-    margin-bottom: 4rem; /* Adjust spacing between projects as needed */
+    margin-bottom: 2rem;
   }
-  
+
+  .project-title {
+    display: inline;
+    padding: 0;
+    border: none;
+    background: none;
+    font: inherit;
+    color: inherit;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .project-title:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 4px;
+  }
+
   .project-details {
-    display: none;
-    position: absolute;
-    top: 100%; /* Position it right below the project item */
-    left: 0;
-    padding: 10px;
-    z-index: 10;
-    width: 100%; /* Adjust width if needed */
-  }
-  
-  .project-item:hover .project-details {
     display: block;
+    padding: 4px 0 0;
+    width: 100%;
+  }
+
+  .project-tag {
+    cursor: default;
+    pointer-events: none;
   }
 
   .button-spacing {
@@ -100,3 +113,62 @@
   .button-container .btn:nth-child(5) {
     animation-delay: 0.5s;
   }
+
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1050;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  background: rgba(0, 0, 0, 0.45);
+}
+
+.project-modal {
+  width: min(560px, 100%);
+  max-height: min(86vh, 720px);
+  overflow: auto;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+html.dark-mode .project-modal,
+body.dark-mode .project-modal {
+  background: #1c1c1c;
+  color: #e8e8e8;
+}
+
+.project-modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.15rem 0.5rem;
+}
+
+.project-modal-title {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.project-modal-close {
+  border: none;
+  background: none;
+  color: inherit;
+  font-size: 1.75rem;
+  line-height: 1;
+  padding: 0 0.2rem;
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.project-modal-close:hover,
+.project-modal-close:focus-visible {
+  opacity: 1;
+}
+
+.project-modal-body {
+  padding: 0.25rem 1.15rem 1.15rem;
+}

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import "./Layout.css";
@@ -22,6 +22,15 @@ const Header = () => {
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
 
+  useEffect(() => {
+    if (!isOpen) return;
+    const onKey = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setIsOpen(false);
+    };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [isOpen]);
+
   return (
     <header className="site-header">
       <div className="custom-container d-flex justify-content-between align-items-center position-relative">
@@ -32,6 +41,7 @@ const Header = () => {
           <button
             className="btn btn-default d-lg-none dark-btn"
             onClick={toggleMenu}
+            aria-label="Open menu"
             aria-expanded={isOpen}
             aria-controls="navbarNav"
           >

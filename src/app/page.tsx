@@ -1,28 +1,19 @@
-"use client";
-
-import { useEffect } from "react";
+import type { Metadata } from "next";
 import Layout from "../layout/Layout";
 import HomePage from "../pages/HomePage";
-import { Analytics } from "@vercel/analytics/react";
-import "../pages/HomePage.css";
+
+export const metadata: Metadata = {
+  title: {
+    absolute: "Francis Fan",
+  },
+  description:
+    "Hi, I'm Francis. I'm currently at Yale pursuing a combined BS/MS in Computer Science. Don't hesitate to reach out with any questions!",
+};
 
 export default function Home() {
-  useEffect(() => {
-    // Check and apply the saved theme on component mount
-    if (typeof window !== "undefined") {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark") {
-        document.body.classList.add("dark-mode");
-      }
-    }
-  }, []);
-
   return (
-    <>
-      <Layout>
-        <HomePage />
-      </Layout>
-      <Analytics />
-    </>
+    <Layout>
+      <HomePage />
+    </Layout>
   );
 }

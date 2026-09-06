@@ -58,6 +58,13 @@
   width: 200px; /* Fixed width for the dropdown */
 }
 
+html.dark-mode .navbar-collapse,
+body.dark-mode .navbar-collapse {
+  background-color: #1c1c1c;
+  border-color: #333;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
+}
+
 /* Show dropdown on mobile when button is clicked */
 .navbar-collapse.show {
   display: -webkit-flex; /* Safari */
@@ -83,6 +90,13 @@
     max-width: none !important;
     gap: 2rem;
   }
+
+  html.dark-mode .navbar-collapse,
+  body.dark-mode .navbar-collapse {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+  }
   
   /* Hide the mobile menu button on larger screens */
   .btn-primary.d-lg-none {
@@ -107,6 +121,7 @@
   transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
+html.dark-mode .site-header,
 body.dark-mode .site-header {
   background-color: #111;
   border-bottom-color: rgba(255, 255, 255, 0.08);

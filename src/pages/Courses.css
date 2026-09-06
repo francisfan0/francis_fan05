@@ -39,4 +39,84 @@
   animation: slideInFromLeft 0.2s ease-out;
 }
 
+.expand-heading {
+  margin-top: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.expand-toggle {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  width: 100%;
+  padding: 0;
+  border: none;
+  background: none;
+  text-align: left;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.expand-toggle:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.expand-chevron {
+  display: inline-block;
+  width: 0.85em;
+  flex-shrink: 0;
+  font-weight: 500;
+  opacity: 0.45;
+}
+
+.transcript {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+}
+
+.transcript-term-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  margin-bottom: 0.35rem;
+}
+
+.transcript-term-header h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.transcript-courses {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.transcript-courses li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  padding: 0.28rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.transcript-courses li:last-child {
+  border-bottom: none;
+}
+
+.transcript-courses code {
+  flex-shrink: 0;
+}
+
+html.dark-mode .transcript-courses li,
+body.dark-mode .transcript-courses li {
+  border-bottom-color: rgba(255, 255, 255, 0.08);
+}
+
 

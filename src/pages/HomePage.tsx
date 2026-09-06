@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect, useRef, useState } from "react";
 import "./HomePage.css";
 import "../index.css";
@@ -151,7 +153,8 @@ const HomePage = () => {
         I'm currently @ Yale pursuing a combined BS/MS in Computer Science.
         I'm excited by applications of AI/ML — I've done research at the Apollo
         Lab @ Yale with special interests in robotics and deep learning, and
-        I'll be joining Databricks this summer as a Software Engineering Intern.
+        I was a Software Engineering Intern at Databricks this past summer,
+        building agentic tooling for data pipeline operations.
       </p>
       <p className="contact-message">
         Don't hesitate to reach out with any questions!

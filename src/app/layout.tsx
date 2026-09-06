@@ -1,5 +1,6 @@
 import { Analytics } from "@vercel/analytics/react";
 import { Inter } from "next/font/google";
+import { themeInitScript } from "../lib/theme";
 import "../index.css";
 import "../App.css";
 import "../layout/Layout.css";
@@ -21,7 +22,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <meta
           name="google-site-verification"
@@ -32,8 +33,10 @@ export default function RootLayout({
           type="image/svg+xml"
           href="/monkey-facing-left-svgrepo-com.svg"
         />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
       </head>
-      <body className={inter.className}>
+      <body className={inter.className} suppressHydrationWarning>
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         {children}
         <Analytics />
       </body>
